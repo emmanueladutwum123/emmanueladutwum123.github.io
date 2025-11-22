@@ -5,17 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Emmanuel Adutwum | Quantitative Researcher & Data Scientist</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #1a1a2e;
-            --secondary: #16213e;
-            --accent: #0fccce;
-            --light: #e6f7ff;
-            --text: #333;
-            --text-light: #777;
-            --white: #fff;
-            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --primary: #0a192f;
+            --secondary: #112240;
+            --accent: #64ffda;
+            --accent-light: #8affdf;
+            --text: #ccd6f6;
+            --text-light: #8892b0;
+            --white: #e6f1ff;
+            --shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
+            --transition: all 0.25s cubic-bezier(0.645,0.045,0.355,1);
         }
 
         * {
@@ -24,11 +25,16 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             line-height: 1.6;
             color: var(--text);
-            background-color: var(--white);
+            background-color: var(--primary);
+            overflow-x: hidden;
         }
 
         .container {
@@ -38,16 +44,26 @@
             padding: 0 15px;
         }
 
+        section {
+            padding: 100px 0;
+        }
+
         /* Header & Navigation */
         header {
-            background-color: var(--primary);
+            background-color: rgba(10, 25, 47, 0.95);
             color: var(--white);
-            padding: 1rem 0;
+            padding: 1.5rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+
+        .scrolled {
             box-shadow: var(--shadow);
+            padding: 1rem 0;
         }
 
         .navbar {
@@ -57,9 +73,10 @@
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
+            font-size: 1.8rem;
+            font-weight: 800;
             color: var(--white);
+            text-decoration: none;
         }
 
         .logo span {
@@ -72,103 +89,184 @@
         }
 
         .nav-links li {
-            margin-left: 2rem;
+            margin-left: 2.5rem;
         }
 
         .nav-links a {
             color: var(--white);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent);
+            transition: var(--transition);
         }
 
         .nav-links a:hover {
             color: var(--accent);
         }
 
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: var(--accent);
+        }
+
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
         .hamburger {
             display: none;
             cursor: pointer;
+            background: transparent;
+            border: none;
+            color: var(--accent);
+            font-size: 1.5rem;
         }
 
         /* Hero Section */
         .hero {
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             color: var(--white);
-            padding: 10rem 0 5rem;
-            text-align: center;
+            padding: 180px 0 120px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2364ffda' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            z-index: 0;
         }
 
         .hero-content {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
+            text-align: left;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-greeting {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
         }
 
         .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+        }
+
+        .hero h2 {
             font-size: 3rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
             font-weight: 700;
         }
 
         .hero p {
             font-size: 1.2rem;
-            margin-bottom: 2rem;
-            color: var(--light);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            color: var(--text-light);
         }
 
         .btn {
             display: inline-block;
-            background-color: var(--accent);
-            color: var(--primary);
-            padding: 0.8rem 1.5rem;
-            border-radius: 5px;
+            background-color: transparent;
+            color: var(--accent);
+            padding: 1rem 2rem;
+            border-radius: 4px;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid var(--accent);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background-color: rgba(100, 255, 218, 0.1);
+            transition: var(--transition);
+            z-index: -1;
         }
 
         .btn:hover {
-            background-color: var(--white);
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 20px rgba(100, 255, 218, 0.2);
+        }
+
+        .btn:hover::before {
+            width: 100%;
         }
 
         /* Profile Section */
         .profile {
-            padding: 5rem 0;
-            background-color: var(--white);
+            background-color: var(--primary);
+            position: relative;
         }
 
         .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
+            position: relative;
         }
 
         .section-title h2 {
             font-size: 2.5rem;
-            color: var(--primary);
+            color: var(--white);
             margin-bottom: 1rem;
             position: relative;
             display: inline-block;
+            font-weight: 700;
         }
 
         .section-title h2::after {
             content: '';
             position: absolute;
-            width: 70px;
-            height: 4px;
+            width: 100%;
+            height: 2px;
             background-color: var(--accent);
             bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
+            left: 0;
         }
 
         .profile-content {
             display: flex;
-            align-items: center;
-            gap: 3rem;
+            align-items: flex-start;
+            gap: 4rem;
         }
 
         .profile-image {
@@ -177,16 +275,23 @@
         }
 
         .profile-image-placeholder {
-            width: 300px;
-            height: 300px;
-            background-color: #f5f5f5;
-            border-radius: 50%;
+            width: 320px;
+            height: 320px;
+            background-color: var(--secondary);
+            border-radius: 10px;
             margin: 0 auto;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 5px solid var(--accent);
+            border: 2px solid var(--accent);
             overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .profile-image-placeholder:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px -15px rgba(2,12,27,0.7);
         }
 
         .profile-image-placeholder i {
@@ -200,40 +305,50 @@
 
         .profile-text h3 {
             font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
+            margin-bottom: 1.5rem;
+            color: var(--white);
+            font-weight: 700;
         }
 
         .profile-text p {
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             color: var(--text-light);
+            font-size: 1.1rem;
+            line-height: 1.7;
         }
 
         .skills {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 1.5rem;
+            gap: 12px;
+            margin-top: 2rem;
         }
 
         .skill-tag {
-            background-color: var(--light);
-            color: var(--primary);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
+            background-color: var(--secondary);
+            color: var(--accent-light);
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
             font-size: 0.9rem;
             font-weight: 500;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            transition: var(--transition);
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(2,12,27,0.5);
         }
 
         /* Experience & Education */
         .experience-education {
-            padding: 5rem 0;
-            background-color: #f9f9f9;
+            background-color: var(--secondary);
+            position: relative;
         }
 
         .timeline {
             position: relative;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
@@ -246,13 +361,15 @@
             bottom: 0;
             left: 50%;
             margin-left: -2px;
+            border-radius: 2px;
         }
 
         .timeline-item {
-            padding: 10px 40px;
+            padding: 20px 40px;
             position: relative;
             width: 50%;
             box-sizing: border-box;
+            margin-bottom: 40px;
         }
 
         .timeline-item:nth-child(odd) {
@@ -264,11 +381,17 @@
         }
 
         .timeline-content {
-            padding: 20px;
-            background-color: var(--white);
+            padding: 25px;
+            background-color: var(--primary);
             border-radius: 8px;
             box-shadow: var(--shadow);
             position: relative;
+            transition: var(--transition);
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px -15px rgba(2,12,27,0.7);
         }
 
         .timeline-content::after {
@@ -276,10 +399,10 @@
             position: absolute;
             width: 20px;
             height: 20px;
-            background-color: var(--white);
+            background-color: var(--primary);
             border: 4px solid var(--accent);
             border-radius: 50%;
-            top: 15px;
+            top: 25px;
             right: -10px;
             z-index: 1;
         }
@@ -292,87 +415,124 @@
         .timeline-date {
             font-weight: 600;
             color: var(--accent);
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
         }
 
         .timeline-title {
-            font-size: 1.2rem;
-            margin-bottom: 5px;
-            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            color: var(--white);
+            font-weight: 700;
         }
 
         .timeline-subtitle {
             font-weight: 500;
             color: var(--text-light);
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        .timeline-content ul {
+            padding-left: 20px;
+        }
+
+        .timeline-content li {
+            margin-bottom: 8px;
+            color: var(--text-light);
         }
 
         /* Projects Section */
         .projects {
-            padding: 5rem 0;
-            background-color: var(--white);
+            background-color: var(--primary);
+            position: relative;
         }
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2.5rem;
         }
 
         .project-card {
-            background-color: var(--white);
-            border-radius: 8px;
+            background-color: var(--secondary);
+            border-radius: 10px;
             overflow: hidden;
             box-shadow: var(--shadow);
-            transition: transform 0.3s;
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
 
         .project-card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 20px 30px -15px rgba(2,12,27,0.7);
         }
 
         .project-image {
-            height: 200px;
-            background-color: #f5f5f5;
+            height: 220px;
+            background-color: var(--primary);
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            position: relative;
+        }
+
+        .project-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(10,25,47,0.1), rgba(10,25,47,0.7));
+            z-index: 1;
         }
 
         .project-image i {
-            font-size: 3rem;
-            color: var(--text-light);
+            font-size: 4rem;
+            color: var(--accent);
+            z-index: 2;
+            position: relative;
         }
 
         .project-content {
-            padding: 1.5rem;
+            padding: 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .project-title {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-            color: var(--primary);
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+            font-weight: 700;
         }
 
         .project-description {
             color: var(--text-light);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+            line-height: 1.6;
         }
 
         .project-tech {
             display: flex;
             flex-wrap: wrap;
-            gap: 5px;
-            margin-bottom: 1rem;
+            gap: 8px;
+            margin-bottom: 1.5rem;
         }
 
         .tech-tag {
-            background-color: var(--light);
-            color: var(--primary);
-            padding: 0.3rem 0.7rem;
-            border-radius: 15px;
+            background-color: rgba(100, 255, 218, 0.1);
+            color: var(--accent-light);
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
             font-size: 0.8rem;
+            font-weight: 500;
         }
 
         .project-link {
@@ -381,49 +541,63 @@
             font-weight: 600;
             display: inline-flex;
             align-items: center;
-            gap: 5px;
+            gap: 8px;
+            transition: var(--transition);
+            align-self: flex-start;
+        }
+
+        .project-link:hover {
+            gap: 12px;
         }
 
         /* Publications Section */
         .publications {
-            padding: 5rem 0;
-            background-color: #f9f9f9;
+            background-color: var(--secondary);
+            position: relative;
         }
 
         .publication-list {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
         .publication-item {
-            background-color: var(--white);
-            padding: 1.5rem;
+            background-color: var(--primary);
+            padding: 2rem;
             border-radius: 8px;
             box-shadow: var(--shadow);
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            transition: var(--transition);
+        }
+
+        .publication-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px -10px rgba(2,12,27,0.7);
         }
 
         .publication-title {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--white);
+            font-weight: 700;
         }
 
         .publication-role {
             font-weight: 500;
             color: var(--accent);
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 1rem;
         }
 
         .publication-description {
             color: var(--text-light);
+            line-height: 1.7;
         }
 
         /* Contact Section */
         .contact {
-            padding: 5rem 0;
             background-color: var(--primary);
-            color: var(--white);
+            position: relative;
         }
 
         .contact-content {
@@ -438,40 +612,74 @@
             margin-bottom: 2rem;
         }
 
+        .contact p {
+            max-width: 600px;
+            margin-bottom: 3rem;
+            color: var(--text-light);
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
         .contact-links {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 1.5rem;
-            margin-top: 2rem;
+            gap: 2rem;
+            margin-top: 1rem;
         }
 
         .contact-link {
             display: flex;
             align-items: center;
-            gap: 10px;
-            color: var(--white);
+            gap: 12px;
+            color: var(--text);
             text-decoration: none;
-            transition: color 0.3s;
+            transition: var(--transition);
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            background-color: var(--secondary);
+            border: 1px solid rgba(100, 255, 218, 0.1);
         }
 
         .contact-link:hover {
             color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(2,12,27,0.5);
         }
 
         .contact-link i {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
         }
 
         /* Footer */
         footer {
             background-color: var(--secondary);
-            color: var(--white);
-            padding: 2rem 0;
+            color: var(--text-light);
+            padding: 3rem 0;
             text-align: center;
+            border-top: 1px solid rgba(100, 255, 218, 0.1);
         }
 
         /* Responsive Design */
+        @media (max-width: 968px) {
+            .profile-content {
+                flex-direction: column;
+                gap: 3rem;
+            }
+            
+            .profile-image {
+                order: -1;
+            }
+            
+            .hero h1 {
+                font-size: 3.2rem;
+            }
+            
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+        }
+
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -481,7 +689,8 @@
                 left: 0;
                 width: 100%;
                 background-color: var(--primary);
-                padding: 1rem 0;
+                padding: 1.5rem 0;
+                box-shadow: var(--shadow);
             }
 
             .nav-links.active {
@@ -489,7 +698,7 @@
             }
 
             .nav-links li {
-                margin: 0.5rem 0;
+                margin: 0.8rem 0;
                 text-align: center;
             }
 
@@ -497,12 +706,25 @@
                 display: block;
             }
 
-            .hero h1 {
-                font-size: 2.5rem;
+            .hero {
+                padding: 150px 0 80px;
+                text-align: center;
             }
-
-            .profile-content {
-                flex-direction: column;
+            
+            .hero-content {
+                text-align: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                margin: 0 auto 2.5rem;
             }
 
             .timeline::after {
@@ -523,26 +745,35 @@
                 left: -10px;
                 right: auto;
             }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Header & Navigation -->
-    <header>
+    <header id="header">
         <div class="container">
             <nav class="navbar">
-                <div class="logo">Emmanuel<span>Adutwum</span></div>
+                <a href="#" class="logo">Emmanuel<span>.</span></a>
                 <ul class="nav-links">
-                    <li><a href="#profile">Profile</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#education">Education</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#publications">Publications</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#profile" class="nav-link">Profile</a></li>
+                    <li><a href="#experience" class="nav-link">Experience</a></li>
+                    <li><a href="#education" class="nav-link">Education</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#publications" class="nav-link">Publications</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
-                <div class="hamburger">
+                <button class="hamburger">
                     <i class="fas fa-bars"></i>
-                </div>
+                </button>
             </nav>
         </div>
     </header>
@@ -551,8 +782,10 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>Emmanuel Adutwum</h1>
-                <p>Economics, Data Science, and Mathematics Student | Quantitative Researcher | Machine Learning Engineer</p>
+                <p class="hero-greeting">Hi, my name is</p>
+                <h1>Emmanuel Adutwum.</h1>
+                <h2>I build quantitative solutions.</h2>
+                <p>I'm an Economics, Data Science, and Mathematics student specializing in quantitative modeling, algorithmic trading, and machine learning. Currently, I'm focused on developing innovative solutions for complex financial and data-driven challenges.</p>
                 <a href="#contact" class="btn">Get In Touch</a>
             </div>
         </div>
@@ -562,18 +795,13 @@
     <section id="profile" class="profile">
         <div class="container">
             <div class="section-title">
-                <h2>Profile</h2>
+                <h2>About Me</h2>
             </div>
             <div class="profile-content">
-                <div class="profile-image">
-                    <div class="profile-image-placeholder">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <p style="margin-top: 1rem; font-style: italic;">Upload your professional photo here</p>
-                </div>
                 <div class="profile-text">
-                    <h3>About Me</h3>
                     <p>Economics, Data Science, and Mathematics student with a proven track record in quantitative modeling and data analysis. Seeking a Summer Analyst role in Software Engineering, Machine Learning, Quantitative Research, FICC & Equities Quantitative Strategies to apply expertise in C++, Python, statistical modeling, SQL, and financial mathematics to solve complex problems in pricing, risk, and electronic trading.</p>
+                    
+                    <p>My technical background spans quantitative finance, machine learning, and software engineering, with practical experience gained through internships at Wells Fargo, CNO Financial Group, and the Council For Scientific & Industrial Research.</p>
                     
                     <h3>Technical Skills</h3>
                     <div class="skills">
@@ -590,17 +818,26 @@
                         <span class="skill-tag">Financial Mathematics</span>
                         <span class="skill-tag">Power BI</span>
                         <span class="skill-tag">Tableau</span>
+                        <span class="skill-tag">SAS</span>
+                        <span class="skill-tag">VBA</span>
+                        <span class="skill-tag">Git</span>
                     </div>
+                </div>
+                <div class="profile-image">
+                    <div class="profile-image-placeholder">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <p style="margin-top: 1.5rem; font-style: italic; color: var(--text-light);">Upload your professional photo here</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Experience & Education -->
+    <!-- Experience Section -->
     <section id="experience" class="experience-education">
         <div class="container">
             <div class="section-title">
-                <h2>Experience</h2>
+                <h2>Professional Experience</h2>
             </div>
             <div class="timeline">
                 <div class="timeline-item">
@@ -643,6 +880,7 @@
         </div>
     </section>
 
+    <!-- Education Section -->
     <section id="education" class="experience-education">
         <div class="container">
             <div class="section-title">
@@ -653,9 +891,8 @@
                     <div class="timeline-content">
                         <div class="timeline-date">Aug 2023 – May 2027</div>
                         <h3 class="timeline-title">Soka University of America</h3>
-                        <div class="timeline-subtitle">Economics & Mathematics</div>
+                        <div class="timeline-subtitle">B.A. in Economics & Mathematics</div>
                         <ul>
-                            <li>Concentration GPA: 3.925/4.0 | Overall GPA: 3.628</li>
                             <li>GRE General Test Scores: 323/340 (Quantitative Reasoning: 165/170, Verbal Reasoning: 158/170)</li>
                             <li>GRE Subject Mathematics Test Scores: 910/990</li>
                             <li>Coursework: Data Structures & Algorithms, Calculus I-II, Linear Algebra, Probability & Statistics, Statistical Modeling, Machine Learning, Cryptography, Mathematical Logic, Macroeconomics, Microeconomics, International Economics, Advanced Math(Real Analysis), Financial Accounting, Quantitative Modeling, Discrete Mathematics & Mathematical Physics</li>
@@ -681,7 +918,7 @@
     <section id="projects" class="projects">
         <div class="container">
             <div class="section-title">
-                <h2>Projects</h2>
+                <h2>Featured Projects</h2>
             </div>
             <div class="projects-grid">
                 <div class="project-card">
@@ -690,11 +927,12 @@
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Black Scholes Delta Hedging</h3>
-                        <p class="project-description">Implemented the Black-Scholes model and a binomial tree in Python to price European/American options. Simulated a delta-hedging strategy to manage the risk of a short option position.</p>
+                        <p class="project-description">Implemented the Black-Scholes model and a binomial tree in Python to price European/American options. Simulated a delta-hedging strategy to manage the risk of a short option position, analyzing P&L variance under different market conditions.</p>
                         <div class="project-tech">
                             <span class="tech-tag">Python</span>
                             <span class="tech-tag">Quantitative Finance</span>
                             <span class="tech-tag">Options Pricing</span>
+                            <span class="tech-tag">Numerical Methods</span>
                         </div>
                         <a href="#" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
                     </div>
@@ -705,11 +943,12 @@
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">High-Frequency Market Making Simulation</h3>
-                        <p class="project-description">Engineered a high-frequency market making simulator featuring limit order book implementation with heap-based price priority and real-time feature engineering pipeline.</p>
+                        <p class="project-description">Engineered a high-frequency market making simulator featuring limit order book implementation with heap-based price priority and real-time feature engineering pipeline calculating 15+ microstructural features including realized volatility, bid-ask imbalance, and momentum signals.</p>
                         <div class="project-tech">
                             <span class="tech-tag">Python</span>
                             <span class="tech-tag">Algorithmic Trading</span>
                             <span class="tech-tag">Market Microstructure</span>
+                            <span class="tech-tag">Avellaneda-Stoikov</span>
                         </div>
                         <a href="#" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
                     </div>
@@ -720,11 +959,12 @@
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Machine Learning Pipeline</h3>
-                        <p class="project-description">Implemented Support Vector Regression (SVR) with comprehensive preprocessing, feature engineering, and hyperparameter tuning using GridSearchCV and RandomizedSearchCV.</p>
+                        <p class="project-description">Implemented Support Vector Regression (SVR) with comprehensive preprocessing, feature engineering, and hyperparameter tuning using GridSearchCV and RandomizedSearchCV, achieving optimized performance through systematic data cleaning and model evaluation on the California Housing dataset.</p>
                         <div class="project-tech">
                             <span class="tech-tag">Python</span>
                             <span class="tech-tag">Machine Learning</span>
                             <span class="tech-tag">SVR</span>
+                            <span class="tech-tag">Scikit-learn</span>
                         </div>
                         <a href="#" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
                     </div>
@@ -735,11 +975,12 @@
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Cryptography Research</h3>
-                        <p class="project-description">Research in cryptographic protocols and implementations. Focus on secure communication and data protection mechanisms.</p>
+                        <p class="project-description">Research in cryptographic protocols and implementations with focus on secure communication and data protection mechanisms. Developed novel approaches to encryption key management and studied applications in financial data security.</p>
                         <div class="project-tech">
                             <span class="tech-tag">Cryptography</span>
                             <span class="tech-tag">Security</span>
                             <span class="tech-tag">Research</span>
+                            <span class="tech-tag">Python</span>
                         </div>
                         <a href="#" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
                     </div>
@@ -752,7 +993,7 @@
     <section id="publications" class="publications">
         <div class="container">
             <div class="section-title">
-                <h2>Publications</h2>
+                <h2>Publications & Research</h2>
             </div>
             <div class="publication-list">
                 <div class="publication-item">
@@ -811,9 +1052,47 @@
         // Mobile Navigation Toggle
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
+        const navLinksItems = document.querySelectorAll('.nav-link');
 
         hamburger.addEventListener('click', () => {
             navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        navLinksItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Active navigation link highlighting
+        const sections = document.querySelectorAll('section');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinksItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === `#${current}`) {
+                    item.classList.add('active');
+                }
+            });
         });
 
         // Smooth Scrolling
@@ -830,11 +1109,6 @@
                         top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
                     });
-                    
-                    // Close mobile menu if open
-                    if (navLinks.classList.contains('active')) {
-                        navLinks.classList.remove('active');
-                    }
                 }
             });
         });
