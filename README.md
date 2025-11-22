@@ -274,7 +274,7 @@
             text-align: center;
         }
 
-        .profile-image-placeholder {
+        .profile-image-container {
             width: 320px;
             height: 320px;
             background-color: var(--secondary);
@@ -287,15 +287,40 @@
             overflow: hidden;
             box-shadow: var(--shadow);
             transition: var(--transition);
+            position: relative;
         }
 
-        .profile-image-placeholder:hover {
+        .profile-image-container:hover {
             transform: translateY(-5px);
             box-shadow: 0 20px 30px -15px rgba(2,12,27,0.7);
         }
 
+        .profile-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+
+        .profile-photo.fallback {
+            display: none;
+        }
+
+        .profile-image-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--secondary);
+        }
+
         .profile-image-placeholder i {
-            font-size: 5rem;
+            font-size: 4rem;
             color: var(--text-light);
         }
 
@@ -491,11 +516,30 @@
             z-index: 1;
         }
 
-        .project-image i {
-            font-size: 4rem;
-            color: var(--accent);
-            z-index: 2;
+        .project-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
             position: relative;
+            z-index: 2;
+        }
+
+        .project-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        .project-placeholder i {
+            font-size: 3rem;
+            color: var(--accent);
         }
 
         .project-content {
@@ -824,10 +868,13 @@
                     </div>
                 </div>
                 <div class="profile-image">
-                    <div class="profile-image-placeholder">
-                        <i class="fas fa-user"></i>
+                    <div class="profile-image-container">
+                        <!-- Profile Photo - Will show placeholder if image fails to load -->
+                        <img src="images/profile-photo.jpg" alt="Emmanuel Adutwum" class="profile-photo" onerror="this.style.display='none'">
+                        <div class="profile-image-placeholder">
+                            <i class="fas fa-user"></i>
+                        </div>
                     </div>
-                    <p style="margin-top: 1.5rem; font-style: italic; color: var(--text-light);">Upload your professional photo here</p>
                 </div>
             </div>
         </div>
@@ -923,7 +970,11 @@
             <div class="projects-grid">
                 <div class="project-card">
                     <div class="project-image">
-                        <i class="fas fa-chart-line"></i>
+                        <!-- Project images with fallback placeholders -->
+                        <img src="images/black-scholes-project.jpg" alt="Black Scholes Delta Hedging Project" class="project-photo" onerror="this.style.display='none'">
+                        <div class="project-placeholder">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Black Scholes Delta Hedging</h3>
@@ -939,7 +990,10 @@
                 </div>
                 <div class="project-card">
                     <div class="project-image">
-                        <i class="fas fa-exchange-alt"></i>
+                        <img src="images/market-making-simulation.jpg" alt="High-Frequency Market Making Simulation" class="project-photo" onerror="this.style.display='none'">
+                        <div class="project-placeholder">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">High-Frequency Market Making Simulation</h3>
@@ -955,7 +1009,10 @@
                 </div>
                 <div class="project-card">
                     <div class="project-image">
-                        <i class="fas fa-robot"></i>
+                        <img src="images/ml-pipeline-project.jpg" alt="Machine Learning Pipeline Project" class="project-photo" onerror="this.style.display='none'">
+                        <div class="project-placeholder">
+                            <i class="fas fa-robot"></i>
+                        </div>
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Machine Learning Pipeline</h3>
@@ -971,7 +1028,10 @@
                 </div>
                 <div class="project-card">
                     <div class="project-image">
-                        <i class="fas fa-lock"></i>
+                        <img src="images/cryptography-research.jpg" alt="Cryptography Research Project" class="project-photo" onerror="this.style.display='none'">
+                        <div class="project-placeholder">
+                            <i class="fas fa-lock"></i>
+                        </div>
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Cryptography Research</h3>
@@ -1110,6 +1170,19 @@
                         behavior: 'smooth'
                     });
                 }
+            });
+        });
+
+        // Image loading error handling
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                img.addEventListener('error', function() {
+                    console.log('Image failed to load:', this.src);
+                });
+                img.addEventListener('load', function() {
+                    console.log('Image loaded successfully:', this.src);
+                });
             });
         });
     </script>
