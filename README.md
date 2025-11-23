@@ -303,10 +303,6 @@
             display: block;
         }
 
-        .profile-photo.fallback {
-            display: none;
-        }
-
         .profile-image-placeholder {
             position: absolute;
             top: 0;
@@ -314,14 +310,23 @@
             width: 100%;
             height: 100%;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             background-color: var(--secondary);
+            color: var(--text-light);
+            text-align: center;
+            padding: 20px;
         }
 
         .profile-image-placeholder i {
             font-size: 4rem;
-            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .profile-image-placeholder span {
+            font-size: 0.9rem;
+            line-height: 1.4;
         }
 
         .profile-text {
@@ -365,7 +370,7 @@
             box-shadow: 0 5px 15px rgba(2,12,27,0.5);
         }
 
-        /* Experience & Education */
+        /* Rest of your CSS remains the same... */
         .experience-education {
             background-color: var(--secondary);
             position: relative;
@@ -467,7 +472,6 @@
             color: var(--text-light);
         }
 
-        /* Projects Section */
         .projects {
             background-color: var(--primary);
             position: relative;
@@ -594,7 +598,6 @@
             gap: 12px;
         }
 
-        /* Publications Section */
         .publications {
             background-color: var(--secondary);
             position: relative;
@@ -638,7 +641,6 @@
             line-height: 1.7;
         }
 
-        /* Contact Section */
         .contact {
             background-color: var(--primary);
             position: relative;
@@ -695,7 +697,6 @@
             font-size: 1.3rem;
         }
 
-        /* Footer */
         footer {
             background-color: var(--secondary);
             color: var(--text-light);
@@ -704,7 +705,6 @@
             border-top: 1px solid rgba(100, 255, 218, 0.1);
         }
 
-        /* Responsive Design */
         @media (max-width: 968px) {
             .profile-content {
                 flex-direction: column;
@@ -869,10 +869,14 @@
                 </div>
                 <div class="profile-image">
                     <div class="profile-image-container">
-                        <!-- Profile Photo - Will show placeholder if image fails to load -->
-                        <img src="images/profile-photo.jpg" alt="Emmanuel Adutwum" class="profile-photo" onerror="this.style.display='none'">
-                        <div class="profile-image-placeholder">
+                        <!-- Profile Photo with multiple fallback options -->
+                        <img src="./images/profile-photo.jpg" 
+                             alt="Emmanuel Adutwum" 
+                             class="profile-photo"
+                             onerror="handleImageError(this)">
+                        <div class="profile-image-placeholder" id="profilePlaceholder">
                             <i class="fas fa-user"></i>
+                            <span>Profile photo not loading<br>Check console for details</span>
                         </div>
                     </div>
                 </div>
@@ -880,7 +884,7 @@
         </div>
     </section>
 
-    <!-- Experience Section -->
+    <!-- Rest of your sections remain the same -->
     <section id="experience" class="experience-education">
         <div class="container">
             <div class="section-title">
@@ -927,7 +931,6 @@
         </div>
     </section>
 
-    <!-- Education Section -->
     <section id="education" class="experience-education">
         <div class="container">
             <div class="section-title">
@@ -961,7 +964,6 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
     <section id="projects" class="projects">
         <div class="container">
             <div class="section-title">
@@ -970,8 +972,6 @@
             <div class="projects-grid">
                 <div class="project-card">
                     <div class="project-image">
-                        <!-- Project images with fallback placeholders -->
-                        <img src="images/black-scholes-project.jpg" alt="Black Scholes Delta Hedging Project" class="project-photo" onerror="this.style.display='none'">
                         <div class="project-placeholder">
                             <i class="fas fa-chart-line"></i>
                         </div>
@@ -990,7 +990,6 @@
                 </div>
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="images/market-making-simulation.jpg" alt="High-Frequency Market Making Simulation" class="project-photo" onerror="this.style.display='none'">
                         <div class="project-placeholder">
                             <i class="fas fa-exchange-alt"></i>
                         </div>
@@ -1009,7 +1008,6 @@
                 </div>
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="images/ml-pipeline-project.jpg" alt="Machine Learning Pipeline Project" class="project-photo" onerror="this.style.display='none'">
                         <div class="project-placeholder">
                             <i class="fas fa-robot"></i>
                         </div>
@@ -1028,7 +1026,6 @@
                 </div>
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="images/cryptography-research.jpg" alt="Cryptography Research Project" class="project-photo" onerror="this.style.display='none'">
                         <div class="project-placeholder">
                             <i class="fas fa-lock"></i>
                         </div>
@@ -1049,7 +1046,6 @@
         </div>
     </section>
 
-    <!-- Publications Section -->
     <section id="publications" class="publications">
         <div class="container">
             <div class="section-title">
@@ -1075,7 +1071,6 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
             <div class="contact-content">
@@ -1101,7 +1096,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
             <p>&copy; 2024 Emmanuel Adutwum. All Rights Reserved.</p>
@@ -1109,6 +1103,50 @@
     </footer>
 
     <script>
+        // Image error handling function
+        function handleImageError(img) {
+            console.error('Image failed to load:', img.src);
+            console.log('Trying alternative paths...');
+            
+            // Try alternative paths
+            const alternatives = [
+                './images/profile-photo.jpg',
+                'images/profile-photo.jpg',
+                '/images/profile-photo.jpg',
+                'profile-photo.jpg'
+            ];
+            
+            let currentIndex = alternatives.indexOf(img.src);
+            let nextIndex = (currentIndex + 1) % alternatives.length;
+            
+            if (currentIndex === -1 || nextIndex <= currentIndex) {
+                img.style.display = 'none';
+                document.getElementById('profilePlaceholder').style.display = 'flex';
+                console.log('All image paths failed. Showing placeholder.');
+            } else {
+                img.src = alternatives[nextIndex];
+                console.log('Trying alternative path:', alternatives[nextIndex]);
+            }
+        }
+
+        // Test image URL accessibility
+        function testImageUrl() {
+            const testUrl = './images/profile-photo.jpg';
+            const img = new Image();
+            img.onload = function() {
+                console.log('✅ Image URL is accessible:', testUrl);
+            };
+            img.onerror = function() {
+                console.log('❌ Image URL is NOT accessible:', testUrl);
+                console.log('Please check:');
+                console.log('1. File exists in repository');
+                console.log('2. Correct filename (case-sensitive)');
+                console.log('3. File is committed and pushed');
+                console.log('4. GitHub Pages is deployed');
+            };
+            img.src = testUrl;
+        }
+
         // Mobile Navigation Toggle
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
@@ -1173,17 +1211,17 @@
             });
         });
 
-        // Image loading error handling
+        // Test image on page load
         document.addEventListener('DOMContentLoaded', function() {
-            const images = document.querySelectorAll('img');
-            images.forEach(img => {
-                img.addEventListener('error', function() {
-                    console.log('Image failed to load:', this.src);
-                });
-                img.addEventListener('load', function() {
-                    console.log('Image loaded successfully:', this.src);
-                });
-            });
+            console.log('🔄 Testing image accessibility...');
+            testImageUrl();
+            
+            // Check if we're on GitHub Pages
+            if (window.location.hostname.includes('github.io')) {
+                console.log('🌐 Running on GitHub Pages');
+            } else {
+                console.log('💻 Running locally');
+            }
         });
     </script>
 </body>
