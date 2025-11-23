@@ -309,7 +309,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            display: none;
+            display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
@@ -327,14 +327,6 @@
         .profile-image-placeholder span {
             font-size: 0.9rem;
             line-height: 1.4;
-        }
-
-        .profile-image-container.image-failed .profile-image-placeholder {
-            display: flex;
-        }
-
-        .profile-image-container.image-failed .profile-photo {
-            display: none;
         }
 
         .profile-text {
@@ -378,7 +370,7 @@
             box-shadow: 0 5px 15px rgba(2,12,27,0.5);
         }
 
-        /* Rest of your CSS remains the same... */
+        /* Experience & Education */
         .experience-education {
             background-color: var(--secondary);
             position: relative;
@@ -480,6 +472,7 @@
             color: var(--text-light);
         }
 
+        /* Projects Section */
         .projects {
             background-color: var(--primary);
             position: relative;
@@ -606,72 +599,89 @@
             gap: 12px;
         }
 
-        /* Cryptography Images Gallery - IMPROVED */
-        .crypto-gallery {
+        /* Image Gallery for Cryptography Research */
+        .image-gallery {
+            margin: 2rem 0;
+            width: 100%;
+        }
+
+        .gallery-title {
+            font-size: 1.2rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .gallery-container {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 1rem;
-            margin: 1.5rem 0;
-            padding: 1rem 0;
-            border-top: 1px solid rgba(100, 255, 218, 0.1);
-            border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+            width: 100%;
         }
 
-        .crypto-image {
-            width: 100%;
-            height: 120px;
-            background-color: var(--primary);
-            border-radius: 8px;
+        .gallery-item {
+            position: relative;
             overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            border-radius: 8px;
+            background-color: var(--primary);
             border: 1px solid rgba(100, 255, 218, 0.2);
             transition: var(--transition);
+            aspect-ratio: 4/3;
         }
 
-        .crypto-image:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(2,12,27,0.5);
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(2,12,27,0.5);
+            border-color: var(--accent);
         }
 
-        .crypto-image img {
+        .gallery-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
+            transition: var(--transition);
         }
 
-        .crypto-placeholder {
+        .gallery-item:hover .gallery-image {
+            transform: scale(1.05);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(10,25,47,0.9), transparent);
+            color: var(--white);
+            padding: 1rem;
+            font-size: 0.9rem;
+            transform: translateY(100%);
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+
+        .gallery-placeholder {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            height: 100%;
             color: var(--text-light);
             text-align: center;
             padding: 1rem;
-            width: 100%;
-            height: 100%;
         }
 
-        .crypto-placeholder i {
+        .gallery-placeholder i {
             font-size: 2rem;
             margin-bottom: 0.5rem;
             color: var(--accent);
         }
 
-        .crypto-placeholder span {
-            font-size: 0.8rem;
-            line-height: 1.2;
-        }
-
-        .crypto-gallery-title {
-            color: var(--accent);
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-            text-align: center;
-            font-weight: 600;
-        }
-
+        /* Publications */
         .publications {
             background-color: var(--secondary);
             position: relative;
@@ -715,6 +725,7 @@
             line-height: 1.7;
         }
 
+        /* Contact */
         .contact {
             background-color: var(--primary);
             position: relative;
@@ -796,8 +807,8 @@
             .hero h2 {
                 font-size: 2.5rem;
             }
-            
-            .crypto-gallery {
+
+            .gallery-container {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
@@ -872,13 +883,13 @@
                 grid-template-columns: 1fr;
             }
             
-            .crypto-gallery {
-                grid-template-columns: 1fr;
-            }
-            
             .contact-links {
                 flex-direction: column;
                 align-items: center;
+            }
+
+            .gallery-container {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -950,9 +961,9 @@
                     </div>
                 </div>
                 <div class="profile-image">
-                    <div class="profile-image-container" id="profileImageContainer">
-                        <!-- CORRECTED Profile Photo path -->
-                        <img src="images/profile-photo.jpg" 
+                    <div class="profile-image-container">
+                        <!-- Profile Photo with multiple fallback options -->
+                        <img src="./images/profile-photo.jpg" 
                              alt="Emmanuel Adutwum" 
                              class="profile-photo"
                              onerror="handleImageError(this)">
@@ -1062,15 +1073,14 @@
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Black Scholes Delta Hedging</h3>
-                        <p class="project-description">Implemented the Black-Scholes model and a binomial tree in Python to price European/American options. Simulated a delta-hedging strategy to manage the risk of a short option position, analyzing P&L variance under different market conditions. Advanced quantitative finance implementation with real-time risk management capabilities.</p>
+                        <p class="project-description">Implemented the Black-Scholes model and a binomial tree in Python to price European/American options. Simulated a delta-hedging strategy to manage the risk of a short option position, analyzing P&L variance under different market conditions.</p>
                         <div class="project-tech">
                             <span class="tech-tag">Python</span>
                             <span class="tech-tag">Quantitative Finance</span>
                             <span class="tech-tag">Options Pricing</span>
                             <span class="tech-tag">Numerical Methods</span>
-                            <span class="tech-tag">Risk Management</span>
                         </div>
-                        <a href="https://github.com/emmanueladutwum123/black-scholes-delta-hedging" class="project-link" target="_blank">View Project <i class="fas fa-arrow-right"></i></a>
+                        <a href="#" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 <div class="project-card">
@@ -1081,15 +1091,14 @@
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">High-Frequency Market Making Simulation</h3>
-                        <p class="project-description">Engineered a high-frequency market making simulator featuring limit order book implementation with heap-based price priority and real-time feature engineering pipeline calculating 15+ microstructural features including realized volatility, bid-ask imbalance, and momentum signals. Advanced algorithmic trading system with market microstructure analysis.</p>
+                        <p class="project-description">Engineered a high-frequency market making simulator featuring limit order book implementation with heap-based price priority and real-time feature engineering pipeline calculating 15+ microstructural features including realized volatility, bid-ask imbalance, and momentum signals.</p>
                         <div class="project-tech">
                             <span class="tech-tag">Python</span>
                             <span class="tech-tag">Algorithmic Trading</span>
                             <span class="tech-tag">Market Microstructure</span>
                             <span class="tech-tag">Avellaneda-Stoikov</span>
-                            <span class="tech-tag">Real-time Analytics</span>
                         </div>
-                        <a href="https://github.com/emmanueladutwum123/High-Frequency-Market-Making-Simulation" class="project-link" target="_blank">View Project <i class="fas fa-arrow-right"></i></a>
+                        <a href="#" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 <div class="project-card">
@@ -1100,15 +1109,14 @@
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Machine Learning Pipeline</h3>
-                        <p class="project-description">Implemented Support Vector Regression (SVR) with comprehensive preprocessing, feature engineering, and hyperparameter tuning using GridSearchCV and RandomizedSearchCV, achieving optimized performance through systematic data cleaning and model evaluation on the California Housing dataset. Advanced ML pipeline with automated optimization.</p>
+                        <p class="project-description">Implemented Support Vector Regression (SVR) with comprehensive preprocessing, feature engineering, and hyperparameter tuning using GridSearchCV and RandomizedSearchCV, achieving optimized performance through systematic data cleaning and model evaluation on the California Housing dataset.</p>
                         <div class="project-tech">
                             <span class="tech-tag">Python</span>
                             <span class="tech-tag">Machine Learning</span>
                             <span class="tech-tag">SVR</span>
                             <span class="tech-tag">Scikit-learn</span>
-                            <span class="tech-tag">Hyperparameter Tuning</span>
                         </div>
-                        <a href="https://github.com/emmanueladutwum123/SVR-on-California-Housing-Dataset" class="project-link" target="_blank">View Project <i class="fas fa-arrow-right"></i></a>
+                        <a href="#" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 <div class="project-card">
@@ -1118,31 +1126,47 @@
                         </div>
                     </div>
                     <div class="project-content">
-                        <h3 class="project-title">Cryptography & FinTech Security Research</h3>
-                        <p class="project-description">Awarded a competitive $25,000 research grant to study cryptographic applications in fintech security, including blockchain protocols and secure transaction systems. Conducted fieldwork at Bletchley Park (historic cryptography center), Royal Airforce Museum, Cipher escape room, and Bank of England to analyze real-world financial security frameworks.</p>
+                        <h3 class="project-title">Cryptography Research</h3>
+                        <p class="project-description">Research in cryptographic protocols and implementations with focus on secure communication and data protection mechanisms. Developed novel approaches to encryption key management and studied applications in financial data security.</p>
                         
-                        <!-- Cryptography Images Gallery - IMPROVED -->
-                        <div class="crypto-gallery-title">Research Documentation</div>
-                        <div class="crypto-gallery">
-                            <div class="crypto-image">
-                                <img src="images/crypto1.png" alt="Cryptography Research 1" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"crypto-placeholder\"><i class=\"fas fa-lock\"></i><span>crypto1.png</span></div>';">
-                            </div>
-                            <div class="crypto-image">
-                                <img src="images/crypto2.png" alt="Cryptography Research 2" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"crypto-placeholder\"><i class=\"fas fa-shield-alt\"></i><span>crypto2.png</span></div>';">
-                            </div>
-                            <div class="crypto-image">
-                                <img src="images/crypto3.png" alt="Cryptography Research 3" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"crypto-placeholder\"><i class=\"fas fa-key\"></i><span>crypto3.png</span></div>';">
+                        <!-- Image Gallery for Cryptography Research -->
+                        <div class="image-gallery">
+                            <h4 class="gallery-title">Research Visualizations</h4>
+                            <div class="gallery-container">
+                                <div class="gallery-item">
+                                    <img src="./images/crypto-research-1.jpg" alt="Cryptography Algorithm Visualization" class="gallery-image" onerror="handleGalleryImageError(this)">
+                                    <div class="gallery-caption">Algorithm Performance Analysis</div>
+                                    <div class="gallery-placeholder" style="display: none;">
+                                        <i class="fas fa-chart-bar"></i>
+                                        <span>Algorithm Visualization</span>
+                                    </div>
+                                </div>
+                                <div class="gallery-item">
+                                    <img src="./images/crypto-research-2.jpg" alt="Encryption Protocol Diagram" class="gallery-image" onerror="handleGalleryImageError(this)">
+                                    <div class="gallery-caption">Protocol Implementation</div>
+                                    <div class="gallery-placeholder" style="display: none;">
+                                        <i class="fas fa-project-diagram"></i>
+                                        <span>Protocol Diagram</span>
+                                    </div>
+                                </div>
+                                <div class="gallery-item">
+                                    <img src="./images/crypto-research-3.jpg" alt="Security Analysis Results" class="gallery-image" onerror="handleGalleryImageError(this)">
+                                    <div class="gallery-caption">Security Analysis</div>
+                                    <div class="gallery-placeholder" style="display: none;">
+                                        <i class="fas fa-shield-alt"></i>
+                                        <span>Security Analysis</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         
                         <div class="project-tech">
                             <span class="tech-tag">Cryptography</span>
-                            <span class="tech-tag">Blockchain</span>
-                            <span class="tech-tag">FinTech Security</span>
+                            <span class="tech-tag">Security</span>
                             <span class="tech-tag">Research</span>
                             <span class="tech-tag">Python</span>
                         </div>
-                        <a href="#" class="project-link">Research Portfolio <i class="fas fa-arrow-right"></i></a>
+                        <a href="#" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -1157,19 +1181,9 @@
             </div>
             <div class="publication-list">
                 <div class="publication-item">
-                    <h3 class="publication-title">The Geometric Universe: A Unified Framework for Musical Harmony and Physical Law</h3>
-                    <div class="publication-role">Research in Progress | With Professor Cheng Han-Pan (Mathematics - Mount Holyoke), Professor Phat Vu (Physics - Soka University) & Professor Mina Choi (Music - Soka University)</div>
-                    <p class="publication-description">Groundbreaking interdisciplinary research exploring the fundamental geometric structures underlying both musical harmony and physical laws. Investigating mathematical connections between harmonic ratios, quantum mechanics, and cosmological principles. Developing novel frameworks that bridge the gap between artistic expression and scientific understanding of universal patterns.</p>
-                </div>
-                <div class="publication-item">
                     <h3 class="publication-title">The Economic and Environmental Impact of Gold Mining in Ghana</h3>
                     <div class="publication-role">Research Collaborator | With Caroline Hofe | Present</div>
                     <p class="publication-description">Co-authoring research paper analyzing Ghana's gold mining sector using econometric modeling. Investigating relationships between mining revenues, environmental degradation, and community development. Incorporating GIS data and World Bank datasets for spatial-economic analysis. Target journals: Resources Policy or Journal of Cleaner Production.</p>
-                </div>
-                <div class="publication-item">
-                    <h3 class="publication-title">Cryptography & FinTech Security: London Research Expedition</h3>
-                    <div class="publication-role">Travel Learning Cluster: London, United Kingdom | Grant: $25,000 | Jan 2025</div>
-                    <p class="publication-description">Awarded a competitive $25,000 research grant to study cryptographic applications in fintech security, including blockchain protocols and secure transaction systems. Conducted extensive fieldwork at Bletchley Park (historic cryptography center), Royal Airforce Museum, Cipher escape room, and Bank of England to analyze real-world financial security frameworks and cryptographic implementations in modern banking systems.</p>
                 </div>
                 <div class="publication-item">
                     <h3 class="publication-title">Equilateral Triangle Geometry Problem</h3>
@@ -1211,7 +1225,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
             <p>&copy; 2024 Emmanuel Adutwum. All Rights Reserved.</p>
@@ -1219,61 +1232,58 @@
     </footer>
 
     <script>
-        // Improved Image Error Handling
+        // Image error handling function
         function handleImageError(img) {
-            console.error('❌ Profile image failed to load:', img.src);
+            console.error('Image failed to load:', img.src);
+            console.log('Trying alternative paths...');
             
-            // Mark the container as having a failed image
-            const container = document.getElementById('profileImageContainer');
-            container.classList.add('image-failed');
-            
-            // Try alternative paths in sequence
+            // Try alternative paths
             const alternatives = [
-                'images/profile-photo.jpg',  // Primary correct path
                 './images/profile-photo.jpg',
-                'profile-photo.jpg',
-                './profile-photo.jpg',
-                'images/profile-photo.jpeg',
-                'images/profile-photo.png'
+                'images/profile-photo.jpg',
+                '/images/profile-photo.jpg',
+                'profile-photo.jpg'
             ];
             
             let currentIndex = alternatives.indexOf(img.src);
-            let nextIndex = currentIndex === -1 ? 0 : currentIndex + 1;
+            let nextIndex = (currentIndex + 1) % alternatives.length;
             
-            if (nextIndex < alternatives.length) {
-                console.log('🔄 Trying alternative path:', alternatives[nextIndex]);
-                img.src = alternatives[nextIndex];
+            if (currentIndex === -1 || nextIndex <= currentIndex) {
+                img.style.display = 'none';
+                document.getElementById('profilePlaceholder').style.display = 'flex';
+                console.log('All image paths failed. Showing placeholder.');
             } else {
-                console.log('💡 All image paths failed. Please check:');
-                console.log('1. File exists in repository');
-                console.log('2. Correct filename (case-sensitive)');
-                console.log('3. File is committed and pushed');
-                console.log('4. File extension is correct (.jpg, .jpeg, .png)');
-                console.log('5. GitHub Pages is deployed (if applicable)');
-                
-                // Final fallback - use a placeholder service
-                setTimeout(() => {
-                    if (container.classList.contains('image-failed')) {
-                        console.log('🖼️ Using placeholder image as final fallback');
-                        img.src = 'https://via.placeholder.com/320x320/112240/64ffda?text=Profile+Photo';
-                        img.onerror = null; // Prevent infinite loop
-                        container.classList.remove('image-failed');
-                    }
-                }, 1000);
+                img.src = alternatives[nextIndex];
+                console.log('Trying alternative path:', alternatives[nextIndex]);
+            }
+        }
+
+        // Gallery image error handling
+        function handleGalleryImageError(img) {
+            console.error('Gallery image failed to load:', img.src);
+            
+            // Hide the image and show the placeholder
+            img.style.display = 'none';
+            const placeholder = img.parentElement.querySelector('.gallery-placeholder');
+            if (placeholder) {
+                placeholder.style.display = 'flex';
             }
         }
 
         // Test image URL accessibility
         function testImageUrl() {
-            const testUrl = 'images/profile-photo.jpg';
+            const testUrl = './images/profile-photo.jpg';
             const img = new Image();
             img.onload = function() {
                 console.log('✅ Image URL is accessible:', testUrl);
-                console.log('🎉 Your profile photo should now display correctly!');
             };
             img.onerror = function() {
                 console.log('❌ Image URL is NOT accessible:', testUrl);
-                console.log('Please verify the file exists in your repository');
+                console.log('Please check:');
+                console.log('1. File exists in repository');
+                console.log('2. Correct filename (case-sensitive)');
+                console.log('3. File is committed and pushed');
+                console.log('4. GitHub Pages is deployed');
             };
             img.src = testUrl;
         }
@@ -1353,15 +1363,6 @@
             } else {
                 console.log('💻 Running locally');
             }
-            
-            // Check if image loaded successfully after 2 seconds
-            setTimeout(() => {
-                const profileImg = document.querySelector('.profile-photo');
-                if (profileImg && profileImg.naturalHeight === 0) {
-                    console.log('⏰ Image still not loaded after timeout');
-                    handleImageError(profileImg);
-                }
-            }, 2000);
         });
     </script>
 </body>
