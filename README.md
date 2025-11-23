@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emmanuel Adutwum | Quantitative Researcher & Data Scientist</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0a192f;
+            --secondary: #112240;
+            --accent: #64ffda;
+            --accent-light: #8affdf;
+            --text: #ccd6f6;
+            --text-light: #8892b0;
+            --white: #e6f1ff;
+            --shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
+            --transition: all 0.25s cubic-bezier(0.645,0.045,0.355,1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--primary);
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: rgba(10, 25, 47, 0.95);
+            color: var(--white);
+            padding: 1.5rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+
+        .scrolled {
+            box-shadow: var(--shadow);
+            padding: 1rem 0;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: var(--accent);
+        }
+
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            color: var(--accent);
+            font-size: 1.5rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            padding: 180px 0 120px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2364ffda' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            z-index: 0;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: left;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-greeting {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            color: var(--text-light);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: transparent;
+            color: var(--accent);
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: 1px solid var(--accent);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background-color: rgba(100, 255, 218, 0.1);
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(100, 255, 218, 0.2);
+        }
+
+        .btn:hover::before {
+            width: 100%;
+        }
+
+        /* Profile Section */
+        .profile {
+            background-color: var(--primary);
+            position: relative;
+        }
+
+        .section-title {
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+            font-weight: 700;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent);
+            bottom: -10px;
+            left: 0;
+        }
+
+        .profile-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 4rem;
+        }
+
+        .profile-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .profile-image-container {
+            width: 320px;
+            height: 320px;
+            background-color: var(--secondary);
+            border-radius: 10px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--accent);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .profile-image-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px -15px rgba(2,12,27,0.7);
+        }
+
+        .profile-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+
+        .profile-image-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--secondary);
+            color: var(--text-light);
+            text-align: center;
+            padding: 20px;
+        }
+
+        .profile-image-placeholder i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .profile-image-placeholder span {
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .profile-image-container.image-failed .profile-image-placeholder {
+            display: flex;
+        }
+
+        .profile-image-container.image-failed .profile-photo {
+            display: none;
+        }
+
+        .profile-text {
+            flex: 2;
+        }
+
+        .profile-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+            font-weight: 700;
+        }
+
+        .profile-text p {
+            margin-bottom: 2rem;
+            color: var(--text-light);
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 2rem;
+        }
+
+        .skill-tag {
+            background-color: var(--secondary);
+            color: var(--accent-light);
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            transition: var(--transition);
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(2,12,27,0.5);
+        }
+
+        /* Rest of your CSS remains the same... */
+        .experience-education {
+            background-color: var(--secondary);
+            position: relative;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--accent);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            padding: 20px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+            margin-bottom: 40px;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-content {
+            padding: 25px;
+            background-color: var(--primary);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px -15px rgba(2,12,27,0.7);
+        }
+
+        .timeline-content::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--primary);
+            border: 4px solid var(--accent);
+            border-radius: 50%;
+            top: 25px;
+            right: -10px;
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::after {
+            left: -10px;
+            right: auto;
+        }
+
+        .timeline-date {
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .timeline-title {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            color: var(--white);
+            font-weight: 700;
+        }
+
+        .timeline-subtitle {
+            font-weight: 500;
+            color: var(--text-light);
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        .timeline-content ul {
+            padding-left: 20px;
+        }
+
+        .timeline-content li {
+            margin-bottom: 8px;
+            color: var(--text-light);
+        }
+
+        .projects {
+            background-color: var(--primary);
+            position: relative;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .project-card {
+            background-color: var(--secondary);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 30px -15px rgba(2,12,27,0.7);
+        }
+
+        .project-image {
+            height: 220px;
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .project-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(10,25,47,0.1), rgba(10,25,47,0.7));
+            z-index: 1;
+        }
+
+        .project-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .project-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        .project-placeholder i {
+            font-size: 3rem;
+            color: var(--accent);
+        }
+
+        .project-content {
+            padding: 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+            font-weight: 700;
+        }
+
+        .project-description {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+            line-height: 1.6;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            background-color: rgba(100, 255, 218, 0.1);
+            color: var(--accent-light);
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .project-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            align-self: flex-start;
+        }
+
+        .project-link:hover {
+            gap: 12px;
+        }
+
+        .publications {
+            background-color: var(--secondary);
+            position: relative;
+        }
+
+        .publication-list {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .publication-item {
+            background-color: var(--primary);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            transition: var(--transition);
+        }
+
+        .publication-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px -10px rgba(2,12,27,0.7);
+        }
+
+        .publication-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--white);
+            font-weight: 700;
+        }
+
+        .publication-role {
+            font-weight: 500;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .publication-description {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        .contact {
+            background-color: var(--primary);
+            position: relative;
+        }
+
+        .contact-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .contact h2 {
+            color: var(--white);
+            margin-bottom: 2rem;
+        }
+
+        .contact p {
+            max-width: 600px;
+            margin-bottom: 3rem;
+            color: var(--text-light);
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text);
+            text-decoration: none;
+            transition: var(--transition);
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            background-color: var(--secondary);
+            border: 1px solid rgba(100, 255, 218, 0.1);
+        }
+
+        .contact-link:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(2,12,27,0.5);
+        }
+
+        .contact-link i {
+            font-size: 1.3rem;
+        }
+
+        footer {
+            background-color: var(--secondary);
+            color: var(--text-light);
+            padding: 3rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(100, 255, 218, 0.1);
+        }
+
+        @media (max-width: 968px) {
+            .profile-content {
+                flex-direction: column;
+                gap: 3rem;
+            }
+            
+            .profile-image {
+                order: -1;
+            }
+            
+            .hero h1 {
+                font-size: 3.2rem;
+            }
+            
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary);
+                padding: 1.5rem 0;
+                box-shadow: var(--shadow);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 0.8rem 0;
+                text-align: center;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero {
+                padding: 150px 0 80px;
+                text-align: center;
+            }
+            
+            .hero-content {
+                text-align: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                margin: 0 auto 2.5rem;
+            }
+
+            .timeline::after {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+
+            .timeline-content::after {
+                left: -10px;
+                right: auto;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header id="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">Emmanuel<span>.</span></a>
+                <ul class="nav-links">
+                    <li><a href="#profile" class="nav-link">Profile</a></li>
+                    <li><a href="#experience" class="nav-link">Experience</a></li>
+                    <li><a href="#education" class="nav-link">Education</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#publications" class="nav-link">Publications</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <button class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <p class="hero-greeting">Hi, my name is</p>
+                <h1>Emmanuel Adutwum.</h1>
+                <h2>I build quantitative solutions.</h2>
+                <p>I'm an Economics, Data Science, and Mathematics student specializing in quantitative modeling, algorithmic trading, and machine learning. Currently, I'm focused on developing innovative solutions for complex financial and data-driven challenges.</p>
+                <a href="#contact" class="btn">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profile Section -->
+    <section id="profile" class="profile">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Me</h2>
+            </div>
+            <div class="profile-content">
+                <div class="profile-text">
+                    <p>Economics, Data Science, and Mathematics student with a proven track record in quantitative modeling and data analysis. Seeking a Summer Analyst role in Software Engineering, Machine Learning, Quantitative Research, FICC & Equities Quantitative Strategies to apply expertise in C++, Python, statistical modeling, SQL, and financial mathematics to solve complex problems in pricing, risk, and electronic trading.</p>
+                    
+                    <p>My technical background spans quantitative finance, machine learning, and software engineering, with practical experience gained through internships at Wells Fargo, CNO Financial Group, and the Council For Scientific & Industrial Research.</p>
+                    
+                    <h3>Technical Skills</h3>
+                    <div class="skills">
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">R</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">Statistical Modeling</span>
+                        <span class="skill-tag">Machine Learning</span>
+                        <span class="skill-tag">Quantitative Finance</span>
+                        <span class="skill-tag">Data Structures & Algorithms</span>
+                        <span class="skill-tag">Financial Mathematics</span>
+                        <span class="skill-tag">Power BI</span>
+                        <span class="skill-tag">Tableau</span>
+                        <span class="skill-tag">SAS</span>
+                        <span class="skill-tag">VBA</span>
+                        <span class="skill-tag">Git</span>
+                    </div>
+                </div>
+                <div class="profile-image">
+                    <div class="profile-image-container" id="profileImageContainer">
+                        <!-- CORRECTED Profile Photo path -->
+                        <img src="images/profile-photo.jpg" 
+                             alt="Emmanuel Adutwum" 
+                             class="profile-photo"
+                             onerror="handleImageError(this)">
+                        <div class="profile-image-placeholder" id="profilePlaceholder">
+                            <i class="fas fa-user"></i>
+                            <span>Profile photo not loading<br>Check console for details</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience-education">
+        <div class="container">
+            <div class="section-title">
+                <h2>Professional Experience</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">June 2025 – Aug 2025</div>
+                        <h3 class="timeline-title">Consumer Banking Safe Deposit Data Analytics Intern</h3>
+                        <div class="timeline-subtitle">Wells Fargo – Charlotte, NC</div>
+                        <ul>
+                            <li>Designed and implemented a Power Automate (Microsoft Flow) solution to automate control tracking, reducing manual processes by 80% and improving accuracy.</li>
+                            <li>Created automated workflows to monitor compliance controls, generate alerts for overdue tasks, and produce monthly reports using Python programming.</li>
+                            <li>Integrated SharePoint and Excel to streamline data collection, approval workflows, and notifications.</li>
+                            <li>Reduced human error by automating data validation and ensuring real-time updates across systems.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">May 2024 – June 2024</div>
+                        <h3 class="timeline-title">Risk & Valuation Analyst Intern</h3>
+                        <div class="timeline-subtitle">CNO Financial Group – Carmel, Indiana</div>
+                        <ul>
+                            <li>Engineered and refined actuarial projection models using Python, SQL, and SAS, boosting predictive accuracy by 15% to enhance premium pricing and financial valuation.</li>
+                            <li>Leveraged a versatile tech stack (Python, C++, SQL, R, SAS, VBA) to automate data pipelines and develop robust statistical models for risk assessment.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Aug 2020 – Oct 2021</div>
+                        <h3 class="timeline-title">Quantitative Finance Intern</h3>
+                        <div class="timeline-subtitle">Council For Scientific & Industrial Research – Accra, Ghana</div>
+                        <ul>
+                            <li>Developed and deployed automated financial data pipelines to generate daily sales/purchase journals, reducing reporting latency by 70% and enabling real-time P&L tracking.</li>
+                            <li>Engineered a digitized invoice processing system that automated reconciliation workflows, accelerating the month-end close process and providing directors with accurate, audit-ready financial data.</li>
+                            <li>Served as the divisional technical expert, optimizing IT infrastructure to ensure high availability of critical trading and reporting systems.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="experience-education">
+        <div class="container">
+            <div class="section-title">
+                <h2>Education</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Aug 2023 – May 2027</div>
+                        <h3 class="timeline-title">Soka University of America</h3>
+                        <div class="timeline-subtitle">B.A. in Economics & Mathematics</div>
+                        <ul>
+                            <li>GRE General Test Scores: 323/340 (Quantitative Reasoning: 165/170, Verbal Reasoning: 158/170)</li>
+                            <li>GRE Subject Mathematics Test Scores: 910/990</li>
+                            <li>Coursework: Data Structures & Algorithms, Calculus I-II, Linear Algebra, Probability & Statistics, Statistical Modeling, Machine Learning, Cryptography, Mathematical Logic, Macroeconomics, Microeconomics, International Economics, Advanced Math(Real Analysis), Financial Accounting, Quantitative Modeling, Discrete Mathematics & Mathematical Physics</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">May 2024 – May 2026</div>
+                        <h3 class="timeline-title">Massachusetts Institute of Technology</h3>
+                        <div class="timeline-subtitle">Micromasters in Statistics & Data Science</div>
+                        <ul>
+                            <li>Passed 3/4 courses; 1 Course In-progress</li>
+                            <li>Coursework: Statistical Modeling and Computation in Applications, Probability - The Science of Uncertainty and Data, Machine Learning with Python-From Linear Models to Deep Learning</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>Featured Projects</h2>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Black Scholes Delta Hedging</h3>
+                        <p class="project-description">Implemented the Black-Scholes model and a binomial tree in Python to price European/American options. Simulated a delta-hedging strategy to manage the risk of a short option position, analyzing P&L variance under different market conditions.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Quantitative Finance</span>
+                            <span class="tech-tag">Options Pricing</span>
+                            <span class="tech-tag">Numerical Methods</span>
+                        </div>
+                        <a href="#" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">High-Frequency Market Making Simulation</h3>
+                        <p class="project-description">Engineered a high-frequency market making simulator featuring limit order book implementation with heap-based price priority and real-time feature engineering pipeline calculating 15+ microstructural features including realized volatility, bid-ask imbalance, and momentum signals.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Algorithmic Trading</span>
+                            <span class="tech-tag">Market Microstructure</span>
+                            <span class="tech-tag">Avellaneda-Stoikov</span>
+                        </div>
+                        <a href="#" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Machine Learning Pipeline</h3>
+                        <p class="project-description">Implemented Support Vector Regression (SVR) with comprehensive preprocessing, feature engineering, and hyperparameter tuning using GridSearchCV and RandomizedSearchCV, achieving optimized performance through systematic data cleaning and model evaluation on the California Housing dataset.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Machine Learning</span>
+                            <span class="tech-tag">SVR</span>
+                            <span class="tech-tag">Scikit-learn</span>
+                        </div>
+                        <a href="#" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Cryptography Research</h3>
+                        <p class="project-description">Research in cryptographic protocols and implementations with focus on secure communication and data protection mechanisms. Developed novel approaches to encryption key management and studied applications in financial data security.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Cryptography</span>
+                            <span class="tech-tag">Security</span>
+                            <span class="tech-tag">Research</span>
+                            <span class="tech-tag">Python</span>
+                        </div>
+                        <a href="#" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="publications" class="publications">
+        <div class="container">
+            <div class="section-title">
+                <h2>Publications & Research</h2>
+            </div>
+            <div class="publication-list">
+                <div class="publication-item">
+                    <h3 class="publication-title">The Economic and Environmental Impact of Gold Mining in Ghana</h3>
+                    <div class="publication-role">Research Collaborator | With Caroline Hofe | Present</div>
+                    <p class="publication-description">Co-authoring research paper analyzing Ghana's gold mining sector using econometric modeling. Investigating relationships between mining revenues, environmental degradation, and community development. Incorporating GIS data and World Bank datasets for spatial-economic analysis. Target journals: Resources Policy or Journal of Cleaner Production.</p>
+                </div>
+                <div class="publication-item">
+                    <h3 class="publication-title">Equilateral Triangle Geometry Problem</h3>
+                    <div class="publication-role">Problem Solver | Pi Mu Epsilon Problem #1131</div>
+                    <p class="publication-description">Solved quadrilateral geometry problem proving \( AC^2 = AD^2 + AB^2 \) in a convex quadrilateral. Problem Statement: PME Journal Spring 2006, Problem #1131. Solution completed, submitted, accepted, and yet to be officially recognized in Pi Mu Epsilon Journal.</p>
+                </div>
+                <div class="publication-item">
+                    <h3 class="publication-title">Continued Fractions, a-Fibonacci Numbers, and the Middle b-Noise</h3>
+                    <div class="publication-role">Published Problem Solver | Pi Mu Epsilon Problem #1385</div>
+                    <p class="publication-description">Solved the continued fraction problem proposed by Hongwei Chen. Published Solution: PME Journal Fall 2022, Problem #1385. Officially recognized in Pi Mu Epsilon Journal.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <div class="section-title">
+                    <h2>Get In Touch</h2>
+                </div>
+                <p>I'm currently looking for internship opportunities in quantitative research, data science, and software engineering. Feel free to reach out if you'd like to discuss potential collaborations or opportunities.</p>
+                <div class="contact-links">
+                    <a href="mailto:emmanueladutwum900@yahoo.com" class="contact-link">
+                        <i class="fas fa-envelope"></i> emmanueladutwum900@yahoo.com
+                    </a>
+                    <a href="tel:+19293777654" class="contact-link">
+                        <i class="fas fa-phone"></i> (+1) 929-377-7654
+                    </a>
+                    <a href="https://linkedin.com/in/emmanuel-adutwum" class="contact-link">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
+                    <a href="https://github.com/emmanueladutwum123" class="contact-link">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Emmanuel Adutwum. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Improved Image Error Handling
+        function handleImageError(img) {
+            console.error('❌ Profile image failed to load:', img.src);
+            
+            // Mark the container as having a failed image
+            const container = document.getElementById('profileImageContainer');
+            container.classList.add('image-failed');
+            
+            // Try alternative paths in sequence
+            const alternatives = [
+                'images/profile-photo.jpg',  // Primary correct path
+                './images/profile-photo.jpg',
+                'profile-photo.jpg',
+                './profile-photo.jpg',
+                'images/profile-photo.jpeg',
+                'images/profile-photo.png'
+            ];
+            
+            let currentIndex = alternatives.indexOf(img.src);
+            let nextIndex = currentIndex === -1 ? 0 : currentIndex + 1;
+            
+            if (nextIndex < alternatives.length) {
+                console.log('🔄 Trying alternative path:', alternatives[nextIndex]);
+                img.src = alternatives[nextIndex];
+            } else {
+                console.log('💡 All image paths failed. Please check:');
+                console.log('1. File exists in repository');
+                console.log('2. Correct filename (case-sensitive)');
+                console.log('3. File is committed and pushed');
+                console.log('4. File extension is correct (.jpg, .jpeg, .png)');
+                console.log('5. GitHub Pages is deployed (if applicable)');
+                
+                // Final fallback - use a placeholder service
+                setTimeout(() => {
+                    if (container.classList.contains('image-failed')) {
+                        console.log('🖼️ Using placeholder image as final fallback');
+                        img.src = 'https://via.placeholder.com/320x320/112240/64ffda?text=Profile+Photo';
+                        img.onerror = null; // Prevent infinite loop
+                        container.classList.remove('image-failed');
+                    }
+                }, 1000);
+            }
+        }
+
+        // Test image URL accessibility
+        function testImageUrl() {
+            const testUrl = 'images/profile-photo.jpg';
+            const img = new Image();
+            img.onload = function() {
+                console.log('✅ Image URL is accessible:', testUrl);
+                console.log('🎉 Your profile photo should now display correctly!');
+            };
+            img.onerror = function() {
+                console.log('❌ Image URL is NOT accessible:', testUrl);
+                console.log('Please verify the file exists in your repository');
+            };
+            img.src = testUrl;
+        }
+
+        // Mobile Navigation Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        const navLinksItems = document.querySelectorAll('.nav-link');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        navLinksItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Active navigation link highlighting
+        const sections = document.querySelectorAll('section');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinksItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === `#${current}`) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Test image on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🔄 Testing image accessibility...');
+            testImageUrl();
+            
+            // Check if we're on GitHub Pages
+            if (window.location.hostname.includes('github.io')) {
+                console.log('🌐 Running on GitHub Pages');
+            } else {
+                console.log('💻 Running locally');
+            }
+            
+            // Check if image loaded successfully after 2 seconds
+            setTimeout(() => {
+                const profileImg = document.querySelector('.profile-photo');
+                if (profileImg && profileImg.naturalHeight === 0) {
+                    console.log('⏰ Image still not loaded after timeout');
+                    handleImageError(profileImg);
+                }
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
