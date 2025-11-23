@@ -892,7 +892,7 @@
         </div>
     </section>
 
-    <!-- Rest of your sections remain the same -->
+    <!-- Experience Section -->
     <section id="experience" class="experience-education">
         <div class="container">
             <div class="section-title">
@@ -939,6 +939,7 @@
         </div>
     </section>
 
+    <!-- Education Section -->
     <section id="education" class="experience-education">
         <div class="container">
             <div class="section-title">
@@ -972,6 +973,7 @@
         </div>
     </section>
 
+    <!-- Projects Section -->
     <section id="projects" class="projects">
         <div class="container">
             <div class="section-title">
@@ -1054,6 +1056,7 @@
         </div>
     </section>
 
+    <!-- Publications Section -->
     <section id="publications" class="publications">
         <div class="container">
             <div class="section-title">
@@ -1079,6 +1082,7 @@
         </div>
     </section>
 
+    <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
             <div class="contact-content">
@@ -1104,6 +1108,7 @@
         </div>
     </section>
 
+    <!-- Footer -->
     <footer>
         <div class="container">
             <p>&copy; 2024 Emmanuel Adutwum. All Rights Reserved.</p>
