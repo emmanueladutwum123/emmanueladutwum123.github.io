@@ -378,7 +378,7 @@
             box-shadow: 0 5px 15px rgba(2,12,27,0.5);
         }
 
-        /* Rest of your CSS remains the same... */
+        /* Experience & Education Section */
         .experience-education {
             background-color: var(--secondary);
             position: relative;
@@ -480,6 +480,7 @@
             color: var(--text-light);
         }
 
+        /* Projects Section */
         .projects {
             background-color: var(--primary);
             position: relative;
@@ -526,15 +527,6 @@
             height: 100%;
             background: linear-gradient(to bottom, rgba(10,25,47,0.1), rgba(10,25,47,0.7));
             z-index: 1;
-        }
-
-        .project-photo {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-            position: relative;
-            z-index: 2;
         }
 
         .project-placeholder {
@@ -606,72 +598,25 @@
             gap: 12px;
         }
 
-        /* Cryptography Images Gallery - IMPROVED */
-        .crypto-gallery {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            margin: 1.5rem 0;
-            padding: 1rem 0;
-            border-top: 1px solid rgba(100, 255, 218, 0.1);
-            border-bottom: 1px solid rgba(100, 255, 218, 0.1);
-        }
-
-        .crypto-image {
-            width: 100%;
-            height: 120px;
-            background-color: var(--primary);
-            border-radius: 8px;
-            overflow: hidden;
-            display: flex;
+        /* Grant Badge */
+        .grant-badge {
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            border: 1px solid rgba(100, 255, 218, 0.2);
-            transition: var(--transition);
-        }
-
-        .crypto-image:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(2,12,27,0.5);
-        }
-
-        .crypto-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .crypto-placeholder {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-light);
-            text-align: center;
-            padding: 1rem;
-            width: 100%;
-            height: 100%;
-        }
-
-        .crypto-placeholder i {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, rgba(100, 255, 218, 0.1), rgba(100, 255, 218, 0.05));
             color: var(--accent);
-        }
-
-        .crypto-placeholder span {
-            font-size: 0.8rem;
-            line-height: 1.2;
-        }
-
-        .crypto-gallery-title {
-            color: var(--accent);
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-            text-align: center;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
             font-weight: 600;
+            margin: 1rem 0;
+            border: 1px solid rgba(100, 255, 218, 0.2);
         }
 
+        .grant-badge i {
+            margin-right: 0.5rem;
+        }
+
+        /* Publications Section */
         .publications {
             background-color: var(--secondary);
             position: relative;
@@ -715,6 +660,7 @@
             line-height: 1.7;
         }
 
+        /* Contact Section */
         .contact {
             background-color: var(--primary);
             position: relative;
@@ -771,12 +717,68 @@
             font-size: 1.3rem;
         }
 
+        /* Footer */
         footer {
             background-color: var(--secondary);
             color: var(--text-light);
             padding: 3rem 0;
             text-align: center;
             border-top: 1px solid rgba(100, 255, 218, 0.1);
+        }
+
+        /* Floating Elements */
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .floating-element {
+            position: absolute;
+            background: rgba(100, 255, 218, 0.03);
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+        }
+
+        .floating-element:nth-child(1) {
+            width: 100px;
+            height: 100px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            top: 60%;
+            right: 10%;
+            animation-delay: -5s;
+        }
+
+        .floating-element:nth-child(3) {
+            width: 80px;
+            height: 80px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+            }
+            100% {
+                transform: translateY(0) rotate(360deg);
+            }
         }
 
         @media (max-width: 968px) {
@@ -795,10 +797,6 @@
             
             .hero h2 {
                 font-size: 2.5rem;
-            }
-            
-            .crypto-gallery {
-                grid-template-columns: repeat(2, 1fr);
             }
         }
 
@@ -872,10 +870,6 @@
                 grid-template-columns: 1fr;
             }
             
-            .crypto-gallery {
-                grid-template-columns: 1fr;
-            }
-            
             .contact-links {
                 flex-direction: column;
                 align-items: center;
@@ -906,6 +900,11 @@
 
     <!-- Hero Section -->
     <section class="hero">
+        <div class="floating-elements">
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+        </div>
         <div class="container">
             <div class="hero-content">
                 <p class="hero-greeting">Hi, my name is</p>
@@ -1119,21 +1118,11 @@
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Cryptography & FinTech Security Research</h3>
-                        <p class="project-description">Awarded a competitive $25,000 research grant to study cryptographic applications in fintech security, including blockchain protocols and secure transaction systems. Conducted fieldwork at Bletchley Park (historic cryptography center), Royal Airforce Museum, Cipher escape room, and Bank of England to analyze real-world financial security frameworks.</p>
-                        
-                        <!-- Cryptography Images Gallery - IMPROVED -->
-                        <div class="crypto-gallery-title">Research Documentation</div>
-                        <div class="crypto-gallery">
-                            <div class="crypto-image">
-                                <img src="images/crypto1.png" alt="Cryptography Research 1" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"crypto-placeholder\"><i class=\"fas fa-lock\"></i><span>crypto1.png</span></div>';">
-                            </div>
-                            <div class="crypto-image">
-                                <img src="images/crypto2.png" alt="Cryptography Research 2" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"crypto-placeholder\"><i class=\"fas fa-shield-alt\"></i><span>crypto2.png</span></div>';">
-                            </div>
-                            <div class="crypto-image">
-                                <img src="images/crypto3.png" alt="Cryptography Research 3" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"crypto-placeholder\"><i class=\"fas fa-key\"></i><span>crypto3.png</span></div>';">
-                            </div>
+                        <div class="grant-badge">
+                            <i class="fas fa-award"></i>
+                            $25,000 Research Grant
                         </div>
+                        <p class="project-description">Awarded a competitive $25,000 research grant to study cryptographic applications in fintech security, including blockchain protocols and secure transaction systems. Conducted fieldwork at Bletchley Park (historic cryptography center), Royal Airforce Museum, Cipher escape room, and Bank of England to analyze real-world financial security frameworks.</p>
                         
                         <div class="project-tech">
                             <span class="tech-tag">Cryptography</span>
