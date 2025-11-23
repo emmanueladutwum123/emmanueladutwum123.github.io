@@ -606,6 +606,51 @@
             gap: 12px;
         }
 
+        /* Cryptography Images Gallery */
+        .crypto-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .crypto-image {
+            width: 100%;
+            height: 120px;
+            background-color: var(--primary);
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+        }
+
+        .crypto-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .crypto-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .crypto-placeholder i {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .crypto-placeholder span {
+            font-size: 0.8rem;
+        }
+
         .publications {
             background-color: var(--secondary);
             position: relative;
@@ -730,6 +775,10 @@
             .hero h2 {
                 font-size: 2.5rem;
             }
+            
+            .crypto-gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         @media (max-width: 768px) {
@@ -799,6 +848,10 @@
             }
             
             .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .crypto-gallery {
                 grid-template-columns: 1fr;
             }
             
@@ -988,14 +1041,15 @@
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Black Scholes Delta Hedging</h3>
-                        <p class="project-description">Implemented the Black-Scholes model and a binomial tree in Python to price European/American options. Simulated a delta-hedging strategy to manage the risk of a short option position, analyzing P&L variance under different market conditions.</p>
+                        <p class="project-description">Implemented the Black-Scholes model and a binomial tree in Python to price European/American options. Simulated a delta-hedging strategy to manage the risk of a short option position, analyzing P&L variance under different market conditions. Advanced quantitative finance implementation with real-time risk management capabilities.</p>
                         <div class="project-tech">
                             <span class="tech-tag">Python</span>
                             <span class="tech-tag">Quantitative Finance</span>
                             <span class="tech-tag">Options Pricing</span>
                             <span class="tech-tag">Numerical Methods</span>
+                            <span class="tech-tag">Risk Management</span>
                         </div>
-                        <a href="#" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                        <a href="https://github.com/emmanueladutwum123/black-scholes-delta-hedging" class="project-link" target="_blank">View Project <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 <div class="project-card">
@@ -1006,14 +1060,15 @@
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">High-Frequency Market Making Simulation</h3>
-                        <p class="project-description">Engineered a high-frequency market making simulator featuring limit order book implementation with heap-based price priority and real-time feature engineering pipeline calculating 15+ microstructural features including realized volatility, bid-ask imbalance, and momentum signals.</p>
+                        <p class="project-description">Engineered a high-frequency market making simulator featuring limit order book implementation with heap-based price priority and real-time feature engineering pipeline calculating 15+ microstructural features including realized volatility, bid-ask imbalance, and momentum signals. Advanced algorithmic trading system with market microstructure analysis.</p>
                         <div class="project-tech">
                             <span class="tech-tag">Python</span>
                             <span class="tech-tag">Algorithmic Trading</span>
                             <span class="tech-tag">Market Microstructure</span>
                             <span class="tech-tag">Avellaneda-Stoikov</span>
+                            <span class="tech-tag">Real-time Analytics</span>
                         </div>
-                        <a href="#" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                        <a href="https://github.com/emmanueladutwum123/High-Frequency-Market-Making-Simulation" class="project-link" target="_blank">View Project <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 <div class="project-card">
@@ -1024,14 +1079,15 @@
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Machine Learning Pipeline</h3>
-                        <p class="project-description">Implemented Support Vector Regression (SVR) with comprehensive preprocessing, feature engineering, and hyperparameter tuning using GridSearchCV and RandomizedSearchCV, achieving optimized performance through systematic data cleaning and model evaluation on the California Housing dataset.</p>
+                        <p class="project-description">Implemented Support Vector Regression (SVR) with comprehensive preprocessing, feature engineering, and hyperparameter tuning using GridSearchCV and RandomizedSearchCV, achieving optimized performance through systematic data cleaning and model evaluation on the California Housing dataset. Advanced ML pipeline with automated optimization.</p>
                         <div class="project-tech">
                             <span class="tech-tag">Python</span>
                             <span class="tech-tag">Machine Learning</span>
                             <span class="tech-tag">SVR</span>
                             <span class="tech-tag">Scikit-learn</span>
+                            <span class="tech-tag">Hyperparameter Tuning</span>
                         </div>
-                        <a href="#" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                        <a href="https://github.com/emmanueladutwum123/SVR-on-California-Housing-Dataset" class="project-link" target="_blank">View Project <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 <div class="project-card">
@@ -1041,15 +1097,30 @@
                         </div>
                     </div>
                     <div class="project-content">
-                        <h3 class="project-title">Cryptography Research</h3>
-                        <p class="project-description">Research in cryptographic protocols and implementations with focus on secure communication and data protection mechanisms. Developed novel approaches to encryption key management and studied applications in financial data security.</p>
+                        <h3 class="project-title">Cryptography & FinTech Security Research</h3>
+                        <p class="project-description">Awarded a competitive $25,000 research grant to study cryptographic applications in fintech security, including blockchain protocols and secure transaction systems. Conducted fieldwork at Bletchley Park (historic cryptography center), Royal Airforce Museum, Cipher escape room, and Bank of England to analyze real-world financial security frameworks.</p>
+                        
+                        <!-- Cryptography Images Gallery -->
+                        <div class="crypto-gallery">
+                            <div class="crypto-image">
+                                <img src="images/crypto1.png" alt="Cryptography Research 1" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"crypto-placeholder\"><i class=\"fas fa-lock\"></i><span>crypto1.png</span></div>';">
+                            </div>
+                            <div class="crypto-image">
+                                <img src="images/crypto2.png" alt="Cryptography Research 2" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"crypto-placeholder\"><i class=\"fas fa-shield-alt\"></i><span>crypto2.png</span></div>';">
+                            </div>
+                            <div class="crypto-image">
+                                <img src="images/crypto3.png" alt="Cryptography Research 3" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"crypto-placeholder\"><i class=\"fas fa-key\"></i><span>crypto3.png</span></div>';">
+                            </div>
+                        </div>
+                        
                         <div class="project-tech">
                             <span class="tech-tag">Cryptography</span>
-                            <span class="tech-tag">Security</span>
+                            <span class="tech-tag">Blockchain</span>
+                            <span class="tech-tag">FinTech Security</span>
                             <span class="tech-tag">Research</span>
                             <span class="tech-tag">Python</span>
                         </div>
-                        <a href="#" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                        <a href="#" class="project-link">Research Portfolio <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -1067,6 +1138,16 @@
                     <h3 class="publication-title">The Economic and Environmental Impact of Gold Mining in Ghana</h3>
                     <div class="publication-role">Research Collaborator | With Caroline Hofe | Present</div>
                     <p class="publication-description">Co-authoring research paper analyzing Ghana's gold mining sector using econometric modeling. Investigating relationships between mining revenues, environmental degradation, and community development. Incorporating GIS data and World Bank datasets for spatial-economic analysis. Target journals: Resources Policy or Journal of Cleaner Production.</p>
+                </div>
+                <div class="publication-item">
+                    <h3 class="publication-title">The Geometric Universe: A Unified Framework for Musical Harmony and Physical Law</h3>
+                    <div class="publication-role">Research in Progress | With Professor Cheng (Mathematics - Mount Holyoke), Professor Phat Vu (Physics - Soka University) & Professor Mina Choi (Music - Soka University)</div>
+                    <p class="publication-description">Groundbreaking interdisciplinary research exploring the fundamental geometric structures underlying both musical harmony and physical laws. Investigating mathematical connections between harmonic ratios, quantum mechanics, and cosmological principles. Developing novel frameworks that bridge the gap between artistic expression and scientific understanding of universal patterns.</p>
+                </div>
+                <div class="publication-item">
+                    <h3 class="publication-title">Cryptography & FinTech Security: London Research Expedition</h3>
+                    <div class="publication-role">Travel Learning Cluster: London, United Kingdom | Grant: $25,000 | Jan 2025</div>
+                    <p class="publication-description">Awarded a competitive $25,000 research grant to study cryptographic applications in fintech security, including blockchain protocols and secure transaction systems. Conducted extensive fieldwork at Bletchley Park (historic cryptography center), Royal Airforce Museum, Cipher escape room, and Bank of England to analyze real-world financial security frameworks and cryptographic implementations in modern banking systems.</p>
                 </div>
                 <div class="publication-item">
                     <h3 class="publication-title">Equilateral Triangle Geometry Problem</h3>
