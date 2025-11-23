@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -308,7 +309,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            display: flex;
+            display: none;
             flex-direction: column;
             align-items: center;
             justify-content: center;
@@ -326,6 +327,14 @@
         .profile-image-placeholder span {
             font-size: 0.9rem;
             line-height: 1.4;
+        }
+
+        .profile-image-container.image-failed .profile-image-placeholder {
+            display: flex;
+        }
+
+        .profile-image-container.image-failed .profile-photo {
+            display: none;
         }
 
         .profile-text {
@@ -867,9 +876,9 @@
                     </div>
                 </div>
                 <div class="profile-image">
-                    <div class="profile-image-container">
-                        <!-- Profile Photo with multiple fallback options -->
-                        <img src="./images/profile-photo.jpg" 
+                    <div class="profile-image-container" id="profileImageContainer">
+                        <!-- CORRECTED Profile Photo path -->
+                        <img src="images/profile-photo.jpg" 
                              alt="Emmanuel Adutwum" 
                              class="profile-photo"
                              onerror="handleImageError(this)">
@@ -1102,46 +1111,61 @@
     </footer>
 
     <script>
-        // Image error handling function
+        // Improved Image Error Handling
         function handleImageError(img) {
-            console.error('Image failed to load:', img.src);
-            console.log('Trying alternative paths...');
+            console.error('❌ Profile image failed to load:', img.src);
             
-            // Try alternative paths
+            // Mark the container as having a failed image
+            const container = document.getElementById('profileImageContainer');
+            container.classList.add('image-failed');
+            
+            // Try alternative paths in sequence
             const alternatives = [
+                'images/profile-photo.jpg',  // Primary correct path
                 './images/profile-photo.jpg',
-                'images/profile-photo.jpg',
-                '/images/profile-photo.jpg',
-                'profile-photo.jpg'
+                'profile-photo.jpg',
+                './profile-photo.jpg',
+                'images/profile-photo.jpeg',
+                'images/profile-photo.png'
             ];
             
             let currentIndex = alternatives.indexOf(img.src);
-            let nextIndex = (currentIndex + 1) % alternatives.length;
+            let nextIndex = currentIndex === -1 ? 0 : currentIndex + 1;
             
-            if (currentIndex === -1 || nextIndex <= currentIndex) {
-                img.style.display = 'none';
-                document.getElementById('profilePlaceholder').style.display = 'flex';
-                console.log('All image paths failed. Showing placeholder.');
-            } else {
+            if (nextIndex < alternatives.length) {
+                console.log('🔄 Trying alternative path:', alternatives[nextIndex]);
                 img.src = alternatives[nextIndex];
-                console.log('Trying alternative path:', alternatives[nextIndex]);
+            } else {
+                console.log('💡 All image paths failed. Please check:');
+                console.log('1. File exists in repository');
+                console.log('2. Correct filename (case-sensitive)');
+                console.log('3. File is committed and pushed');
+                console.log('4. File extension is correct (.jpg, .jpeg, .png)');
+                console.log('5. GitHub Pages is deployed (if applicable)');
+                
+                // Final fallback - use a placeholder service
+                setTimeout(() => {
+                    if (container.classList.contains('image-failed')) {
+                        console.log('🖼️ Using placeholder image as final fallback');
+                        img.src = 'https://via.placeholder.com/320x320/112240/64ffda?text=Profile+Photo';
+                        img.onerror = null; // Prevent infinite loop
+                        container.classList.remove('image-failed');
+                    }
+                }, 1000);
             }
         }
 
         // Test image URL accessibility
         function testImageUrl() {
-            const testUrl = './images/profile-photo.jpg';
+            const testUrl = 'images/profile-photo.jpg';
             const img = new Image();
             img.onload = function() {
                 console.log('✅ Image URL is accessible:', testUrl);
+                console.log('🎉 Your profile photo should now display correctly!');
             };
             img.onerror = function() {
                 console.log('❌ Image URL is NOT accessible:', testUrl);
-                console.log('Please check:');
-                console.log('1. File exists in repository');
-                console.log('2. Correct filename (case-sensitive)');
-                console.log('3. File is committed and pushed');
-                console.log('4. GitHub Pages is deployed');
+                console.log('Please verify the file exists in your repository');
             };
             img.src = testUrl;
         }
@@ -1221,6 +1245,15 @@
             } else {
                 console.log('💻 Running locally');
             }
+            
+            // Check if image loaded successfully after 2 seconds
+            setTimeout(() => {
+                const profileImg = document.querySelector('.profile-photo');
+                if (profileImg && profileImg.naturalHeight === 0) {
+                    console.log('⏰ Image still not loaded after timeout');
+                    handleImageError(profileImg);
+                }
+            }, 2000);
         });
     </script>
 </body>
