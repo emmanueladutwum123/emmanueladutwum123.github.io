@@ -62,6 +62,18 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Visitor Analytics -->
+    <script>
+      // Simple page view counter
+      if (localStorage.getItem('visitorCount')) {
+        let count = parseInt(localStorage.getItem('visitorCount')) + 1;
+        localStorage.setItem('visitorCount', count);
+      } else {
+        localStorage.setItem('visitorCount', 1);
+      }
+    </script>
+    
     <style>
         :root {
             --primary: #0a192f;
@@ -432,6 +444,248 @@
         .skill-tag:hover {
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(2,12,27,0.5);
+        }
+
+        /* Black Scholes Calculator Styles */
+        .bs-calculator {
+            background: var(--secondary);
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+        }
+
+        .bs-calculator h3 {
+            color: var(--white);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .bs-controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .bs-input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .bs-input-group label {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .bs-input-group input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 6px;
+            background: rgba(100, 255, 218, 0.1);
+            border-radius: 3px;
+            outline: none;
+        }
+
+        .bs-input-group input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            background: var(--accent);
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid var(--primary);
+        }
+
+        .bs-input-group input[type="range"]::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            background: var(--accent);
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid var(--primary);
+        }
+
+        .bs-input-group span {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .bs-results {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .bs-result-card {
+            background: var(--primary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+        }
+
+        .bs-result-card h4 {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .bs-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .bs-greeks {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .bs-greeks span {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .bs-greeks span span {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .bs-chart-container {
+            height: 300px;
+            margin: 2rem 0;
+        }
+
+        .bs-explanation {
+            background: rgba(10, 25, 47, 0.5);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+            border-left: 4px solid var(--accent);
+        }
+
+        .bs-explanation h4 {
+            color: var(--white);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .bs-explanation p {
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        /* GitHub Stats Widget */
+        .github-stats-widget {
+            background: var(--secondary);
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+        }
+        
+        .github-stats-widget h3 {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .github-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .github-stat {
+            background: var(--primary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+        }
+        
+        .github-stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        
+        .github-stat-label {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .github-languages {
+            margin: 2rem 0;
+        }
+        
+        .github-languages h4 {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+        
+        .language-bar {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            gap: 1rem;
+        }
+        
+        .language-name {
+            min-width: 100px;
+            color: var(--text);
+            font-weight: 500;
+        }
+        
+        .language-bar-bg {
+            flex-grow: 1;
+            height: 8px;
+            background: rgba(100, 255, 218, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .language-bar-fill {
+            height: 100%;
+            background: var(--accent);
+            border-radius: 4px;
+            transition: width 1s ease;
+        }
+        
+        .language-count {
+            min-width: 40px;
+            text-align: right;
+            color: var(--accent-light);
+            font-weight: 500;
+        }
+        
+        .github-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .github-link:hover {
+            gap: 12px;
         }
 
         /* Experience & Education Section */
@@ -837,6 +1091,21 @@
             }
         }
 
+        /* Skills Chart Container */
+        .skills-chart-container {
+            background: var(--secondary);
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+        }
+
+        .skills-chart-container h3 {
+            color: var(--white);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
         @media (max-width: 968px) {
             .profile-content {
                 flex-direction: column;
@@ -853,6 +1122,14 @@
             
             .hero h2 {
                 font-size: 2.5rem;
+            }
+            
+            .bs-controls {
+                grid-template-columns: 1fr;
+            }
+            
+            .bs-results {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -930,6 +1207,24 @@
                 flex-direction: column;
                 align-items: center;
             }
+            
+            .github-stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .language-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            
+            .language-name, .language-count {
+                min-width: auto;
+            }
+            
+            .language-bar-bg {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -983,6 +1278,20 @@
                     <p>Economics, Data Science, and Mathematics student with a proven track record in quantitative modeling and data analysis. Seeking a Summer Analyst role in Software Engineering, Machine Learning, Quantitative Research, FICC & Equities Quantitative Strategies to apply expertise in C++, Python, statistical modeling, SQL, and financial mathematics to solve complex problems in pricing, risk, and electronic trading.</p>
                     
                     <p>My technical background spans quantitative finance, machine learning, and software engineering, with practical experience gained through internships at Wells Fargo, CNO Financial Group, and the Council For Scientific & Industrial Research.</p>
+                    
+                    <!-- Skills Chart -->
+                    <div class="skills-chart-container">
+                        <h3>Quantitative Skills Assessment</h3>
+                        <div style="position: relative; height: 400px;">
+                            <canvas id="skillsChart"></canvas>
+                        </div>
+                        <p style="margin-top: 1rem; color: var(--text-light); font-size: 0.9rem; text-align: center;">
+                            Self-assessed proficiency based on project experience and formal education
+                        </p>
+                    </div>
+                    
+                    <!-- GitHub Stats -->
+                    <div id="githubStats"></div>
                     
                     <h3>Technical Skills</h3>
                     <div class="skills">
@@ -1109,6 +1418,27 @@
                 <h2>Featured Projects</h2>
             </div>
             <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Interactive Black-Scholes Calculator</h3>
+                        <p class="project-description">Real-time options pricing calculator implementing the Black-Scholes-Merton model. Adjust parameters to see instant price updates, Greeks calculation, and visualize payoff diagrams. Demonstrates quantitative finance expertise and interactive web development skills.</p>
+                        
+                        <div id="bsCalculatorContainer"></div>
+                        
+                        <div class="project-tech">
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Quantitative Finance</span>
+                            <span class="tech-tag">Black-Scholes</span>
+                            <span class="tech-tag">Options Pricing</span>
+                            <span class="tech-tag">Chart.js</span>
+                        </div>
+                    </div>
+                </div>
                 <div class="project-card">
                     <div class="project-image">
                         <div class="project-placeholder">
@@ -1260,9 +1590,16 @@
     <footer>
         <div class="container">
             <p>&copy; 2024 Emmanuel Adutwum. All Rights Reserved.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-light);">
+                Page views: <span id="pageViews">1</span>
+            </p>
         </div>
     </footer>
 
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Custom Scripts -->
     <script>
         // Improved Image Error Handling
         function handleImageError(img) {
@@ -1399,6 +1736,10 @@
                 console.log('💻 Running locally');
             }
             
+            // Update page views display
+            const pageViews = localStorage.getItem('visitorCount') || '1';
+            document.getElementById('pageViews').textContent = pageViews;
+            
             // Check if image loaded successfully after 2 seconds
             setTimeout(() => {
                 const profileImg = document.querySelector('.profile-photo');
@@ -1407,7 +1748,24 @@
                     handleImageError(profileImg);
                 }
             }, 2000);
+            
+            // Console greeting for recruiters
+            console.log(`%c🔢 Quantitative Portfolio | Emmanuel Adutwum
+%c📈 Seeking: Quant Researcher/Developer @ Jane Street/Two Sigma/Citadel
+%c💻 C++/Python | ML | Quantitative Finance | Algorithmic Trading
+%c🌐 View my algorithmic projects: https://github.com/emmanueladutwum123
+%c🎯 Technical Focus: HFT, Market Making, Options Pricing, Statistical Modeling`, 
+'color: #64ffda; font-size: 16px; font-weight: bold;',
+'color: #8892b0; font-size: 14px;',
+'color: #64ffda; font-size: 12px;',
+'color: #ccd6f6; font-size: 11px;',
+'color: #8892b0; font-size: 11px;');
         });
     </script>
+    
+    <!-- Load Custom Scripts -->
+    <script src="skills-chart.js"></script>
+    <script src="black-scholes.js"></script>
+    <script src="github-stats.js"></script>
 </body>
 </html>
