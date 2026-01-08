@@ -62,6 +62,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Visitor Analytics -->
     <script>
@@ -85,6 +86,7 @@
             --white: #e6f1ff;
             --shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
             --transition: all 0.25s cubic-bezier(0.645,0.045,0.355,1);
+            --matrix: #00ff41;
         }
 
         * {
@@ -206,7 +208,7 @@
             font-size: 1.5rem;
         }
 
-        /* Hero Section */
+        /* Hero Section - Enhanced with Typing Effect */
         .hero {
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             color: var(--white);
@@ -229,12 +231,40 @@
             z-index: 0;
         }
 
+        /* Matrix-style code rain background */
+        .code-rain {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .code-drop {
+            position: absolute;
+            color: var(--matrix);
+            font-family: 'Fira Code', monospace;
+            font-size: 14px;
+            animation: fall linear infinite;
+            text-shadow: 0 0 5px var(--matrix);
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+
         .hero-content {
             max-width: 900px;
             margin: 0 auto;
             text-align: left;
             position: relative;
-            z-index: 1;
+            z-index: 2;
         }
 
         .hero-greeting {
@@ -242,6 +272,7 @@
             font-size: 1.2rem;
             margin-bottom: 1rem;
             font-weight: 500;
+            font-family: 'Fira Code', monospace;
         }
 
         .hero h1 {
@@ -249,6 +280,7 @@
             margin-bottom: 0.5rem;
             font-weight: 800;
             line-height: 1.1;
+            min-height: 4.8rem;
         }
 
         .hero h2 {
@@ -256,6 +288,7 @@
             margin-bottom: 1.5rem;
             color: var(--text-light);
             font-weight: 700;
+            min-height: 3.6rem;
         }
 
         .hero p {
@@ -263,6 +296,27 @@
             margin-bottom: 2.5rem;
             max-width: 600px;
             color: var(--text-light);
+            min-height: 1.8rem;
+        }
+
+        /* Typewriter cursor styles */
+        .typewriter-text {
+            position: relative;
+            display: inline-block;
+        }
+
+        .typewriter-cursor {
+            display: inline-block;
+            width: 3px;
+            background-color: var(--accent);
+            animation: blink 1s infinite;
+            margin-left: 2px;
+            vertical-align: baseline;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
         }
 
         .btn {
@@ -299,6 +353,146 @@
 
         .btn:hover::before {
             width: 100%;
+        }
+
+        /* Terminal Effect */
+        .terminal-container {
+            background: rgba(10, 25, 47, 0.9);
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 3rem auto;
+            max-width: 800px;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .terminal-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+        }
+
+        .terminal-dots {
+            display: flex;
+            gap: 8px;
+            margin-right: 1rem;
+        }
+
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .terminal-dot.red { background: #ff5f56; }
+        .terminal-dot.yellow { background: #ffbd2e; }
+        .terminal-dot.green { background: #27ca3f; }
+
+        .terminal-title {
+            color: var(--text-light);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+        }
+
+        .terminal-output {
+            font-family: 'Fira Code', monospace;
+            line-height: 1.6;
+        }
+
+        .terminal-line {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .terminal-prompt {
+            color: var(--accent);
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+
+        .terminal-command {
+            color: var(--white);
+        }
+
+        .terminal-response {
+            color: var(--text-light);
+            margin-left: 20px;
+        }
+
+        /* Interactive Particles Background */
+        .particles-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--accent);
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        /* Glitch Effect */
+        .glitch-text {
+            position: relative;
+            display: inline-block;
+        }
+
+        .glitch-text::before,
+        .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.8;
+        }
+
+        .glitch-text::before {
+            animation: glitch-effect 3s infinite linear alternate-reverse;
+            color: #ff00ff;
+            z-index: -1;
+        }
+
+        .glitch-text::after {
+            animation: glitch-effect 2s infinite linear alternate-reverse;
+            color: #00ffff;
+            z-index: -2;
+        }
+
+        @keyframes glitch-effect {
+            0% {
+                transform: translate(0);
+            }
+            20% {
+                transform: translate(-2px, 2px);
+            }
+            40% {
+                transform: translate(-2px, -2px);
+            }
+            60% {
+                transform: translate(2px, 2px);
+            }
+            80% {
+                transform: translate(2px, -2px);
+            }
+            100% {
+                transform: translate(0);
+            }
         }
 
         /* Profile Section */
@@ -1105,198 +1299,433 @@
             margin-bottom: 0.25rem;
         }
 
-        /* GitHub Additional Styles */
-        .github-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-        
-        .github-username {
-            color: var(--text-light);
-            font-size: 0.9rem;
-            background: var(--primary);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            border: 1px solid rgba(100, 255, 218, 0.2);
-        }
-        
-        .github-stat {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            background: var(--primary);
-            padding: 1rem;
-            border-radius: 8px;
+        /* Cocoa Hedging Simulator Styles */
+        .cocoa-hedging-simulator {
+            background: var(--secondary);
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
             border: 1px solid rgba(100, 255, 218, 0.1);
-            transition: var(--transition);
         }
-        
-        .github-stat:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(2,12,27,0.3);
-            border-color: rgba(100, 255, 218, 0.3);
-        }
-        
-        .github-stat-icon {
-            width: 40px;
-            height: 40px;
-            background: rgba(100, 255, 218, 0.1);
-            border-radius: 8px;
+
+        .ghana-header {
             display: flex;
             align-items: center;
-            justify-content: center;
-            color: var(--accent);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid rgba(207, 83, 0, 0.3);
         }
-        
-        .github-stat-content {
-            flex-grow: 1;
-        }
-        
-        .github-stat-value {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--accent);
-            line-height: 1;
-        }
-        
-        .github-stat-label {
-            color: var(--text-light);
-            font-size: 0.85rem;
-            margin-top: 0.2rem;
-        }
-        
-        .language-info {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.3rem;
-        }
-        
-        .language-name {
-            color: var(--text);
-            font-weight: 500;
-        }
-        
-        .language-percentage {
-            color: var(--accent);
-            font-weight: 600;
-        }
-        
-        .popular-repos {
-            margin-top: 2rem;
-        }
-        
-        .repo-list {
+
+        .ghana-flag {
+            width: 80px;
+            height: 50px;
             display: flex;
             flex-direction: column;
-            gap: 0.8rem;
-            margin-top: 1rem;
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
-        
-        .repo-card {
+
+        .flag-red {
+            height: 33.33%;
+            background: #CF5300;
+        }
+
+        .flag-yellow {
+            height: 33.33%;
+            background: #FCD116;
+        }
+
+        .flag-green {
+            height: 33.33%;
+            background: #006B3D;
+        }
+
+        .flag-star {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #000;
+            font-size: 1.5rem;
+        }
+
+        .header-content {
+            flex-grow: 1;
+        }
+
+        .header-content h3 {
+            color: var(--white);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .subtitle {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .control-panel {
             background: var(--primary);
-            padding: 1rem;
+            padding: 1.5rem;
             border-radius: 8px;
-            border: 1px solid rgba(100, 255, 218, 0.1);
-            text-decoration: none;
-            color: inherit;
-            transition: var(--transition);
+            border: 1px solid rgba(207, 83, 0, 0.2);
+            margin-bottom: 2rem;
         }
-        
-        .repo-card:hover {
-            transform: translateY(-2px);
-            border-color: rgba(100, 255, 218, 0.3);
-            box-shadow: 0 5px 15px rgba(2,12,27,0.2);
+
+        .control-section {
+            margin-bottom: 1.5rem;
         }
-        
-        .repo-header {
+
+        .control-section h4 {
+            color: var(--white);
+            margin-bottom: 1rem;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.5rem;
-        }
-        
-        .repo-name {
-            color: var(--accent);
-            font-weight: 600;
-            font-size: 1rem;
-        }
-        
-        .repo-stars {
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-        
-        .repo-description {
-            color: var(--text-light);
-            font-size: 0.9rem;
-            line-height: 1.4;
-            margin-bottom: 0.5rem;
-        }
-        
-        .repo-footer {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .repo-language {
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            color: var(--text-light);
-            font-size: 0.8rem;
-        }
-        
-        .language-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-        }
-        
-        .github-actions {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 2rem;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(100, 255, 218, 0.1);
-        }
-        
-        .github-profile-link {
-            display: inline-flex;
             align-items: center;
             gap: 8px;
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: 600;
+            color: #CF5300;
+        }
+
+        .controls-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .option-type-selector {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .option-type-btn {
+            padding: 0.5rem 1rem;
+            background: var(--secondary);
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            color: var(--text);
+            border-radius: 4px;
+            cursor: pointer;
             transition: var(--transition);
+            flex: 1;
         }
-        
-        .github-profile-link:hover {
-            gap: 12px;
+
+        .option-type-btn.active {
+            background: rgba(100, 255, 218, 0.1);
+            border-color: var(--accent);
+            color: var(--accent);
         }
-        
-        .github-update-time {
-            color: var(--text-light);
-            font-size: 0.8rem;
+
+        .option-type-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .simulation-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .export-btn {
+            background: rgba(207, 83, 0, 0.2);
+            color: #CF5300;
+            border: 1px solid #CF5300;
+        }
+
+        .results-dashboard {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .results-header {
+            background: var(--primary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid rgba(207, 83, 0, 0.2);
+        }
+
+        .results-header h4 {
+            color: var(--white);
+            margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 8px;
         }
-        
-        .github-error {
+
+        .real-time-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .real-time-stat {
+            background: rgba(10, 25, 47, 0.5);
+            padding: 1rem;
+            border-radius: 6px;
             text-align: center;
-            padding: 2rem;
-            color: var(--text-light);
+            border: 1px solid rgba(207, 83, 0, 0.1);
         }
-        
-        .github-error i {
-            font-size: 3rem;
+
+        .real-time-stat .stat-label {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .real-time-stat .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #CF5300;
+        }
+
+        .greek-calculator {
+            background: var(--primary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid rgba(207, 83, 0, 0.2);
+        }
+
+        .greek-calculator h5 {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .greek-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+        }
+
+        .greek-card {
+            background: rgba(10, 25, 47, 0.5);
+            padding: 1rem;
+            border-radius: 6px;
+            text-align: center;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            transition: var(--transition);
+        }
+
+        .greek-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(207, 83, 0, 0.3);
+        }
+
+        .greek-name {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .greek-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        .greek-desc {
+            color: var(--text-light);
+            font-size: 0.8rem;
+        }
+
+        .transactions-table {
+            background: var(--primary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid rgba(207, 83, 0, 0.2);
+        }
+
+        .transactions-table h5 {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .transactions-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .transactions-table th {
+            color: var(--text-light);
+            font-weight: 600;
+            text-align: left;
+            padding: 0.75rem;
+            border-bottom: 1px solid rgba(136, 146, 176, 0.2);
+            font-size: 0.85rem;
+            background: rgba(10, 25, 47, 0.8);
+            position: sticky;
+            top: 0;
+        }
+
+        .transactions-table td {
+            padding: 0.75rem;
+            border-bottom: 1px solid rgba(136, 146, 176, 0.1);
+            font-size: 0.9rem;
+        }
+
+        .transaction-row:hover {
+            background: rgba(207, 83, 0, 0.05);
+        }
+
+        .buy-trade {
+            color: #00ff00;
+            font-weight: 600;
+        }
+
+        .sell-trade {
+            color: #ff6b6b;
+            font-weight: 600;
+        }
+
+        .positive {
+            color: #00ff00;
+        }
+
+        .negative {
+            color: #ff6b6b;
+        }
+
+        .empty-table {
+            color: var(--text-light);
+            text-align: center;
+            padding: 2rem !important;
+            font-style: italic;
+        }
+
+        .ghana-context {
+            background: var(--primary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid rgba(207, 83, 0, 0.2);
+        }
+
+        .ghana-context h5 {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #CF5300;
+        }
+
+        .context-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .context-section {
+            background: rgba(10, 25, 47, 0.5);
+            padding: 1.5rem;
+            border-radius: 6px;
+            border-left: 4px solid #CF5300;
+        }
+
+        .context-section h6 {
+            color: var(--white);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .context-section p {
             color: var(--text-light);
             margin-bottom: 1rem;
-            opacity: 0.5;
+            line-height: 1.6;
+        }
+
+        .context-section ul {
+            padding-left: 1.5rem;
+            color: var(--text-light);
+        }
+
+        .context-section li {
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .black-scholes-formula {
+            background: var(--primary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid rgba(207, 83, 0, 0.2);
+        }
+
+        .black-scholes-formula h5 {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .formula-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        .formula-display {
+            background: rgba(10, 25, 47, 0.5);
+            padding: 1.5rem;
+            border-radius: 6px;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+        }
+
+        .formula-equation {
+            font-family: 'Cambria Math', serif;
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin: 1rem 0;
+            line-height: 2;
+            text-align: center;
+        }
+
+        .formula-vars {
+            font-family: monospace;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        .formula-variables {
+            background: rgba(10, 25, 47, 0.5);
+            padding: 1.5rem;
+            border-radius: 6px;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+        }
+
+        .formula-variables h6 {
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .formula-variables ul {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .formula-variables li {
+            margin-bottom: 0.5rem;
         }
 
         /* Experience & Education Section */
@@ -1702,6 +2131,278 @@
             }
         }
 
+        /* GitHub Additional Styles */
+        .github-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .github-username {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            background: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+        }
+        
+        .github-stat {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--primary);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            transition: var(--transition);
+        }
+        
+        .github-stat:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(2,12,27,0.3);
+            border-color: rgba(100, 255, 218, 0.3);
+        }
+        
+        .github-stat-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(100, 255, 218, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+        }
+        
+        .github-stat-content {
+            flex-grow: 1;
+        }
+        
+        .github-stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1;
+        }
+        
+        .github-stat-label {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            margin-top: 0.2rem;
+        }
+        
+        .language-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.3rem;
+        }
+        
+        .language-name {
+            color: var(--text);
+            font-weight: 500;
+        }
+        
+        .language-percentage {
+            color: var(--accent);
+            font-weight: 600;
+        }
+        
+        .popular-repos {
+            margin-top: 2rem;
+        }
+        
+        .repo-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+        
+        .repo-card {
+            background: var(--primary);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+        
+        .repo-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(100, 255, 218, 0.3);
+            box-shadow: 0 5px 15px rgba(2,12,27,0.2);
+        }
+        
+        .repo-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .repo-name {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        
+        .repo-stars {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .repo-description {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            line-height: 1.4;
+            margin-bottom: 0.5rem;
+        }
+        
+        .repo-footer {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .repo-language {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--text-light);
+            font-size: 0.8rem;
+        }
+        
+        .language-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        
+        .github-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(100, 255, 218, 0.1);
+        }
+        
+        .github-profile-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .github-profile-link:hover {
+            gap: 12px;
+        }
+        
+        .github-update-time {
+            color: var(--text-light);
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .github-error {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-light);
+        }
+        
+        .github-error i {
+            font-size: 3rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        /* Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), #00ff41);
+            z-index: 1001;
+            transition: width 0.1s ease;
+        }
+
+        /* Digital Clock */
+        .digital-clock {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(10, 25, 47, 0.8);
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            font-family: 'Fira Code', monospace;
+            color: var(--accent);
+            font-size: 0.9rem;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            display: none;
+        }
+
+        @media (max-width: 1200px) {
+            .digital-clock {
+                display: none;
+            }
+        }
+
+        /* Terminal Mode Toggle */
+        .terminal-mode-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(10, 25, 47, 0.8);
+            padding: 10px 15px;
+            border-radius: 50%;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            color: var(--accent);
+            cursor: pointer;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+
+        .terminal-mode-toggle:hover {
+            transform: scale(1.1);
+            background: rgba(100, 255, 218, 0.1);
+        }
+
+        /* Animations */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-slide-in {
+            animation: slideInUp 0.6s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+        .delay-5 { animation-delay: 1s; }
+
         @media (max-width: 968px) {
             .profile-content {
                 flex-direction: column;
@@ -1855,6 +2556,14 @@
             .params-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .formula-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .context-content {
+                grid-template-columns: 1fr;
+            }
         }
         
         @media (max-width: 480px) {
@@ -1869,10 +2578,29 @@
             .github-stats-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .greek-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .real-time-stats {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress"></div>
+
+    <!-- Digital Clock -->
+    <div class="digital-clock" id="digitalClock"></div>
+
+    <!-- Terminal Mode Toggle -->
+    <div class="terminal-mode-toggle" id="terminalToggle">
+        <i class="fas fa-terminal"></i>
+    </div>
+
     <!-- Header & Navigation -->
     <header id="header">
         <div class="container">
@@ -1895,18 +2623,47 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="floating-elements">
-            <div class="floating-element"></div>
-            <div class="floating-element"></div>
-            <div class="floating-element"></div>
-        </div>
+        <!-- Code Rain Background -->
+        <div class="code-rain" id="codeRain"></div>
+        
+        <!-- Interactive Particles -->
+        <div class="particles-container" id="particlesContainer"></div>
+        
         <div class="container">
             <div class="hero-content">
-                <p class="hero-greeting">Hi, my name is</p>
-                <h1>Emmanuel Adutwum.</h1>
-                <h2>I build quantitative solutions.</h2>
-                <p>I'm an Economics, Data Science, and Mathematics student specializing in quantitative modeling, algorithmic trading, and machine learning. Currently, I'm focused on developing innovative solutions for complex financial and data-driven challenges.</p>
-                <a href="#contact" class="btn">Get In Touch</a>
+                <!-- Terminal Effect Container -->
+                <div class="terminal-container animate-slide-in" id="terminalContainer" style="display: none;">
+                    <div class="terminal-header">
+                        <div class="terminal-dots">
+                            <div class="terminal-dot red"></div>
+                            <div class="terminal-dot yellow"></div>
+                            <div class="terminal-dot green"></div>
+                        </div>
+                        <div class="terminal-title">quant_portfolio.sh — Emmanuel Adutwum — Terminal</div>
+                    </div>
+                    <div class="terminal-output" id="terminalOutput">
+                        <!-- Terminal content will be inserted by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Original Hero Content -->
+                <div id="originalHero">
+                    <p class="hero-greeting animate-slide-in" id="greetingText">
+                        Hi, my name is
+                    </p>
+                    <h1 class="animate-slide-in delay-1">
+                        <span class="typewriter-text" id="nameText"></span><span class="typewriter-cursor"></span>
+                    </h1>
+                    <h2 class="animate-slide-in delay-2">
+                        <span class="typewriter-text glitch-text" id="titleText" data-text="I build quantitative solutions."></span><span class="typewriter-cursor"></span>
+                    </h2>
+                    <p class="animate-slide-in delay-3">
+                        <span class="typewriter-text" id="descriptionText"></span><span class="typewriter-cursor"></span>
+                    </p>
+                    <div class="animate-slide-in delay-4">
+                        <a href="#contact" class="btn" id="ctaButton">Get In Touch</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -2090,6 +2847,31 @@
                 <div class="project-card">
                     <div class="project-image">
                         <div class="project-placeholder">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Ghana Cocoa Options & Delta Hedging</h3>
+                        <p class="project-description">Comprehensive Black-Scholes options pricing and delta hedging simulator for Ghana Cocoa Board (COCOBOD). Features real-time Greek calculations, dynamic hedging simulation, transaction tracking, and Ghana-specific policy analysis. Demonstrates quantitative finance expertise in commodity markets.</p>
+                        
+                        <div id="cocoaHedgingContainer"></div>
+                        
+                        <div class="project-tech">
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Black-Scholes</span>
+                            <span class="tech-tag">Delta Hedging</span>
+                            <span class="tech-tag">Commodity Finance</span>
+                            <span class="tech-tag">Ghana Cocoa</span>
+                            <span class="tech-tag">Risk Management</span>
+                        </div>
+                        <a href="https://github.com/emmanueladutwum123/black-scholes-delta-hedging" class="project-link" target="_blank">
+                            View Source Code <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-placeholder">
                             <i class="fas fa-calculator"></i>
                         </div>
                     </div>
@@ -2109,32 +2891,6 @@
                     </div>
                 </div>
                 <div class="project-card">
-    <div class="project-image">
-        <div class="project-placeholder">
-            <i class="fas fa-seedling"></i>
-        </div>
-    </div>
-    <div class="project-content">
-        <h3 class="project-title">Ghana Cocoa Options & Delta Hedging</h3>
-        <p class="project-description">Comprehensive Black-Scholes options pricing and delta hedging simulator for Ghana Cocoa Board (COCOBOD). Features real-time Greek calculations, dynamic hedging simulation, transaction tracking, and Ghana-specific policy analysis. Demonstrates quantitative finance expertise in commodity markets.</p>
-        
-        <div id="cocoaHedgingContainer"></div>
-        
-        <div class="project-tech">
-            <span class="tech-tag">JavaScript</span>
-            <span class="tech-tag">Black-Scholes</span>
-            <span class="tech-tag">Delta Hedging</span>
-            <span class="tech-tag">Commodity Finance</span>
-            <span class="tech-tag">Ghana Cocoa</span>
-            <span class="tech-tag">Risk Management</span>
-        </div>
-        <a href="https://github.com/emmanueladutwum123/black-scholes-delta-hedging" class="project-link" target="_blank">
-            View Source Code <i class="fas fa-arrow-right"></i>
-        </a>
-    </div>
-</div>
-                </div>
-                <div class="project-card">
                     <div class="project-image">
                         <div class="project-placeholder">
                             <i class="fas fa-robot"></i>
@@ -2150,7 +2906,9 @@
                             <span class="tech-tag">Scikit-learn</span>
                             <span class="tech-tag">Hyperparameter Tuning</span>
                         </div>
-                        <a href="https://github.com/emmanueladutwum123/SVR-on-California-Housing-Dataset" class="project-link" target="_blank">View Project <i class="fas fa-arrow-right"></i></a>
+                        <a href="https://github.com/emmanueladutwum123/SVR-on-California-Housing-Dataset" class="project-link" target="_blank">
+                            View Project <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
                 </div>
                 <div class="project-card">
@@ -2256,8 +3014,548 @@
     <!-- JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
-    <!-- Custom Scripts -->
+    <!-- Enhanced Typing Effect Script -->
     <script>
+        // Enhanced Typewriter Effect with multiple features
+        class EnhancedTypewriter {
+            constructor() {
+                this.texts = [
+                    "Hi, my name is",
+                    "Emmanuel Adutwum.",
+                    "I build quantitative solutions.",
+                    "I'm an Economics, Data Science, and Mathematics student specializing in quantitative modeling, algorithmic trading, and machine learning. Currently, I'm focused on developing innovative solutions for complex financial and data-driven challenges."
+                ];
+                
+                this.speeds = {
+                    typing: 50,
+                    deleting: 30,
+                    waiting: 1000
+                };
+                
+                this.currentTextIndex = 0;
+                this.currentCharIndex = 0;
+                this.isDeleting = false;
+                this.isWaiting = false;
+                
+                this.elements = {
+                    greeting: document.getElementById('greetingText'),
+                    name: document.getElementById('nameText'),
+                    title: document.getElementById('titleText'),
+                    description: document.getElementById('descriptionText'),
+                    cursor: document.querySelectorAll('.typewriter-cursor')
+                };
+                
+                this.init();
+            }
+            
+            init() {
+                // Show greeting immediately
+                this.elements.greeting.textContent = this.texts[0];
+                
+                // Start typing sequence after a delay
+                setTimeout(() => {
+                    this.type();
+                }, 1000);
+            }
+            
+            type() {
+                const currentText = this.texts[this.currentTextIndex];
+                
+                if (this.currentTextIndex === 1) { // Name
+                    if (!this.isDeleting && this.currentCharIndex < currentText.length) {
+                        this.elements.name.textContent += currentText.charAt(this.currentCharIndex);
+                        this.currentCharIndex++;
+                        setTimeout(() => this.type(), this.speeds.typing);
+                    } else if (!this.isDeleting && this.currentCharIndex === currentText.length) {
+                        // Finished typing name, wait then move to title
+                        this.isWaiting = true;
+                        setTimeout(() => {
+                            this.isWaiting = false;
+                            this.currentTextIndex++;
+                            this.currentCharIndex = 0;
+                            this.type();
+                        }, this.speeds.waiting);
+                    }
+                } else if (this.currentTextIndex === 2) { // Title
+                    if (!this.isDeleting && this.currentCharIndex < currentText.length) {
+                        this.elements.title.textContent += currentText.charAt(this.currentCharIndex);
+                        this.currentCharIndex++;
+                        setTimeout(() => this.type(), this.speeds.typing);
+                    } else if (!this.isDeleting && this.currentCharIndex === currentText.length) {
+                        // Finished typing title, wait then move to description
+                        this.isWaiting = true;
+                        setTimeout(() => {
+                            this.isWaiting = false;
+                            this.currentTextIndex++;
+                            this.currentCharIndex = 0;
+                            this.type();
+                        }, this.speeds.waiting);
+                    }
+                } else if (this.currentTextIndex === 3) { // Description
+                    if (!this.isDeleting && this.currentCharIndex < currentText.length) {
+                        this.elements.description.textContent += currentText.charAt(this.currentCharIndex);
+                        this.currentCharIndex++;
+                        setTimeout(() => this.type(), this.speeds.typing);
+                    } else if (!this.isDeleting && this.currentCharIndex === currentText.length) {
+                        // Finished entire sequence, show CTA button
+                        setTimeout(() => {
+                            document.getElementById('ctaButton').style.opacity = '1';
+                            document.getElementById('ctaButton').style.transform = 'translateY(0)';
+                        }, 500);
+                    }
+                }
+            }
+        }
+        
+        // Code Rain Effect
+        class CodeRain {
+            constructor() {
+                this.container = document.getElementById('codeRain');
+                this.characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$€£¥+-*/=<>{}[]()&|!~';
+                this.drops = [];
+                this.init();
+            }
+            
+            init() {
+                // Create initial drops
+                for (let i = 0; i < 50; i++) {
+                    this.createDrop();
+                }
+                
+                // Add new drops periodically
+                setInterval(() => {
+                    if (this.drops.length < 100) {
+                        this.createDrop();
+                    }
+                }, 500);
+            }
+            
+            createDrop() {
+                const drop = document.createElement('div');
+                drop.className = 'code-drop';
+                drop.textContent = this.characters.charAt(Math.floor(Math.random() * this.characters.length));
+                drop.style.left = `${Math.random() * 100}%`;
+                drop.style.animationDuration = `${Math.random() * 5 + 5}s`;
+                drop.style.animationDelay = `${Math.random() * 2}s`;
+                drop.style.opacity = Math.random() * 0.5 + 0.3;
+                
+                this.container.appendChild(drop);
+                this.drops.push(drop);
+                
+                // Remove drop after animation completes
+                setTimeout(() => {
+                    if (drop.parentNode) {
+                        drop.parentNode.removeChild(drop);
+                        this.drops = this.drops.filter(d => d !== drop);
+                    }
+                }, parseFloat(drop.style.animationDuration) * 1000);
+            }
+        }
+        
+        // Interactive Particles
+        class Particles {
+            constructor() {
+                this.container = document.getElementById('particlesContainer');
+                this.particles = [];
+                this.mouse = { x: 0, y: 0 };
+                this.init();
+            }
+            
+            init() {
+                // Create particles
+                for (let i = 0; i < 100; i++) {
+                    this.createParticle();
+                }
+                
+                // Track mouse movement
+                document.addEventListener('mousemove', (e) => {
+                    this.mouse.x = e.clientX;
+                    this.mouse.y = e.clientY;
+                    this.interactWithParticles();
+                });
+                
+                // Animate particles
+                this.animate();
+            }
+            
+            createParticle() {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const size = Math.random() * 3 + 1;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                this.container.appendChild(particle);
+                
+                this.particles.push({
+                    element: particle,
+                    x: parseFloat(particle.style.left),
+                    y: parseFloat(particle.style.top),
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.5,
+                    size: size
+                });
+            }
+            
+            interactWithParticles() {
+                const interactionRadius = 100;
+                
+                this.particles.forEach(particle => {
+                    const dx = this.mouse.x - particle.x;
+                    const dy = this.mouse.y - particle.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < interactionRadius) {
+                        const force = (interactionRadius - distance) / interactionRadius;
+                        particle.vx += (dx / distance) * force * 0.5;
+                        particle.vy += (dy / distance) * force * 0.5;
+                        
+                        // Highlight particle
+                        particle.element.style.opacity = '1';
+                        particle.element.style.boxShadow = '0 0 10px var(--accent)';
+                        
+                        // Reset opacity after a delay
+                        setTimeout(() => {
+                            particle.element.style.opacity = '0.6';
+                            particle.element.style.boxShadow = 'none';
+                        }, 300);
+                    }
+                });
+            }
+            
+            animate() {
+                this.particles.forEach(particle => {
+                    // Update position
+                    particle.x += particle.vx;
+                    particle.y += particle.vy;
+                    
+                    // Bounce off edges
+                    if (particle.x < 0 || particle.x > 100) particle.vx *= -1;
+                    if (particle.y < 0 || particle.y > 100) particle.vy *= -1;
+                    
+                    // Apply friction
+                    particle.vx *= 0.99;
+                    particle.vy *= 0.99;
+                    
+                    // Update DOM
+                    particle.element.style.left = `${particle.x}%`;
+                    particle.element.style.top = `${particle.y}%`;
+                });
+                
+                requestAnimationFrame(() => this.animate());
+            }
+        }
+        
+        // Terminal Effect
+        class TerminalEffect {
+            constructor() {
+                this.terminalOutput = document.getElementById('terminalOutput');
+                this.terminalContainer = document.getElementById('terminalContainer');
+                this.originalHero = document.getElementById('originalHero');
+                this.terminalToggle = document.getElementById('terminalToggle');
+                this.commands = [
+                    'Welcome to Emmanuel Adutwum\'s Quantitative Portfolio',
+                    'Initializing systems...',
+                    'Loading quantitative models...',
+                    'Starting algorithmic trading engines...',
+                    'Connecting to financial APIs...',
+                    'System ready.',
+                    '',
+                    'Type "help" for available commands',
+                    ''
+                ];
+                
+                this.currentLine = 0;
+                this.isTyping = false;
+                this.isTerminalMode = false;
+                
+                this.init();
+            }
+            
+            init() {
+                // Initialize terminal toggle
+                this.terminalToggle.addEventListener('click', () => this.toggleTerminalMode());
+                
+                // Start terminal animation if in terminal mode
+                if (localStorage.getItem('terminalMode') === 'true') {
+                    setTimeout(() => this.toggleTerminalMode(), 1000);
+                }
+            }
+            
+            toggleTerminalMode() {
+                this.isTerminalMode = !this.isTerminalMode;
+                
+                if (this.isTerminalMode) {
+                    this.originalHero.style.display = 'none';
+                    this.terminalContainer.style.display = 'block';
+                    this.startTerminalAnimation();
+                    localStorage.setItem('terminalMode', 'true');
+                } else {
+                    this.terminalContainer.style.display = 'none';
+                    this.originalHero.style.display = 'block';
+                    localStorage.setItem('terminalMode', 'false');
+                }
+            }
+            
+            startTerminalAnimation() {
+                this.terminalOutput.innerHTML = '';
+                this.currentLine = 0;
+                this.typeNextLine();
+            }
+            
+            typeNextLine() {
+                if (this.currentLine < this.commands.length) {
+                    const line = this.commands[this.currentLine];
+                    const lineElement = document.createElement('div');
+                    lineElement.className = 'terminal-line';
+                    
+                    if (line) {
+                        const prompt = document.createElement('span');
+                        prompt.className = 'terminal-prompt';
+                        prompt.textContent = '>>> ';
+                        lineElement.appendChild(prompt);
+                        
+                        const text = document.createElement('span');
+                        text.className = 'terminal-command';
+                        lineElement.appendChild(text);
+                        
+                        this.terminalOutput.appendChild(lineElement);
+                        this.typeText(text, line, () => {
+                            this.currentLine++;
+                            setTimeout(() => this.typeNextLine(), 200);
+                        });
+                    } else {
+                        // Empty line
+                        this.terminalOutput.appendChild(lineElement);
+                        this.currentLine++;
+                        setTimeout(() => this.typeNextLine(), 100);
+                    }
+                } else {
+                    // Add blinking cursor at the end
+                    const cursorLine = document.createElement('div');
+                    cursorLine.className = 'terminal-line';
+                    const cursorPrompt = document.createElement('span');
+                    cursorPrompt.className = 'terminal-prompt';
+                    cursorPrompt.textContent = '>>> ';
+                    cursorLine.appendChild(cursorPrompt);
+                    
+                    const cursor = document.createElement('span');
+                    cursor.className = 'terminal-cursor';
+                    cursor.textContent = '_';
+                    cursor.style.animation = 'blink 1s infinite';
+                    cursorLine.appendChild(cursor);
+                    
+                    this.terminalOutput.appendChild(cursorLine);
+                }
+            }
+            
+            typeText(element, text, callback) {
+                let index = 0;
+                const typingSpeed = Math.random() * 30 + 20;
+                
+                const typeChar = () => {
+                    if (index < text.length) {
+                        element.textContent += text.charAt(index);
+                        index++;
+                        
+                        // Play typing sound effect (optional)
+                        if (index % 3 === 0) {
+                            this.playKeySound();
+                        }
+                        
+                        setTimeout(typeChar, typingSpeed);
+                    } else {
+                        callback();
+                    }
+                };
+                
+                typeChar();
+            }
+            
+            playKeySound() {
+                // Optional: Add typing sound effects
+                // This is a silent implementation to avoid audio issues
+            }
+        }
+        
+        // Scroll Progress Bar
+        class ScrollProgress {
+            constructor() {
+                this.progressBar = document.querySelector('.scroll-progress');
+                this.init();
+            }
+            
+            init() {
+                window.addEventListener('scroll', () => {
+                    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                    const scrolled = (winScroll / height) * 100;
+                    this.progressBar.style.width = scrolled + '%';
+                });
+            }
+        }
+        
+        // Digital Clock
+        class DigitalClock {
+            constructor() {
+                this.clockElement = document.getElementById('digitalClock');
+                this.init();
+            }
+            
+            init() {
+                this.updateClock();
+                setInterval(() => this.updateClock(), 1000);
+            }
+            
+            updateClock() {
+                const now = new Date();
+                const timeString = now.toLocaleTimeString('en-US', {
+                    hour12: false,
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit'
+                });
+                
+                const dateString = now.toLocaleDateString('en-US', {
+                    weekday: 'short',
+                    month: 'short',
+                    day: 'numeric'
+                });
+                
+                this.clockElement.textContent = `${dateString} ${timeString}`;
+            }
+        }
+        
+        // Main initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize all effects
+            const typewriter = new EnhancedTypewriter();
+            const codeRain = new CodeRain();
+            const particles = new Particles();
+            const terminal = new TerminalEffect();
+            const scrollProgress = new ScrollProgress();
+            const digitalClock = new DigitalClock();
+            
+            // Original functionality
+            console.log('🔄 Testing image accessibility...');
+            testImageUrl();
+            
+            // Check if we're on GitHub Pages
+            if (window.location.hostname.includes('github.io')) {
+                console.log('🌐 Running on GitHub Pages');
+            } else {
+                console.log('💻 Running locally');
+            }
+            
+            // Update page views display
+            const pageViews = localStorage.getItem('visitorCount') || '1';
+            document.getElementById('pageViews').textContent = pageViews;
+            
+            // Check if image loaded successfully after 2 seconds
+            setTimeout(() => {
+                const profileImg = document.querySelector('.profile-photo');
+                if (profileImg && profileImg.naturalHeight === 0) {
+                    console.log('⏰ Image still not loaded after timeout');
+                    handleImageError(profileImg);
+                }
+            }, 2000);
+            
+            // Console greeting for recruiters
+            console.log(`%c🔢 Quantitative Portfolio | Emmanuel Adutwum
+%c📈 Seeking: Quant Researcher/Developer @ Jane Street/Two Sigma/Citadel
+%c💻 C++/Python | ML | Quantitative Finance | Algorithmic Trading
+%c🌐 View my algorithmic projects: https://github.com/emmanueladutwum123
+%c🎯 Technical Focus: HFT, Market Making, Options Pricing, Statistical Modeling`, 
+'color: #64ffda; font-size: 16px; font-weight: bold;',
+'color: #8892b0; font-size: 14px;',
+'color: #64ffda; font-size: 12px;',
+'color: #ccd6f6; font-size: 11px;',
+'color: #8892b0; font-size: 11px;');
+            
+            // Mobile Navigation Toggle
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            const navLinksItems = document.querySelectorAll('.nav-link');
+
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+
+            // Close mobile menu when clicking on a link
+            navLinksItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // Header scroll effect
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Active navigation link highlighting
+            const sections = document.querySelectorAll('section');
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (scrollY >= (sectionTop - 200)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinksItems.forEach(item => {
+                    item.classList.remove('active');
+                    if (item.getAttribute('href') === `#${current}`) {
+                        item.classList.add('active');
+                    }
+                });
+            });
+
+            // Smooth Scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+        
+        // Test image URL accessibility
+        function testImageUrl() {
+            const testUrl = 'images/profile-photo.jpg';
+            const img = new Image();
+            img.onload = function() {
+                console.log('✅ Image URL is accessible:', testUrl);
+                console.log('🎉 Your profile photo should now display correctly!');
+            };
+            img.onerror = function() {
+                console.log('❌ Image URL is NOT accessible:', testUrl);
+                console.log('Please verify the file exists in your repository');
+            };
+            img.src = testUrl;
+        }
+
         // Improved Image Error Handling
         function handleImageError(img) {
             console.error('❌ Profile image failed to load:', img.src);
@@ -2301,123 +3599,6 @@
                 }, 1000);
             }
         }
-
-        // Test image URL accessibility
-        function testImageUrl() {
-            const testUrl = 'images/profile-photo.jpg';
-            const img = new Image();
-            img.onload = function() {
-                console.log('✅ Image URL is accessible:', testUrl);
-                console.log('🎉 Your profile photo should now display correctly!');
-            };
-            img.onerror = function() {
-                console.log('❌ Image URL is NOT accessible:', testUrl);
-                console.log('Please verify the file exists in your repository');
-            };
-            img.src = testUrl;
-        }
-
-        // Mobile Navigation Toggle
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
-        const navLinksItems = document.querySelectorAll('.nav-link');
-
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-
-        // Close mobile menu when clicking on a link
-        navLinksItems.forEach(item => {
-            item.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-            });
-        });
-
-        // Header scroll effect
-        const header = document.getElementById('header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
-        // Active navigation link highlighting
-        const sections = document.querySelectorAll('section');
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (scrollY >= (sectionTop - 200)) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinksItems.forEach(item => {
-                item.classList.remove('active');
-                if (item.getAttribute('href') === `#${current}`) {
-                    item.classList.add('active');
-                }
-            });
-        });
-
-        // Smooth Scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Test image on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('🔄 Testing image accessibility...');
-            testImageUrl();
-            
-            // Check if we're on GitHub Pages
-            if (window.location.hostname.includes('github.io')) {
-                console.log('🌐 Running on GitHub Pages');
-            } else {
-                console.log('💻 Running locally');
-            }
-            
-            // Update page views display
-            const pageViews = localStorage.getItem('visitorCount') || '1';
-            document.getElementById('pageViews').textContent = pageViews;
-            
-            // Check if image loaded successfully after 2 seconds
-            setTimeout(() => {
-                const profileImg = document.querySelector('.profile-photo');
-                if (profileImg && profileImg.naturalHeight === 0) {
-                    console.log('⏰ Image still not loaded after timeout');
-                    handleImageError(profileImg);
-                }
-            }, 2000);
-            
-            // Console greeting for recruiters
-            console.log(`%c🔢 Quantitative Portfolio | Emmanuel Adutwum
-%c📈 Seeking: Quant Researcher/Developer @ Jane Street/Two Sigma/Citadel
-%c💻 C++/Python | ML | Quantitative Finance | Algorithmic Trading
-%c🌐 View my algorithmic projects: https://github.com/emmanueladutwum123
-%c🎯 Technical Focus: HFT, Market Making, Options Pricing, Statistical Modeling`, 
-'color: #64ffda; font-size: 16px; font-weight: bold;',
-'color: #8892b0; font-size: 14px;',
-'color: #64ffda; font-size: 12px;',
-'color: #ccd6f6; font-size: 11px;',
-'color: #8892b0; font-size: 11px;');
-        });
     </script>
     
     <!-- Load Custom Scripts -->
@@ -2425,7 +3606,6 @@
     <script src="black-scholes.js"></script>
     <script src="github-stats.js"></script>
     <script src="hfmm-simulator.js"></script>
-    <!-- Load Cocoa Hedging Simulator -->
     <script src="cocoa-hedging.js"></script>
 </body>
 </html>
