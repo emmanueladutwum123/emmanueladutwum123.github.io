@@ -284,31 +284,31 @@
             100% { background-position: 200% center; }
         }
 
-        /* Typewriter Container */
+        /* Typewriter Container - FIXED */
         .typewriter-container {
             min-height: 4.5rem;
             margin: 0.5rem 0;
+            display: flex;
+            align-items: center;
         }
         .typewriter-text {
             color: var(--accent);
             font-size: 2.8rem;
             font-weight: 600;
             display: inline-block;
-            white-space: nowrap;
-            overflow: hidden;
-            border-right: 4px solid var(--accent);
-            animation: blink-caret 0.75s step-end infinite;
+            position: relative;
             text-shadow: 0 0 20px var(--accent);
-            max-width: 0;
-            animation: typing 4s steps(30) infinite, blink-caret 0.75s step-end infinite;
         }
-        @keyframes typing {
-            0%, 100% { width: 0; }
-            30%, 70% { width: 100%; }
+        .typewriter-text::after {
+            content: '|';
+            position: absolute;
+            right: -10px;
+            color: var(--accent);
+            animation: blink 1s infinite;
         }
-        @keyframes blink-caret {
-            from, to { border-color: transparent; }
-            50% { border-color: var(--accent); }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
 
         .hero h2 {
@@ -1130,6 +1130,7 @@
             }
             .typewriter-container {
                 text-align: center;
+                justify-content: center;
             }
             .typewriter-text {
                 font-size: 1.8rem;
@@ -1502,7 +1503,26 @@
 
             <!-- Projects Grid -->
             <div class="projects-grid" id="projectsContainer">
-                <!-- Project 1 - HFMM -->
+                <!-- Project 1 - Ghana Cocoa Hedging (UPDATED LINK) -->
+                <div class="project-card" data-category="quant" data-title="Cocoa Hedging" data-tags="options black-scholes ghana">
+                    <div class="project-banner">
+                        <div class="project-placeholder"><i class="fas fa-seedling"></i></div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">Ghana Cocoa Options & Delta Hedging</h3>
+                            <a href="https://emmanueladutwum123.github.io/ghana-cocoa-hedging/" class="project-link" target="_blank"><i class="fas fa-arrow-right"></i></a>
+                        </div>
+                        <div class="project-tags">
+                            <span class="project-tag">Black-Scholes</span>
+                            <span class="project-tag">Delta Hedging</span>
+                            <span class="project-tag">Commodity Finance</span>
+                        </div>
+                        <p class="project-description">Advanced options pricing and delta hedging simulator for Ghana Cocoa Board with real-time Greek calculations and AI forecasting tools.</p>
+                    </div>
+                </div>
+
+                <!-- Project 2 - HF Market Making -->
                 <div class="project-card" data-category="quant" data-title="HFMM" data-tags="javascript trading market">
                     <div class="project-banner">
                         <div class="project-placeholder"><i class="fas fa-bolt"></i></div>
@@ -1510,7 +1530,7 @@
                     <div class="project-content">
                         <div class="project-header">
                             <h3 class="project-title">HF Market Making Simulator</h3>
-                            <a href="#" class="project-link"><i class="fas fa-arrow-right"></i></a>
+                            <a href="https://github.com/emmanueladutwum123/High-Frequency-Market-Making-Simulation" class="project-link" target="_blank"><i class="fas fa-arrow-right"></i></a>
                         </div>
                         <div class="project-tags">
                             <span class="project-tag">JavaScript</span>
@@ -1518,25 +1538,6 @@
                             <span class="project-tag">Market Microstructure</span>
                         </div>
                         <p class="project-description">Real-time high-frequency market making simulator with limit order book visualization and multiple trading strategies.</p>
-                    </div>
-                </div>
-
-                <!-- Project 2 - Cocoa -->
-                <div class="project-card" data-category="quant" data-title="Cocoa" data-tags="options black-scholes">
-                    <div class="project-banner">
-                        <div class="project-placeholder"><i class="fas fa-seedling"></i></div>
-                    </div>
-                    <div class="project-content">
-                        <div class="project-header">
-                            <h3 class="project-title">Ghana Cocoa Options & Delta Hedging</h3>
-                            <a href="#" class="project-link"><i class="fas fa-arrow-right"></i></a>
-                        </div>
-                        <div class="project-tags">
-                            <span class="project-tag">Black-Scholes</span>
-                            <span class="project-tag">Delta Hedging</span>
-                            <span class="project-tag">Commodity Finance</span>
-                        </div>
-                        <p class="project-description">Comprehensive options pricing and delta hedging simulator for Ghana Cocoa Board with real-time Greek calculations.</p>
                     </div>
                 </div>
 
@@ -1548,6 +1549,7 @@
                     <div class="project-content">
                         <div class="project-header">
                             <h3 class="project-title">Interactive Black-Scholes Calculator</h3>
+                            <a href="https://github.com/emmanueladutwum123/black-scholes-delta-hedging" class="project-link" target="_blank"><i class="fas fa-arrow-right"></i></a>
                         </div>
                         <div class="project-tags">
                             <span class="project-tag">Quantitative Finance</span>
@@ -1566,7 +1568,7 @@
                     <div class="project-content">
                         <div class="project-header">
                             <h3 class="project-title">Machine Learning Pipeline</h3>
-                            <a href="#" class="project-link"><i class="fas fa-arrow-right"></i></a>
+                            <a href="https://github.com/emmanueladutwum123/SVR-on-California-Housing-Dataset" class="project-link" target="_blank"><i class="fas fa-arrow-right"></i></a>
                         </div>
                         <div class="project-tags">
                             <span class="project-tag">Python</span>
@@ -1585,6 +1587,7 @@
                     <div class="project-content">
                         <div class="project-header">
                             <h3 class="project-title">Cryptography & FinTech Research</h3>
+                            <a href="https://github.com/emmanueladutwum123?tab=repositories" class="project-link" target="_blank"><i class="fas fa-arrow-right"></i></a>
                         </div>
                         <div class="project-tags">
                             <span class="project-tag">Cryptography</span>
@@ -1596,6 +1599,11 @@
                 </div>
             </div>
 
+            <!-- View All Projects Link -->
+            <div class="text-center" style="margin-top: 3rem;">
+                <a href="https://github.com/emmanueladutwum123?tab=repositories" target="_blank" class="btn" style="padding: 1rem 3rem;">View All Projects on GitHub <i class="fas fa-arrow-right" style="margin-left: 0.5rem;"></i></a>
+            </div>
+
             <!-- No Results -->
             <div id="noResults" class="d-none">
                 <i class="fas fa-search"></i>
@@ -1605,31 +1613,44 @@
         </div>
     </section>
 
-    <!-- Publications Section -->
+    <!-- Publications Section - UPDATED -->
     <section id="publications" class="publications">
         <div class="container">
             <div class="section-title">
                 <h2>Publications & Research</h2>
             </div>
             <div class="publication-list">
+                <!-- New Publication - SVR Research -->
                 <div class="publication-item">
-                    <h3 class="publication-title">The Geometric Universe: Musical Harmony and Physical Law</h3>
-                    <div class="publication-role">Research in Progress | With Professor Cheng Han-Pan | Present</div>
-                    <p class="publication-description">Exploring geometric structures underlying musical harmony and physical laws, connecting harmonic ratios with quantum mechanics.</p>
+                    <h3 class="publication-title">Can Support Vector Regression (SVR) with optimized feature engineering and hyperparameter tuning achieve 0.788 R² accuracy in predicting California housing prices, outperforming traditional machine learning models?</h3>
+                    <div class="publication-role">Research in Progress | Sole Author | Present</div>
+                    <p class="publication-description">Investigating the performance of Support Vector Regression with advanced feature engineering and hyperparameter optimization techniques to achieve superior predictive accuracy on the California Housing dataset. Comparing results against traditional ML models including Linear Regression, Decision Trees, and Random Forests.</p>
                 </div>
                 
+                <!-- Equilateral Triangle Problem with LINK -->
                 <div class="publication-item">
-                    <h3 class="publication-title">Equilateral Triangle Geometry Problem</h3>
+                    <h3 class="publication-title">
+                        <a href="https://pme-math.org/wp-content/uploads/2025/10/PME2025_Fall_NewProbSolns.pdf" target="_blank">
+                            Equilateral Triangle Geometry Problem
+                            <i class="fas fa-external-link-alt" style="margin-left: 8px; font-size: 0.8em;"></i>
+                        </a>
+                    </h3>
                     <div class="publication-role">Problem Solver | Pi Mu Epsilon #1131</div>
-                    <p class="publication-description">Solved quadrilateral geometry problem proving AC² = AD² + AB² in convex quadrilateral.</p>
-                    <a href="#" class="btn-link"><i class="fas fa-file-pdf"></i> View Solution</a>
+                    <p class="publication-description">Solved quadrilateral geometry problem proving AC² = AD² + AB² in convex quadrilateral. Officially recognized publication in Pi Mu Epsilon Journal.</p>
+                    <a href="https://pme-math.org/wp-content/uploads/2025/10/PME2025_Fall_NewProbSolns.pdf" target="_blank" class="btn-link"><i class="fas fa-file-pdf"></i> View Problem Statement</a>
                 </div>
                 
+                <!-- Continued Fractions with LINK -->
                 <div class="publication-item">
-                    <h3 class="publication-title">Continued Fractions and a-Fibonacci Numbers</h3>
-                    <div class="publication-role">Published | Pi Mu Epsilon #1385</div>
-                    <p class="publication-description">Analyzed convergence properties of generalized Fibonacci sequences in continued fractions.</p>
-                    <a href="#" class="btn-link"><i class="fas fa-file-pdf"></i> View Publication</a>
+                    <h3 class="publication-title">
+                        <a href="https://pme-math.org/wp-content/uploads/2023/08/PME2022_Fall_NewProbSolns.pdf" target="_blank">
+                            Continued Fractions, a-Fibonacci Numbers, and the Middle b-Noise
+                            <i class="fas fa-external-link-alt" style="margin-left: 8px; font-size: 0.8em;"></i>
+                        </a>
+                    </h3>
+                    <div class="publication-role">Published Problem Solver | Pi Mu Epsilon #1385</div>
+                    <p class="publication-description">Solved the continued fraction problem proposed by Hongwei Chen, analyzing the convergence properties of generalized Fibonacci sequences and their applications in number theory.</p>
+                    <a href="https://pme-math.org/wp-content/uploads/2023/08/PME2022_Fall_NewProbSolns.pdf" target="_blank" class="btn-link"><i class="fas fa-file-pdf"></i> View Published Solution</a>
                 </div>
             </div>
         </div>
@@ -1677,7 +1698,7 @@
         particlesJS("particles-js", {
             particles: {
                 number: {
-                    value: 120,
+                    value: 150,
                     density: {
                         enable: true,
                         value_area: 600
@@ -1689,36 +1710,36 @@
                 shape: {
                     type: "circle",
                     stroke: {
-                        width: 1,
+                        width: 2,
                         color: "#4958E0"
                     }
                 },
                 opacity: {
-                    value: 0.8,
+                    value: 0.9,
                     random: true,
                     anim: {
                         enable: true,
                         speed: 1,
-                        opacity_min: 0.3,
+                        opacity_min: 0.4,
                         sync: false
                     }
                 },
                 size: {
-                    value: 4,
+                    value: 5,
                     random: true,
                     anim: {
                         enable: true,
                         speed: 2,
-                        size_min: 1,
+                        size_min: 2,
                         sync: false
                     }
                 },
                 line_linked: {
                     enable: true,
-                    distance: 150,
+                    distance: 120,
                     color: "#4958E0",
-                    opacity: 0.6,
-                    width: 2
+                    opacity: 0.7,
+                    width: 2.5
                 },
                 move: {
                     enable: true,
@@ -1763,7 +1784,7 @@
             retina_detect: true
         });
 
-        // ===== TYPEWRITER EFFECT =====
+        // ===== FIXED TYPEWRITER EFFECT =====
         const typewriter = document.getElementById('typewriter');
         const phrases = [
             'Quantitative Researcher',
@@ -1774,20 +1795,17 @@
         let phraseIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
-        let currentText = '';
 
         function typeEffect() {
             const currentPhrase = phrases[phraseIndex];
             
             if (isDeleting) {
-                currentText = currentPhrase.substring(0, charIndex - 1);
+                typewriter.textContent = currentPhrase.substring(0, charIndex - 1);
                 charIndex--;
             } else {
-                currentText = currentPhrase.substring(0, charIndex + 1);
+                typewriter.textContent = currentPhrase.substring(0, charIndex + 1);
                 charIndex++;
             }
-
-            typewriter.textContent = currentText;
 
             if (!isDeleting && charIndex === currentPhrase.length) {
                 isDeleting = true;
@@ -1801,7 +1819,10 @@
             }
         }
 
-        setTimeout(typeEffect, 1000);
+        // Start typewriter after page load
+        window.addEventListener('load', function() {
+            setTimeout(typeEffect, 1000);
+        });
 
         // ===== COUNTER ANIMATION =====
         function animateCounter(element, target) {
