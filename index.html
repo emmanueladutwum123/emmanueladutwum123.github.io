@@ -1306,7 +1306,7 @@
                 </div>
             </div>
 
-            <!-- Counters -->
+            <!-- Counters - UPDATED VALUES -->
             <div class="counter-sec animate-slide-in delay-5">
                 <div class="counter-main">
                     <div class="single-counter">
@@ -1504,7 +1504,7 @@
 
             <!-- Projects Grid -->
             <div class="projects-grid" id="projectsContainer">
-                <!-- Project 1 - Ghana Cocoa Hedging (UPDATED LINK) -->
+                <!-- Project 1 - Ghana Cocoa Hedging -->
                 <div class="project-card" data-category="quant" data-title="Cocoa Hedging" data-tags="options black-scholes ghana">
                     <div class="project-banner">
                         <div class="project-placeholder"><i class="fas fa-seedling"></i></div>
@@ -1614,21 +1614,21 @@
         </div>
     </section>
 
-    <!-- Publications Section - UPDATED -->
+    <!-- Publications Section -->
     <section id="publications" class="publications">
         <div class="container">
             <div class="section-title">
                 <h2>Publications & Research</h2>
             </div>
             <div class="publication-list">
-                <!-- New Publication - SVR Research -->
+                <!-- SVR Research -->
                 <div class="publication-item">
                     <h3 class="publication-title">Can Support Vector Regression (SVR) with optimized feature engineering and hyperparameter tuning achieve 0.788 R² accuracy in predicting California housing prices, outperforming traditional machine learning models?</h3>
                     <div class="publication-role">Research in Progress | Sole Author | Present</div>
                     <p class="publication-description">Investigating the performance of Support Vector Regression with advanced feature engineering and hyperparameter optimization techniques to achieve superior predictive accuracy on the California Housing dataset. Comparing results against traditional ML models including Linear Regression, Decision Trees, and Random Forests.</p>
                 </div>
                 
-                <!-- Equilateral Triangle Problem with LINK -->
+                <!-- Equilateral Triangle Problem -->
                 <div class="publication-item">
                     <h3 class="publication-title">
                         <a href="https://pme-math.org/wp-content/uploads/2025/10/PME2025_Fall_NewProbSolns.pdf" target="_blank">
@@ -1641,7 +1641,7 @@
                     <a href="https://pme-math.org/wp-content/uploads/2025/10/PME2025_Fall_NewProbSolns.pdf" target="_blank" class="btn-link"><i class="fas fa-file-pdf"></i> View Problem Statement</a>
                 </div>
                 
-                <!-- Continued Fractions with LINK -->
+                <!-- Continued Fractions -->
                 <div class="publication-item">
                     <h3 class="publication-title">
                         <a href="https://pme-math.org/wp-content/uploads/2023/08/PME2022_Fall_NewProbSolns.pdf" target="_blank">
@@ -1825,7 +1825,7 @@
             setTimeout(typeEffect, 1000);
         });
 
-        // ===== COUNTER ANIMATION =====
+        // ===== COUNTER ANIMATION - UPDATED TARGET VALUES =====
         function animateCounter(element, target) {
             let current = 0;
             const increment = target / 50;
@@ -1843,9 +1843,9 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    animateCounter(document.getElementById('projectsCounter'), 100);
-                    animateCounter(document.getElementById('experienceCounter'), 8);
-                    animateCounter(document.getElementById('clientsCounter'), 60);
+                    animateCounter(document.getElementById('projectsCounter'), 5);  // Changed from 100 to 5
+                    animateCounter(document.getElementById('experienceCounter'), 3);  // Changed from 8 to 3
+                    animateCounter(document.getElementById('clientsCounter'), 3);  // Changed from 60 to 3
                     observer.disconnect();
                 }
             });
