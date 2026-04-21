@@ -17,7 +17,7 @@
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#050508;--bg2:#0c0c14;--bg3:#12121e;--bg4:#08080f;
+  --bg:#020206;--bg2:#0a0a12;--bg3:#10101c;--bg4:#06060e;
   --c:#00d4ff;--c2:#7b2fff;--c3:#00ff88;--c4:#ff4d6d;--c5:#ffb700;
   --text:#eeeef5;--text2:#7070a0;--text3:#35354a;
   --glow-c:0 0 30px rgba(0,212,255,.4);
@@ -69,9 +69,9 @@ header.scrolled{background:rgba(5,5,8,.9);border-bottom-color:var(--border);padd
 /* === HERO === */
 .hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding-top:90px}
 #heroCanvas{position:absolute;inset:0;width:100%;height:100%;z-index:0}
-.noise{position:absolute;inset:0;z-index:1;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");background-size:200px}
-.grid-bg{position:absolute;inset:0;z-index:1;background-image:linear-gradient(rgba(0,212,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,.018) 1px,transparent 1px);background-size:80px 80px}
-.hero-vignette{position:absolute;inset:0;z-index:2;background:radial-gradient(ellipse 80% 80% at 50% 50%,transparent 30%,rgba(5,5,8,.75) 100%)}
+.noise{position:absolute;inset:0;z-index:1;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");background-size:200px}
+.hero-vignette{position:absolute;inset:0;z-index:2;background:radial-gradient(ellipse 75% 60% at 50% 38%,transparent 12%,rgba(2,2,8,.45) 65%,rgba(2,2,8,.92) 100%)}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:240px;background:linear-gradient(to bottom,transparent,var(--bg));z-index:3;pointer-events:none}
 .hero-content{position:relative;z-index:3;max-width:900px}
 .hero-tag{font-family:var(--mono);font-size:.75rem;color:var(--c);letter-spacing:3px;text-transform:uppercase;margin-bottom:2rem;display:flex;align-items:center;gap:1rem;opacity:0;animation:fadeUp .7s .1s ease forwards}
 .hero-tag::before{content:'';width:32px;height:1px;background:linear-gradient(90deg,var(--c),transparent);flex-shrink:0}
@@ -281,7 +281,6 @@ footer p{font-family:var(--mono);font-size:.68rem;color:var(--text3)}
 <section class="hero">
 <canvas id="heroCanvas"></canvas>
 <div class="noise"></div>
-<div class="grid-bg"></div>
 <div class="hero-vignette"></div>
 <div class="container">
 <div class="hero-content">
@@ -294,7 +293,7 @@ footer p{font-family:var(--mono);font-size:.68rem;color:var(--text3)}
     <p class="hero-role"><span class="typed-text" id="typed"></span><span class="caret"></span></p>
   </div>
   <p class="hero-desc">
-    I build <strong>ML systems from scratch</strong> — transformers, C++ neural engines, computer vision pipelines, and production trading infrastructure. MIT MicroMasters candidate. Published mathematician. Targeting roles at Google, Apple, Meta, Citadel, and Jane Street.
+    I build <strong>ML systems from scratch</strong> — transformers, C++ neural engines, computer vision pipelines, and production trading infrastructure. MIT MicroMasters candidate. Published mathematician. Passionate about deep learning, quantitative research, and high-impact engineering.
   </p>
   <div class="hero-btns">
     <a href="#projects" class="btn-p">View Projects</a>
@@ -322,7 +321,7 @@ footer p{font-family:var(--mono);font-size:.68rem;color:var(--text3)}
   <div class="rv rv-d2">
     <p>I'm a junior at <span class="hl">Soka University of America</span> studying Computer Science, Economics, and Mathematics, concurrently completing an <span class="hl">MIT MicroMasters</span> in Statistics &amp; Data Science.</p>
     <p>I build ML systems from the ground up — custom C++ neural network engines, transformers from scratch, computer vision pipelines with C++ inference, and NLP systems. My live trading bot runs across 22 instruments on AWS. My derivatives platform serves 250+ Ghanaian farmers. I was awarded a <span class="hl">$25,000 research grant</span> for a cybersecurity cluster at Bletchley Park, Royal Holloway, Bloomberg, and the Bank of England.</p>
-    <p>My current focus: <span class="hl-c">deep learning research engineering</span> — understanding every layer of the stack from CUDA kernels to production APIs. Targeting research and engineering roles at top-tier AI labs and quant firms.</p>
+    <p>My current focus: <span class="hl-c">deep learning research engineering</span> — understanding every layer of the stack from CUDA kernels to production APIs. Open to high-impact research and engineering roles where rigorous systems meet real-world scale.</p>
     <div class="term">
       <div class="term-hdr"><div class="td"></div><div class="td"></div><div class="td"></div><span class="term-title">~/emmanuel — zsh</span></div>
       <div class="term-body">
@@ -703,95 +702,175 @@ hbg.addEventListener('click',()=>{hbg.classList.toggle('open');nav.classList.tog
 nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{hbg.classList.remove('open');nav.classList.remove('open')}));
 
 /* ============================================================
-   HERO CANVAS — Advanced particle network
-   - 180 particles with depth (z 0–1)
-   - Deeper = smaller, slower, dimmer
-   - Mouse repels nearby particles
-   - Connections drawn as gradients
-   - Occasional "pulse" ripple from random particle
+   HERO CANVAS — Deep Space Universe
+   Layers: nebulae → cosmic dust → star field (3 depths) → shooting stars
+   Mouse creates a parallax depth effect across star layers
 ============================================================ */
 (function(){
   const cv=document.getElementById('heroCanvas'),cx=cv.getContext('2d');
-  let W,H,mouse={x:-1000,y:-1000};
-  const N=180,CONN=130,REPEL=120,REPEL_F=.6;
-  const particles=[];
+  let W,H,mx,my,tmx,tmy;
 
-  function resize(){W=cv.width=window.innerWidth;H=cv.height=window.innerHeight}
-  window.addEventListener('resize',resize,{passive:true});
-  resize();
-  window.addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY},{passive:true});
+  /* --- NEBULAE: slow-breathing gas clouds --- */
+  const NEBS=[
+    {rx:.12,ry:.16,rr:.52,h:268,s:88,ba:.072,sp:.00022,ph:0.0},
+    {rx:.84,ry:.28,rr:.45,h:196,s:92,ba:.065,sp:.00031,ph:2.1},
+    {rx:.48,ry:.80,rr:.40,h:312,s:78,ba:.055,sp:.00017,ph:4.2},
+    {rx:.06,ry:.72,rr:.34,h:238,s:68,ba:.048,sp:.00038,ph:1.4},
+    {rx:.92,ry:.80,rr:.30,h:282,s:82,ba:.058,sp:.00026,ph:3.0},
+    {rx:.58,ry:.06,rr:.36,h:208,s:72,ba:.044,sp:.00020,ph:5.5},
+    {rx:.30,ry:.50,rr:.28,h:185,s:65,ba:.035,sp:.00028,ph:0.9},
+  ];
 
-  const COLS_H=[195,195,195,270,270,300]; // hue pool: cyan & purple
-  class P{
-    constructor(){this.init()}
-    init(){
-      this.x=Math.random()*W;this.y=Math.random()*H;
-      this.z=Math.random(); // depth 0=close,1=far
-      const s=1-this.z*.7; // size scale
-      this.r=(Math.random()*1.5+.5)*s;
-      this.spd=(Math.random()*.3+.1)*(1-this.z*.5);
-      this.a=(Math.random()*.5+.2)*(1-this.z*.4);
-      this.hue=COLS_H[Math.floor(Math.random()*COLS_H.length)];
-      this.vx=(Math.random()-.5)*this.spd;
-      this.vy=(Math.random()-.5)*this.spd;
-      this.pulse=0;
-    }
-    tick(dt){
-      // mouse repulsion
-      const dx=this.x-mouse.x,dy=this.y-mouse.y;
-      const d2=dx*dx+dy*dy;
-      if(d2<REPEL*REPEL&&d2>1){
-        const d=Math.sqrt(d2),f=REPEL_F*(1-d/REPEL)/d;
-        this.vx+=dx*f;this.vy+=dy*f;
-      }
-      // damping
-      this.vx*=.98;this.vy*=.98;
-      // clamp speed
-      const spd2=this.vx*this.vx+this.vy*this.vy;
-      const maxSpd=this.spd*3;
-      if(spd2>maxSpd*maxSpd){const s=maxSpd/Math.sqrt(spd2);this.vx*=s;this.vy*=s}
-      this.x+=this.vx;this.y+=this.vy;
-      if(this.x<-10)this.x=W+10;if(this.x>W+10)this.x=-10;
-      if(this.y<-10)this.y=H+10;if(this.y>H+10)this.y=-10;
-      if(this.pulse>0)this.pulse-=dt*.002;
-    }
-    draw(){
-      const a=this.a+(this.pulse*.5);
-      cx.beginPath();cx.arc(this.x,this.y,this.r+(this.pulse*3),0,Math.PI*2);
-      cx.fillStyle=`hsla(${this.hue},100%,70%,${Math.min(1,a)})`;cx.fill();
-    }
+  /* --- STAR LAYERS: far → near with growing parallax --- */
+  const LDEFS=[
+    {n:260,szMn:.18,szMx:.75,aMn:.28,aMx:.80,px:.0038,py:.0038,vs:.012},
+    {n:130,szMn:.50,szMx:1.50,aMn:.38,aMx:.92,px:.0095,py:.0095,vs:.030},
+    {n:58, szMn:.90,szMx:2.90,aMn:.50,aMx:1.0, px:.021, py:.021, vs:.055},
+  ];
+  const SCOLS=[[220,235,255],[255,255,255],[255,242,205],[200,222,255],[255,205,205],[175,238,255],[255,255,235]];
+  let layers=[];
+
+  function mkStar(ld,initPos){
+    const c=SCOLS[Math.floor(Math.random()*SCOLS.length)];
+    return{
+      x:Math.random()*W, y:initPos?Math.random()*H:-10,
+      r:ld.szMn+Math.random()*(ld.szMx-ld.szMn),
+      a:ld.aMn+Math.random()*(ld.aMx-ld.aMn),
+      tsp:0.4+Math.random()*2.1, tph:Math.random()*6.28,
+      vx:(Math.random()-.5)*ld.vs, vy:(Math.random()*.4+.05)*ld.vs,
+      rc:c[0],gc:c[1],bc:c[2]
+    };
   }
 
-  for(let i=0;i<N;i++)particles.push(new P());
+  /* --- SHOOTING STARS --- */
+  let shoots=[],nextShoot=0;
+  function mkShoot(){
+    const fromTop=Math.random()<.65;
+    return{
+      x:fromTop?Math.random()*W*1.3:W+30,
+      y:fromTop?-20:Math.random()*H*.45,
+      ang:Math.PI*.11+Math.random()*Math.PI*.13,
+      spd:10+Math.random()*18,
+      len:90+Math.random()*160,
+      w:.5+Math.random()*1.8,
+      a:1,dec:.011+Math.random()*.019,active:true
+    };
+  }
 
-  // Pulse ripple: random particle lights up
-  setInterval(()=>{particles[Math.floor(Math.random()*N)].pulse=1},2000);
+  /* --- COSMIC DUST: ultra-fine drifting motes --- */
+  const DUSTN=140;
+  let dust=[];
+  function mkDust(){
+    return{x:Math.random()*W,y:Math.random()*H,
+      r:.4+Math.random()*.7,a:.04+Math.random()*.12,
+      vx:(Math.random()-.5)*.07,vy:-.03-Math.random()*.09};
+  }
 
-  let last=0;
+  /* --- INIT --- */
+  function resize(){
+    W=cv.width=innerWidth; H=cv.height=innerHeight;
+    mx=tmx=W*.5; my=tmy=H*.5;
+    layers=LDEFS.map(ld=>{
+      const stars=[];
+      for(let i=0;i<ld.n;i++)stars.push(mkStar(ld,true));
+      return{cfg:ld,stars};
+    });
+    dust=[];
+    for(let i=0;i<DUSTN;i++)dust.push(mkDust());
+  }
+  window.addEventListener('resize',resize,{passive:true});
+  resize();
+  window.addEventListener('mousemove',e=>{tmx=e.clientX;tmy=e.clientY},{passive:true});
+
+  let T=0,last=0;
+
+  /* --- FRAME --- */
   function frame(ts){
-    const dt=ts-last;last=ts;
-    cx.clearRect(0,0,W,H);
-    // draw connections
-    for(let i=0;i<N;i++){
-      const pi=particles[i];
-      for(let j=i+1;j<N;j++){
-        const pj=particles[j];
-        const dx=pi.x-pj.x,dy=pi.y-pj.y,d2=dx*dx+dy*dy;
-        if(d2<CONN*CONN){
-          const d=Math.sqrt(d2),t=1-d/CONN;
-          const avgZ=(pi.z+pj.z)*.5;
-          const a=t*t*.4*(1-avgZ*.5);
-          const grad=cx.createLinearGradient(pi.x,pi.y,pj.x,pj.y);
-          grad.addColorStop(0,`hsla(${pi.hue},100%,65%,${a})`);
-          grad.addColorStop(1,`hsla(${pj.hue},100%,65%,${a*.5})`);
-          cx.beginPath();cx.moveTo(pi.x,pi.y);cx.lineTo(pj.x,pj.y);
-          cx.strokeStyle=grad;cx.lineWidth=Math.max(.3,(1-avgZ)*.8);cx.stroke();
+    const dt=Math.min(ts-last,50);last=ts;T+=dt;
+    mx+=(tmx-mx)*.042; my+=(tmy-my)*.042;
+
+    /* deep space fill */
+    cx.fillStyle='#000008';
+    cx.fillRect(0,0,W,H);
+
+    /* NEBULAE — additive blending for true glow */
+    cx.save();
+    cx.globalCompositeOperation='screen';
+    for(const n of NEBS){
+      const breathe=1+Math.sin(T*n.sp+n.ph)*.10;
+      const nx=n.rx*W,ny=n.ry*H,nr=n.rr*Math.min(W,H)*breathe;
+      const a=n.ba+Math.sin(T*n.sp*1.6+n.ph)*.018;
+      const g=cx.createRadialGradient(nx,ny,0,nx,ny,nr);
+      g.addColorStop(0,   `hsla(${n.h},${n.s}%,65%,${a*2.4})`);
+      g.addColorStop(.22, `hsla(${n.h},${n.s}%,55%,${a*1.5})`);
+      g.addColorStop(.55, `hsla(${n.h},${n.s}%,45%,${a*.65})`);
+      g.addColorStop(1,   `hsla(${n.h},${n.s}%,35%,0)`);
+      cx.fillStyle=g; cx.fillRect(0,0,W,H);
+    }
+    cx.restore();
+
+    /* COSMIC DUST */
+    for(const d of dust){
+      d.x+=d.vx; d.y+=d.vy;
+      if(d.y<-4){d.y=H+4;d.x=Math.random()*W;}
+      if(d.x<-4)d.x=W+4; if(d.x>W+4)d.x=-4;
+      cx.beginPath();cx.arc(d.x,d.y,d.r,0,Math.PI*2);
+      cx.fillStyle=`rgba(185,215,255,${d.a})`;cx.fill();
+    }
+
+    /* STARS — three depth layers */
+    for(let li=0;li<layers.length;li++){
+      const{cfg,stars}=layers[li];
+      const px=(mx-W*.5)*cfg.px, py=(my-H*.5)*cfg.py;
+      for(const s of stars){
+        s.x+=s.vx; s.y+=s.vy;
+        if(s.x<-4)s.x=W+4; if(s.x>W+4)s.x=-4;
+        if(s.y>H+4){s.y=-4;s.x=Math.random()*W;} if(s.y<-4)s.y=H+4;
+        const twinkle=.62+.38*Math.sin(T*s.tsp*.001+s.tph);
+        const a=s.a*twinkle, sx=s.x+px, sy=s.y+py;
+        /* glow + spike for large near-layer stars */
+        if(li===2&&s.r>1.85){
+          const gl=cx.createRadialGradient(sx,sy,0,sx,sy,s.r*5.5);
+          gl.addColorStop(0,`rgba(${s.rc},${s.gc},${s.bc},${a*.4})`);
+          gl.addColorStop(1,`rgba(${s.rc},${s.gc},${s.bc},0)`);
+          cx.fillStyle=gl;cx.fillRect(sx-s.r*5.5,sy-s.r*5.5,s.r*11,s.r*11);
+          if(s.r>2.3){
+            cx.save();cx.globalAlpha=a*.45;
+            cx.strokeStyle=`rgb(${s.rc},${s.gc},${s.bc})`;
+            cx.lineWidth=.35;
+            const sl=s.r*7;
+            cx.beginPath();
+            cx.moveTo(sx-sl,sy);cx.lineTo(sx+sl,sy);
+            cx.moveTo(sx,sy-sl);cx.lineTo(sx,sy+sl);
+            cx.stroke();cx.restore();
+          }
         }
+        cx.beginPath();cx.arc(sx,sy,s.r,0,Math.PI*2);
+        cx.fillStyle=`rgba(${s.rc},${s.gc},${s.bc},${a})`;cx.fill();
       }
     }
-    // draw particles (back to front)
-    particles.sort((a,b)=>b.z-a.z);
-    particles.forEach(p=>{p.tick(dt);p.draw()});
+
+    /* SHOOTING STARS */
+    if(T>nextShoot){
+      shoots.push(mkShoot());
+      nextShoot=T+2200+Math.random()*6500;
+    }
+    for(let i=shoots.length-1;i>=0;i--){
+      const s=shoots[i];
+      s.x-=Math.cos(s.ang)*s.spd; s.y+=Math.sin(s.ang)*s.spd;
+      s.a-=s.dec;
+      if(s.a<=0||s.x<-250||s.y>H+60){shoots.splice(i,1);continue;}
+      const tx=s.x+Math.cos(s.ang)*s.len, ty=s.y-Math.sin(s.ang)*s.len;
+      const g=cx.createLinearGradient(s.x,s.y,tx,ty);
+      g.addColorStop(0,`rgba(255,255,255,${s.a})`);
+      g.addColorStop(.25,`rgba(190,225,255,${s.a*.65})`);
+      g.addColorStop(1,'rgba(110,160,255,0)');
+      cx.beginPath();cx.moveTo(s.x,s.y);cx.lineTo(tx,ty);
+      cx.strokeStyle=g;cx.lineWidth=s.w;cx.stroke();
+      cx.beginPath();cx.arc(s.x,s.y,s.w*2.8,0,Math.PI*2);
+      cx.fillStyle=`rgba(255,255,255,${s.a*.85})`;cx.fill();
+    }
+
     requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);
