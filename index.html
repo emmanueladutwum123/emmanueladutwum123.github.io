@@ -273,6 +273,52 @@ footer p{font-family:var(--mono);font-size:.68rem;color:var(--text3)}
   .hero-btns{gap:.75rem}
   .btn-p,.btn-g{padding:.75rem 1.6rem;font-size:.75rem}
 }
+
+/* === CIPHER OVERLAY (hero) === */
+#cipherOverlay{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;mix-blend-mode:screen}
+
+/* === CRYPTO SECTION === */
+.crypto-s{overflow:hidden;background:linear-gradient(180deg,var(--bg) 0%,#00040e 25%,#000208 100%)}
+#cipherRainBg{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.crypto-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.crypto-card{background:rgba(4,8,20,.92);border:1px solid rgba(0,212,255,.1);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;transition:border-color .3s,box-shadow .3s;backdrop-filter:blur(8px)}
+.crypto-card:hover{border-color:rgba(0,212,255,.3);box-shadow:0 0 40px rgba(0,212,255,.07)}
+.crypto-card-hdr{display:flex;justify-content:space-between;align-items:center;padding:.8rem 1.2rem;background:rgba(0,212,255,.03);border-bottom:1px solid rgba(0,212,255,.07);flex-shrink:0}
+.crypto-algo{font-family:var(--mono);font-size:.7rem;font-weight:700;color:var(--c);letter-spacing:2px}
+.crypto-slbl{font-family:var(--mono);font-size:.58rem;color:var(--text3);letter-spacing:.5px}
+.aes-wrap{padding:1.2rem;display:flex;flex-direction:column;align-items:center;gap:.8rem;flex:1}
+.aes-step{font-family:var(--mono);font-size:.62rem;color:var(--c2);letter-spacing:.8px;text-align:center;min-height:2.4em;line-height:1.5;padding:0 .5rem}
+.sha-body{display:flex;flex-direction:column;padding:1rem 1.2rem;flex:1;gap:.8rem}
+.ci2{background:rgba(0,0,0,.5);border:1px solid rgba(0,212,255,.18);border-radius:6px;padding:.65rem .9rem;font-family:var(--mono);font-size:.75rem;color:var(--c);outline:none;transition:border-color .25s,box-shadow .25s;width:100%}
+.ci2:focus{border-color:rgba(0,212,255,.55);box-shadow:0 0 18px rgba(0,212,255,.12)}
+.ci2::placeholder{color:var(--text3)}
+.hlbl{font-family:var(--mono);font-size:.58rem;color:var(--text3);letter-spacing:1px;margin-bottom:.3rem}
+.hbytes{font-family:var(--mono);font-size:.68rem;word-break:break-all;line-height:2;letter-spacing:.5px;min-height:4em}
+.hbyte{display:inline}
+.hbyte.hnew{animation:hfl .35s ease}
+@keyframes hfl{0%{color:#fff;text-shadow:0 0 10px var(--c)}100%{}}
+.hmeta{font-family:var(--mono);font-size:.58rem;color:var(--text3);border-top:1px solid rgba(0,212,255,.06);padding-top:.6rem;margin-top:auto}
+.rsa-body{padding:1rem 1.2rem;flex:1;overflow:hidden}
+.rsa-scroll{font-family:var(--mono);font-size:.63rem;line-height:1.9;height:272px;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end}
+.rsl{white-space:pre;margin:0}
+.rk{color:var(--c)}.rvv{color:var(--c3)}.rcc{color:var(--text3)}.rww{color:var(--text2)}.rhh{color:var(--c2)}
+
+/* blockchain */
+.chain-block{margin-top:3.5rem}
+.chain-ttl{font-family:var(--mono);font-size:.7rem;color:var(--c);text-transform:uppercase;letter-spacing:2px;margin-bottom:1.5rem;display:flex;align-items:center;gap:.8rem}
+.chain-ttl::before{content:'';width:20px;height:1px;background:var(--c);flex-shrink:0}
+.blocks-row{display:flex;align-items:stretch;overflow-x:auto;gap:0;padding-bottom:.5rem}
+.bk{background:rgba(4,8,20,.92);border:1px solid rgba(0,212,255,.12);border-radius:8px;padding:1rem 1.2rem;min-width:210px;flex:1;transition:all .3s}
+.bk:hover{border-color:rgba(0,212,255,.4);box-shadow:0 0 24px rgba(0,212,255,.1)}
+.bk-num{font-family:var(--mono);font-size:.62rem;color:var(--c);letter-spacing:1px;margin-bottom:.6rem;font-weight:700}
+.bk-f{font-family:var(--mono);font-size:.6rem;margin:.18rem 0;display:flex;gap:.4rem}
+.bk-fl{color:var(--text3);flex-shrink:0;width:68px}
+.bk-fv{color:var(--text2);word-break:break-all}
+.bk-fv.ok{color:var(--c3)}
+.bk-arr{display:flex;align-items:center;padding:0 .5rem;color:rgba(0,212,255,.35);font-size:1.5rem;flex-shrink:0;font-family:var(--mono);align-self:center}
+
+@media(max-width:1100px){.crypto-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:680px){.crypto-grid{grid-template-columns:1fr}.blocks-row{flex-direction:column}.bk-arr{transform:rotate(90deg);padding:.3rem 0;text-align:center;justify-content:center}}
 </style>
 </head>
 <body>
@@ -308,6 +354,7 @@ footer p{font-family:var(--mono);font-size:.68rem;color:var(--text3)}
 <!-- HERO -->
 <section class="hero">
 <canvas id="heroCanvas"></canvas>
+<canvas id="cipherOverlay"></canvas>
 <div class="noise"></div>
 <div class="hero-vignette"></div>
 <div class="container">
@@ -421,6 +468,68 @@ footer p{font-family:var(--mono);font-size:.68rem;color:var(--text3)}
     </ul>
   </div>
 </div>
+</div>
+</section>
+
+<!-- CRYPTO -->
+<section id="crypto" class="crypto-s">
+<canvas id="cipherRainBg"></canvas>
+<div class="container" style="position:relative;z-index:1">
+  <div class="sh rv">
+    <div class="lbl">⚡ Cryptographic Systems</div>
+    <h2>Cipher &amp; Entropy<span class="dot">.</span></h2>
+    <div class="sh-line"></div>
+  </div>
+  <div class="crypto-grid">
+
+    <!-- AES-256 State Matrix -->
+    <div class="crypto-card rv">
+      <div class="crypto-card-hdr">
+        <span class="crypto-algo">AES-256 STATE</span>
+        <span class="crypto-slbl" id="aesStatus">Initializing...</span>
+      </div>
+      <div class="aes-wrap">
+        <canvas id="aesCanvas" width="272" height="272" style="border-radius:6px;display:block"></canvas>
+        <div class="aes-step" id="aesStep">Loading cipher...</div>
+      </div>
+    </div>
+
+    <!-- SHA-256 Live Hasher -->
+    <div class="crypto-card rv rv-d1">
+      <div class="crypto-card-hdr">
+        <span class="crypto-algo">SHA-256 LIVE</span>
+        <span class="crypto-slbl">Web Crypto API · Real-time</span>
+      </div>
+      <div class="sha-body">
+        <input class="ci2" id="shaInput" placeholder="Type anything — hashed in real-time..." autocomplete="off" spellcheck="false" />
+        <div>
+          <div class="hlbl">digest (256-bit → 64 hex chars):</div>
+          <div class="hbytes" id="hashBytes"><span style="color:var(--text3);font-size:.62rem">Awaiting input...</span></div>
+        </div>
+        <div class="hmeta" id="hashMeta">0 chars → 256-bit digest</div>
+      </div>
+    </div>
+
+    <!-- RSA-2048 Keygen Terminal -->
+    <div class="crypto-card rv rv-d2">
+      <div class="crypto-card-hdr">
+        <span class="crypto-algo">RSA-2048 KEYGEN</span>
+        <span class="crypto-slbl" id="rsaSlbl">Running...</span>
+      </div>
+      <div class="rsa-body">
+        <div class="rsa-scroll" id="rsaTerm"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Blockchain Hash Chain -->
+  <div class="chain-block rv">
+    <div class="chain-ttl">Hash-Linked Block Chain — SHA-256 verified</div>
+    <div class="blocks-row" id="blockChain">
+      <span style="color:var(--text3);font-family:var(--mono);font-size:.7rem;padding:1rem">Computing real SHA-256 hashes...</span>
+    </div>
+  </div>
 </div>
 </section>
 
@@ -1141,6 +1250,319 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
     if(t)t.scrollIntoView({behavior:'smooth',block:'start'});
   });
 });
+
+/* ============================================================
+   CIPHER RAIN — shared factory
+   Used for: hero overlay (screen-blend, subtle) + crypto section bg
+============================================================ */
+function initCipherRain(id,opts){
+  const cv=document.getElementById(id);
+  if(!cv)return;
+  const cx=cv.getContext('2d');
+  const CHARS='0123456789ABCDEFabcdef⊕∈≡≠∀∃λΣΩψφπ∇⊗⊞';
+  const FS=opts.fs||13;
+  let W,H,cols,drops,ct;
+  function resize(){
+    const p=cv.parentElement;
+    W=cv.width=p?p.offsetWidth:innerWidth;
+    H=cv.height=p?p.offsetHeight:innerHeight;
+    cols=Math.ceil(W/FS)+1;
+    drops=Array.from({length:cols},()=>-Math.random()*30);
+    ct=Array.from({length:cols},()=>Math.random()<.65?0:1);
+  }
+  new ResizeObserver(resize).observe(cv.parentElement||document.body);
+  resize();
+  let last=0;
+  (function frame(ts){
+    requestAnimationFrame(frame);
+    if(ts-last<55)return;last=ts;
+    cx.fillStyle=opts.bg||'rgba(0,0,8,.15)';cx.fillRect(0,0,W,H);
+    cx.font=`${FS}px "JetBrains Mono",monospace`;
+    cx.textAlign='left';cx.textBaseline='top';
+    const ba=opts.a||.6;
+    for(let i=0;i<cols;i++){
+      const y0=drops[i]*FS;
+      const ch=CHARS[Math.floor(Math.random()*CHARS.length)];
+      cx.fillStyle=ct[i]===0?`rgba(190,245,255,${ba})`:`rgba(220,190,255,${ba})`;
+      cx.fillText(ch,i*FS,y0);
+      for(let j=1;j<=12;j++){
+        const ty=(drops[i]-j)*FS;
+        if(ty<-FS||ty>H)continue;
+        const a=ba*(1-j/13)*.55;
+        cx.fillStyle=ct[i]===0?`rgba(0,212,255,${a})`:`rgba(123,47,255,${a})`;
+        cx.fillText(CHARS[Math.floor(Math.random()*CHARS.length)],i*FS,ty);
+      }
+      drops[i]+=.22+Math.random()*.18;
+      if(y0>H+FS*10){drops[i]=-Math.random()*25;ct[i]=Math.random()<.65?0:1;}
+    }
+  })(0);
+}
+
+/* hero overlay — screen-blend so it adds glow without obscuring stars */
+initCipherRain('cipherOverlay',{fs:12,bg:'rgba(0,0,4,.05)',a:.4});
+/* crypto section background */
+initCipherRain('cipherRainBg',{fs:14,bg:'rgba(0,0,8,.18)',a:.68});
+
+/* ============================================================
+   AES-256 STATE MATRIX — real S-box, ShiftRows, GF(2⁸) MixColumns
+============================================================ */
+(function(){
+  const SBOX=[
+    0x63,0x7c,0x77,0x7b,0xf2,0x6b,0x6f,0xc5,0x30,0x01,0x67,0x2b,0xfe,0xd7,0xab,0x76,
+    0xca,0x82,0xc9,0x7d,0xfa,0x59,0x47,0xf0,0xad,0xd4,0xa2,0xaf,0x9c,0xa4,0x72,0xc0,
+    0xb7,0xfd,0x93,0x26,0x36,0x3f,0xf7,0xcc,0x34,0xa5,0xe5,0xf1,0x71,0xd8,0x31,0x15,
+    0x04,0xc7,0x23,0xc3,0x18,0x96,0x05,0x9a,0x07,0x12,0x80,0xe2,0xeb,0x27,0xb2,0x75,
+    0x09,0x83,0x2c,0x1a,0x1b,0x6e,0x5a,0xa0,0x52,0x3b,0xd6,0xb3,0x29,0xe3,0x2f,0x84,
+    0x53,0xd1,0x00,0xed,0x20,0xfc,0xb1,0x5b,0x6a,0xcb,0xbe,0x39,0x4a,0x4c,0x58,0xcf,
+    0xd0,0xef,0xaa,0xfb,0x43,0x4d,0x33,0x85,0x45,0xf9,0x02,0x7f,0x50,0x3c,0x9f,0xa8,
+    0x51,0xa3,0x40,0x8f,0x92,0x9d,0x38,0xf5,0xbc,0xb6,0xda,0x21,0x10,0xff,0xf3,0xd2,
+    0xcd,0x0c,0x13,0xec,0x5f,0x97,0x44,0x17,0xc4,0xa7,0x7e,0x3d,0x64,0x5d,0x19,0x73,
+    0x60,0x81,0x4f,0xdc,0x22,0x2a,0x90,0x88,0x46,0xee,0xb8,0x14,0xde,0x5e,0x0b,0xdb,
+    0xe0,0x32,0x3a,0x0a,0x49,0x06,0x24,0x5c,0xc2,0xd3,0xac,0x62,0x91,0x95,0xe4,0x79,
+    0xe7,0xc8,0x37,0x6d,0x8d,0xd5,0x4e,0xa9,0x6c,0x56,0xf4,0xea,0x65,0x7a,0xae,0x08,
+    0xba,0x78,0x25,0x2e,0x1c,0xa6,0xb4,0xc6,0xe8,0xdd,0x74,0x1f,0x4b,0xbd,0x8b,0x8a,
+    0x70,0x3e,0xb5,0x66,0x48,0x03,0xf6,0x0e,0x61,0x35,0x57,0xb9,0x86,0xc1,0x1d,0x9e,
+    0xe1,0xf8,0x98,0x11,0x69,0xd9,0x8e,0x94,0x9b,0x1e,0x87,0xe9,0xce,0x55,0x28,0xdf,
+    0x8c,0xa1,0x89,0x0d,0xbf,0xe6,0x42,0x68,0x41,0x99,0x2d,0x0f,0xb0,0x54,0xbb,0x16
+  ];
+
+  function gmul(a,b){
+    let p=0;
+    for(let i=0;i<8;i++){
+      if(b&1)p^=a;
+      const hi=a&0x80;
+      a=(a<<1)&0xff;
+      if(hi)a^=0x1b;
+      b>>=1;
+    }
+    return p;
+  }
+
+  const cv=document.getElementById('aesCanvas');
+  const statusEl=document.getElementById('aesStatus');
+  const stepEl=document.getElementById('aesStep');
+  if(!cv)return;
+  const cx=cv.getContext('2d');
+  const SZ=cv.width; // 272
+  const CELL=SZ/4;
+
+  let state=Array.from({length:16},()=>Math.floor(Math.random()*256));
+  let key=Array.from({length:16},()=>Math.floor(Math.random()*256));
+  let hl=new Array(16).fill(0); // 0=normal 1=cyan 2=purple
+  let round=0,phase=0;
+
+  const STEPS=[
+    {name:'SubBytes',   lbl:'SubBytes — each byte mapped through AES S-box'},
+    {name:'ShiftRows',  lbl:'ShiftRows — row i rotated left by i positions'},
+    {name:'MixColumns', lbl:'MixColumns — GF(2⁸) column matrix multiply'},
+    {name:'AddRoundKey',lbl:'AddRoundKey — state ⊕ round key (XOR)'},
+  ];
+
+  function doSubBytes(){
+    for(let i=0;i<16;i++){state[i]=SBOX[state[i]];hl[i]=1;}
+  }
+  function doShiftRows(){
+    hl.fill(0);
+    const s=[...state];
+    for(let r=1;r<4;r++)for(let c=0;c<4;c++){state[r*4+c]=s[r*4+(c+r)%4];hl[r*4+c]=1;}
+  }
+  function doMixColumns(){
+    hl.fill(0);
+    for(let c=0;c<4;c++){
+      const s0=state[c],s1=state[4+c],s2=state[8+c],s3=state[12+c];
+      state[c]   =(gmul(2,s0)^gmul(3,s1)^s2^s3)&0xff;
+      state[4+c] =(s0^gmul(2,s1)^gmul(3,s2)^s3)&0xff;
+      state[8+c] =(s0^s1^gmul(2,s2)^gmul(3,s3))&0xff;
+      state[12+c]=(gmul(3,s0)^s1^s2^gmul(2,s3))&0xff;
+      hl[c]=hl[4+c]=hl[8+c]=hl[12+c]=1;
+    }
+  }
+  function doAddRoundKey(){
+    for(let i=0;i<16;i++){state[i]=(state[i]^key[i])&0xff;hl[i]=2;}
+    key=key.map(b=>SBOX[b]); // simplified key schedule
+  }
+
+  function drawState(){
+    cx.clearRect(0,0,SZ,SZ);
+    cx.fillStyle='rgba(2,5,14,1)';cx.fillRect(0,0,SZ,SZ);
+    for(let r=0;r<4;r++){
+      for(let c=0;c<4;c++){
+        const i=r*4+c,h=hl[i];
+        const x=c*CELL,y=r*CELL;
+        cx.fillStyle=h===1?'rgba(0,180,225,.18)':h===2?'rgba(110,40,210,.18)':'rgba(8,16,36,.85)';
+        cx.fillRect(x+1,y+1,CELL-2,CELL-2);
+        cx.strokeStyle=h===1?'rgba(0,212,255,.55)':h===2?'rgba(150,80,255,.55)':'rgba(0,212,255,.1)';
+        cx.lineWidth=h>0?1.5:.8;
+        cx.strokeRect(x+.5,y+.5,CELL-1,CELL-1);
+        const hex=state[i].toString(16).padStart(2,'0').toUpperCase();
+        cx.fillStyle=h===1?'#00d4ff':h===2?'#b07cff':'#3d6880';
+        cx.font=`bold ${Math.floor(CELL*.38)}px "JetBrains Mono",monospace`;
+        cx.textAlign='center';cx.textBaseline='middle';
+        cx.fillText(hex,x+CELL/2,y+CELL/2);
+        /* subtle row/col index */
+        if(r===0){cx.fillStyle='rgba(0,212,255,.2)';cx.font=`9px "JetBrains Mono",monospace`;cx.textAlign='center';cx.textBaseline='top';cx.fillText(c,x+CELL/2,y+2);}
+        if(c===0){cx.fillStyle='rgba(0,212,255,.2)';cx.font=`9px "JetBrains Mono",monospace`;cx.textAlign='left';cx.textBaseline='middle';cx.fillText(r,x+2,y+CELL/2);}
+      }
+    }
+  }
+
+  let lastStep=0;
+  const STEP_MS=950;
+  requestAnimationFrame(function frame(ts){
+    requestAnimationFrame(frame);
+    drawState();
+    if(ts-lastStep>STEP_MS){
+      lastStep=ts;
+      const st=STEPS[phase%4];
+      stepEl.textContent=st.lbl;
+      statusEl.textContent=`Round ${round+1}/10 — ${st.name}`;
+      switch(phase%4){
+        case 0:doSubBytes();break;
+        case 1:doShiftRows();break;
+        case 2:doMixColumns();break;
+        case 3:doAddRoundKey();
+          round=(round+1)%10;
+          if(round===0){
+            state=Array.from({length:16},()=>Math.floor(Math.random()*256));
+            key=Array.from({length:16},()=>Math.floor(Math.random()*256));
+            hl.fill(0);
+            stepEl.textContent='New plaintext block — reinitializing state...';
+            statusEl.textContent='Round 0/10 — Init';
+          }
+          break;
+      }
+      phase++;
+    }
+  });
+})();
+
+/* ============================================================
+   SHA-256 LIVE HASHER — Web Crypto API
+============================================================ */
+(function(){
+  const inp=document.getElementById('shaInput');
+  const display=document.getElementById('hashBytes');
+  const meta=document.getElementById('hashMeta');
+  if(!inp)return;
+  let prev='';
+  async function update(){
+    const txt=inp.value;
+    if(!txt){
+      display.innerHTML='<span style="color:var(--text3);font-size:.62rem">Awaiting input...</span>';
+      meta.textContent='0 chars → 256-bit digest';
+      prev='';return;
+    }
+    meta.textContent=`${txt.length} char${txt.length!==1?'s':''} → 256-bit digest → 64 hex chars`;
+    const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(txt));
+    const hash=Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+    display.innerHTML='';
+    for(let i=0;i<hash.length;i++){
+      const sp=document.createElement('span');
+      sp.className='hbyte';
+      sp.textContent=hash[i];
+      sp.style.color=`hsl(${parseInt(hash[i],16)*22},80%,65%)`;
+      if(hash[i]!==prev[i])sp.classList.add('hnew');
+      display.appendChild(sp);
+    }
+    prev=hash;
+  }
+  inp.addEventListener('input',update);
+})();
+
+/* ============================================================
+   RSA-2048 KEYGEN TERMINAL — auto-typing script
+============================================================ */
+(function(){
+  const term=document.getElementById('rsaTerm');
+  const slbl=document.getElementById('rsaSlbl');
+  if(!term)return;
+
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+  const SCRIPT=[
+    {t:'> Initializing RSA-2048 key generation...',c:'rk',d:700},
+    {t:'> Generating prime p (1024-bit)...',c:'rcc',d:600},
+    {t:'  Sieve of Eratosthenes + trial division',c:'rww',d:450},
+    {t:'  p = 0xC4F7A3B2E9D1F056A18C3E7B2D4F9...',c:'rvv',d:350},
+    {t:'  Miller-Rabin (40 rounds): PRIME ✓',c:'rww',d:500},
+    {t:'> Generating prime q (1024-bit)...',c:'rcc',d:600},
+    {t:'  q = 0xD8A2C1B4F7E309120F5A3E6C9B2D...',c:'rvv',d:350},
+    {t:'  Miller-Rabin (40 rounds): PRIME ✓',c:'rww',d:500},
+    {t:'> n = p·q  (2048-bit modulus)',c:'rcc',d:450},
+    {t:'  n = 0xA2B9F4C73E8D1056...E3D810F6',c:'rvv',d:350},
+    {t:'> φ(n) = (p−1)(q−1)',c:'rcc',d:450},
+    {t:'  φ(n) = 0xA2B9F4C7...FF800000',c:'rvv',d:350},
+    {t:'> e = 65537  [gcd(e,φ(n)) = 1  ✓]',c:'rcc',d:450},
+    {t:'> d ≡ e⁻¹ (mod φ(n))  via Ext. Euclidean',c:'rcc',d:500},
+    {t:'  d = 0x3F8A2C1BD7E90452...7D904E52',c:'rvv',d:350},
+    {t:'',c:'rww',d:280},
+    {t:'─── KEY PAIR GENERATED ───────────',c:'rhh',d:200},
+    {t:'  PUBLIC   (n, e=65537)        🔓',c:'rk',d:280},
+    {t:'  PRIVATE  (n, d)  [ENCRYPTED] 🔒',c:'rk',d:280},
+    {t:'',c:'rww',d:350},
+    {t:'> Encrypting: "Hello, Emmanuel"',c:'rcc',d:500},
+    {t:'  c ≡ mᵉ (mod n)',c:'rww',d:300},
+    {t:'  c = 0x7F2A8B4CE91D3F05...A2C3B4D1',c:'rvv',d:350},
+    {t:'> Verifying: c → m',c:'rcc',d:450},
+    {t:'  m ≡ cᵈ (mod n)',c:'rww',d:300},
+    {t:'  m = "Hello, Emmanuel"  ✓',c:'rvv',d:300},
+    {t:'',c:'rww',d:400},
+    {t:'> RSA-2048 secure channel ready. ▌',c:'rk',d:8000},
+  ];
+
+  let li=0;const lines=[];const MAX=14;
+  function addLine(item){
+    lines.push(item);
+    if(lines.length>MAX)lines.shift();
+    term.innerHTML=lines.map(l=>`<div class="rsl ${l.c}">${esc(l.t)}</div>`).join('');
+  }
+  function next(){
+    if(li>=SCRIPT.length){setTimeout(()=>{li=0;lines.length=0;slbl.textContent='Restarting...';next();},3500);return;}
+    const item=SCRIPT[li++];
+    slbl.textContent=li<SCRIPT.length?'Running...':'Complete ✓';
+    addLine(item);
+    if(li<SCRIPT.length)setTimeout(next,item.d);
+  }
+  next();
+})();
+
+/* ============================================================
+   BLOCKCHAIN — real SHA-256 hashes via Web Crypto API
+============================================================ */
+(async function(){
+  const chain=document.getElementById('blockChain');
+  if(!chain)return;
+  async function sha256(s){
+    const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));
+    return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+  }
+  const BLOCKS=[
+    {n:0,data:'Genesis Block — Origin',nonce:42891},
+    {n:1,data:'Emmanuel Adutwum · ML Engineer',nonce:18374},
+    {n:2,data:'neural-net-cpp · AES-256 · SHA-256',nonce:91023},
+    {n:3,data:'ROC-AUC 0.84 · VaR 99% · GF(2⁸)',nonce:55672},
+  ];
+  let prev='0000000000000000000000000000000000000000000000000000000000000000';
+  for(const b of BLOCKS){
+    b.prevHash=prev;
+    b.hash=await sha256(`${b.n}${prev}${b.data}${b.nonce}`);
+    prev=b.hash;
+  }
+  chain.innerHTML=BLOCKS.map((b,i)=>`
+    <div class="bk rv">
+      <div class="bk-num">BLOCK #${b.n}${b.n===0?' · GENESIS':''}</div>
+      <div class="bk-f"><span class="bk-fl">prev_hash</span><span class="bk-fv">${b.prevHash.substring(0,16)}…</span></div>
+      <div class="bk-f"><span class="bk-fl">data</span><span class="bk-fv">${b.data}</span></div>
+      <div class="bk-f"><span class="bk-fl">nonce</span><span class="bk-fv">${b.nonce}</span></div>
+      <div class="bk-f"><span class="bk-fl">hash</span><span class="bk-fv ok">${b.hash.substring(0,20)}…</span></div>
+    </div>
+    ${i<BLOCKS.length-1?'<div class="bk-arr">→</div>':''}
+  `).join('');
+  chain.querySelectorAll('.bk').forEach(el=>{
+    const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('vis');io.unobserve(x.target)}})},{threshold:.08});
+    io.observe(el);
+  });
+})();
 </script>
 </body>
 </html>
