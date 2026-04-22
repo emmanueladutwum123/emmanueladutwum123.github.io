@@ -319,6 +319,72 @@ footer p{font-family:var(--mono);font-size:.68rem;color:var(--text3)}
 
 @media(max-width:1100px){.crypto-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:680px){.crypto-grid{grid-template-columns:1fr}.blocks-row{flex-direction:column}.bk-arr{transform:rotate(90deg);padding:.3rem 0;text-align:center;justify-content:center}}
+
+/* === ARIA — AI ASSISTANT === */
+#aiBtn{position:fixed;bottom:2rem;right:2rem;z-index:3000;width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--c),var(--c2));border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(0,212,255,.4);transition:transform .2s,box-shadow .2s;animation:aiBtnGlow 3s ease-in-out infinite}
+@keyframes aiBtnGlow{0%,100%{box-shadow:0 4px 24px rgba(0,212,255,.4),0 0 0 0 rgba(0,212,255,.3)}50%{box-shadow:0 6px 32px rgba(0,212,255,.6),0 0 0 10px rgba(0,212,255,.0)}}
+#aiBtn:hover{transform:scale(1.1);box-shadow:0 8px 40px rgba(0,212,255,.55)}
+#aiBtn i{font-size:1.45rem;color:#050508;pointer-events:none}
+.aiBadge{position:absolute;top:-1px;right:-1px;width:17px;height:17px;background:var(--c4);border-radius:50%;border:2.5px solid var(--bg);display:none;animation:badgePop .3s cubic-bezier(.34,1.56,.64,1)}
+.aiBadge.show{display:block}
+@keyframes badgePop{from{transform:scale(0)}to{transform:scale(1)}}
+
+#aiPanel{position:fixed;bottom:5.5rem;right:2rem;z-index:2999;width:390px;max-width:calc(100vw - 1.8rem);background:rgba(4,6,18,.97);border:1px solid rgba(0,212,255,.18);border-radius:18px;overflow:hidden;backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);box-shadow:0 24px 70px rgba(0,0,0,.75),0 0 0 1px rgba(0,212,255,.07),0 0 60px rgba(0,212,255,.06);transform:translateY(22px) scale(.96);opacity:0;pointer-events:none;transition:transform .35s cubic-bezier(.34,1.56,.64,1),opacity .28s}
+#aiPanel.open{transform:translateY(0) scale(1);opacity:1;pointer-events:all}
+
+.ai-hdr{display:flex;align-items:center;gap:.75rem;padding:.9rem 1.2rem;background:linear-gradient(135deg,rgba(0,212,255,.06),rgba(123,47,255,.04));border-bottom:1px solid rgba(0,212,255,.09)}
+.ai-av{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--c),var(--c2));display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--mono);font-size:.72rem;font-weight:700;color:#050508;position:relative}
+.ai-av::after{content:'';position:absolute;inset:-2px;border-radius:50%;border:1.5px solid rgba(0,212,255,.4);animation:aiBtnGlow 2s ease-in-out infinite}
+.ai-hdr-info{flex:1;min-width:0}
+.ai-hdr-name{font-family:var(--mono);font-size:.78rem;font-weight:700;color:var(--text);letter-spacing:.5px}
+.ai-hdr-status{font-family:var(--mono);font-size:.58rem;color:var(--c3);display:flex;align-items:center;gap:.3rem;margin-top:.15rem}
+.ai-hdr-status::before{content:'';width:5px;height:5px;background:var(--c3);border-radius:50%;animation:livePulse 1.8s infinite;flex-shrink:0}
+.ai-close{background:none;border:none;color:var(--text3);cursor:pointer;font-size:1rem;padding:.3rem .4rem;transition:color .2s;line-height:1;border-radius:6px}
+.ai-close:hover{color:var(--c);background:rgba(0,212,255,.08)}
+
+.ai-msgs{height:320px;overflow-y:auto;padding:.9rem 1rem;display:flex;flex-direction:column;gap:.65rem;scroll-behavior:smooth}
+.ai-msgs::-webkit-scrollbar{width:3px}
+.ai-msgs::-webkit-scrollbar-track{background:transparent}
+.ai-msgs::-webkit-scrollbar-thumb{background:rgba(0,212,255,.18);border-radius:2px}
+
+.ai-msg{display:flex;flex-direction:column;max-width:90%;animation:msgIn .25s ease}
+@keyframes msgIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.ai-msg.user{align-self:flex-end;align-items:flex-end}
+.ai-msg.bot{align-self:flex-start;align-items:flex-start}
+.ai-bubble{padding:.65rem .9rem;border-radius:12px;font-family:var(--mono);font-size:.71rem;line-height:1.8;word-break:break-word}
+.ai-msg.user .ai-bubble{background:linear-gradient(135deg,rgba(0,212,255,.16),rgba(123,47,255,.1));border:1px solid rgba(0,212,255,.22);color:var(--text);border-bottom-right-radius:3px}
+.ai-msg.bot  .ai-bubble{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);color:var(--text2);border-bottom-left-radius:3px}
+.ai-bubble a{color:var(--c);text-underline-offset:2px;text-decoration:underline}
+.ai-bubble a:hover{color:#fff}
+.ai-bubble strong{color:var(--text);font-weight:600}
+.ai-plink{display:inline-flex;align-items:center;gap:.3rem;margin:.12rem .1rem;padding:.18rem .55rem;background:rgba(0,212,255,.07);border:1px solid rgba(0,212,255,.18);border-radius:5px;color:var(--c);font-size:.64rem;text-decoration:none !important;transition:all .2s}
+.ai-plink:hover{background:rgba(0,212,255,.16);color:#fff;border-color:rgba(0,212,255,.4)}
+.ai-plink.live{background:rgba(0,255,136,.07);border-color:rgba(0,255,136,.22);color:var(--c3)}
+.ai-plink.live:hover{background:rgba(0,255,136,.16);color:#fff}
+
+.ai-typing{display:inline-flex;align-items:center;gap:5px;padding:.55rem .75rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:12px;border-bottom-left-radius:3px}
+.ai-typing span{width:6px;height:6px;background:var(--text2);border-radius:50%;animation:aiDot 1.3s ease-in-out infinite}
+.ai-typing span:nth-child(2){animation-delay:.22s}
+.ai-typing span:nth-child(3){animation-delay:.44s}
+@keyframes aiDot{0%,60%,100%{transform:translateY(0);opacity:.45}30%{transform:translateY(-7px);opacity:1}}
+
+.ai-chips{display:flex;flex-wrap:wrap;gap:.38rem;padding:.55rem 1rem;border-top:1px solid rgba(0,212,255,.05);min-height:0;transition:min-height .2s}
+.ai-chip{font-family:var(--mono);font-size:.62rem;padding:.32rem .75rem;background:rgba(0,212,255,.05);border:1px solid rgba(0,212,255,.14);border-radius:20px;color:var(--c);cursor:pointer;transition:all .2s;white-space:nowrap;animation:msgIn .2s ease}
+.ai-chip:hover{background:rgba(0,212,255,.14);border-color:rgba(0,212,255,.4);transform:translateY(-1px)}
+
+.ai-footer{display:flex;gap:.5rem;padding:.75rem .9rem;border-top:1px solid rgba(0,212,255,.07);background:rgba(0,0,0,.25)}
+.ai-inp{flex:1;background:rgba(255,255,255,.04);border:1px solid rgba(0,212,255,.12);border-radius:9px;padding:.52rem .8rem;font-family:var(--mono);font-size:.7rem;color:var(--text);outline:none;transition:border-color .2s,box-shadow .2s}
+.ai-inp:focus{border-color:rgba(0,212,255,.4);box-shadow:0 0 12px rgba(0,212,255,.08)}
+.ai-inp::placeholder{color:var(--text3)}
+.ai-send{background:linear-gradient(135deg,var(--c),var(--c2));border:none;border-radius:9px;width:36px;height:36px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .2s,box-shadow .2s}
+.ai-send:hover{transform:scale(1.08);box-shadow:0 4px 16px rgba(0,212,255,.35)}
+.ai-send i{font-size:.85rem;color:#050508;pointer-events:none}
+
+@media(max-width:480px){
+  #aiPanel{width:calc(100vw - 1.4rem);right:.7rem;bottom:5rem}
+  #aiBtn{bottom:1.2rem;right:1.2rem;width:52px;height:52px}
+  #aiBtn i{font-size:1.2rem}
+}
 </style>
 </head>
 <body>
@@ -1563,6 +1629,305 @@ initCipherRain('cipherRainBg',{fs:14,bg:'rgba(0,0,8,.18)',a:.68});
     io.observe(el);
   });
 })();
+
+/* ============================================================
+   ARIA — AI Portfolio Assistant
+============================================================ */
+(function(){
+'use strict';
+
+/* ── Knowledge Base ─────────────────────────────────────── */
+const K={
+  owner:{
+    name:'Emmanuel Adutwum',
+    title:'ML Engineer · Quant Analyst · Algo Trader',
+    email:'emmanuelsoneuclid10@gmail.com',
+    github:'github.com/emmanueladutwum123',
+    location:'Ghana',
+    tagline:'Bridges quantitative finance, machine learning, and systems engineering.',
+    education:'BSc Computer Science · pursuing advanced ML & quant finance',
+    skills:'Python, C++, SQL (PostgreSQL), R, MT5/MQL5, scikit-learn, TensorFlow, pandas, NumPy, SciPy, Tableau, Git',
+    about:'Emmanuel builds end-to-end data pipelines, risk models, neural networks, and algorithmic trading systems. He specialises in quantitative analytics, computer vision, and cryptographic systems.'
+  },
+  projects:{
+    ml:[
+      {id:'neural-cpp',name:'Neural Network in C++',desc:'Built a full neural network from scratch in C++ — no ML libraries. Implements backpropagation, SGD with momentum, Xavier init, dropout, and real-time training visualisation.',tags:'C++, deep learning, backprop',link:'https://github.com/emmanueladutwum123/neural-net-cpp'},
+      {id:'housing',name:'California Housing Price Prediction',desc:'Ensemble regression (Random Forest + Gradient Boosting) on 20,000+ California districts. Full EDA, feature engineering, hyperparameter tuning, SHAP explainability — R²=0.87.',tags:'Python, scikit-learn, XGBoost, SHAP',link:'https://github.com/emmanueladutwum123/california-housing-price-prediction'},
+      {id:'soccer',name:'Soccer Match Outcome Prediction',desc:'XGBoost + neural network ensemble over 5 seasons of match data. Features: Elo ratings, form index, head-to-head history, expected goals. Tested across EPL, La Liga, Bundesliga.',tags:'Python, XGBoost, feature engineering',link:'https://github.com/emmanueladutwum123/soccer-prediction-master'},
+      {id:'ecommerce',name:'E-Commerce Customer Analytics',desc:'End-to-end analytics on 100k+ orders (Olist dataset). RFM segmentation, cohort retention, CLV estimation, churn prediction (ROC-AUC 0.84), and K-Means clustering — from SQL to Tableau.',tags:'PostgreSQL, Python, scikit-learn, Tableau',link:'https://github.com/emmanueladutwum123/ecommerce-customer-analytics',live:true},
+    ],
+    quant:[
+      {id:'financial-risk',name:'Financial Market Risk Analytics',desc:'Quantitative risk system for S&P 500 sector ETFs. Historical & parametric VaR (95%/99%), Cornish-Fisher expansion, Monte Carlo (10k paths), Sharpe/Sortino/Calmar ratios, macro regime analysis.',tags:'PostgreSQL, Python, yfinance, Tableau',link:'https://github.com/emmanueladutwum123/financial-risk-analytics',live:true},
+      {id:'black-scholes',name:'Black-Scholes Delta Hedging',desc:'Options pricing engine implementing Black-Scholes formula, real-time delta hedging simulation, P&L attribution, and Greeks (delta, gamma, theta, vega) — all computed in Python.',tags:'Python, NumPy, SciPy, options',link:'https://github.com/emmanueladutwum123/black-scholes-delta-hedging'},
+      {id:'m3alpha',name:'M3 Ultra Alpha Trading System',desc:'Live algorithmic trading system on MT5 (demo). Multi-timeframe confluence entry logic, 1.5% dynamic stop-loss, adaptive ATR trailing stop, Ichimoku + RSI + EMA signals, equity curve monitoring.',tags:'MQL5, MT5, algo trading',link:'#'},
+      {id:'montecarlo',name:'Monte Carlo Portfolio Simulator',desc:'Simulates 10,000 GBM paths for a multi-asset portfolio. Outputs terminal value distribution, probability of loss, VaR at 95%/99%, and stress scenarios.',tags:'Python, NumPy, SciPy',link:'#'},
+    ],
+    cv:[
+      {id:'face-recog',name:'Face Recognition System',desc:'Real-time face recognition using deep learning feature embeddings. Live webcam pipeline, identity matching, and detection overlay — built with OpenCV and a custom CNN.',tags:'Python, OpenCV, deep learning, CNN',link:'https://github.com/emmanueladutwum123/face-recognition-system'},
+      {id:'sign-lang',name:'Sign Language Interpreter',desc:'CNN-based classifier that translates ASL hand signs into text in real time. Custom dataset, data augmentation, 97% validation accuracy — built to assist accessibility.',tags:'Python, TensorFlow, CNN, OpenCV',link:'https://github.com/emmanueladutwum123/sign-language-interpreter'},
+      {id:'lane-detect',name:'Lane Detection System',desc:'Computer vision pipeline for autonomous vehicle lane detection. Uses HSV masking, Canny edge detection, and Hough transforms to reliably detect road markings in video.',tags:'Python, OpenCV, Hough transform',link:'https://github.com/emmanueladutwum123/lane-detection-system'},
+      {id:'medical-img',name:'Medical Image Segmentation',desc:'U-Net architecture for pixel-level segmentation of medical scans. Achieves high IoU on chest X-ray datasets — suitable for clinical decision support.',tags:'Python, TensorFlow, U-Net, medical AI',link:'https://github.com/emmanueladutwum123/medical-image-segmentation'},
+    ],
+    security:[
+      {id:'aes256',name:'AES-256 Live State Matrix',desc:'Real-time cryptographic visualisation of AES-256 encryption. Implements a full GF(2⁸) MixColumns, SubBytes with real S-box, ShiftRows, and AddRoundKey — rendered as an animated 4×4 matrix.',tags:'JavaScript, AES, cryptography',link:'#'},
+      {id:'blockchain-demo',name:'SHA-256 Blockchain',desc:'Browser-side blockchain with real SHA-256 hash chains computed via Web Crypto API. Each block shows prev_hash, data, nonce, and hash — verifiably linked.',tags:'JavaScript, SHA-256, Web Crypto API',link:'#'},
+    ],
+    swe:[
+      {id:'cpp-ds',name:'Data Structures & Algorithms (C++)',desc:'Hand-built C++ implementations of AVL trees, hash maps, graph algorithms (Dijkstra, BFS, DFS), dynamic programming, and sorting — all with time/space complexity analysis.',tags:'C++, algorithms, data structures',link:'https://github.com/emmanueladutwum123/data-structures-cpp'},
+      {id:'api-dash',name:'REST API Dashboard',desc:'Full-stack REST API with Node.js/Express backend, PostgreSQL persistence, JWT authentication, and a React dashboard frontend — deployed on Render.',tags:'Node.js, Express, PostgreSQL, React',link:'#'},
+    ]
+  }
+};
+
+/* ── Intents ─────────────────────────────────────────────── */
+const INTENTS=[
+  {id:'greeting',   kw:['hi','hello','hey','good','morning','afternoon','evening','sup','howdy','yo']},
+  {id:'about',      kw:['who','about','yourself','background','emmanuel','introduce','tell me']},
+  {id:'skills',     kw:['skill','tech','stack','language','tool','use','know','proficient','expert','good at']},
+  {id:'ml',         kw:['machine learning','ml','deep learning','neural','regression','classification','model','predict','sklearn','tensorflow','xgboost','random forest']},
+  {id:'quant',      kw:['quant','finance','risk','var','monte carlo','black scholes','option','trading','algo','mql5','mt5','sharpe','portfolio','hedge','volatility']},
+  {id:'cv',         kw:['computer vision','cv','image','face','sign language','lane','medical','detection','segmentation','cnn','opencv','unet']},
+  {id:'security',   kw:['crypto','security','aes','sha','blockchain','encrypt','cipher','hash','rsa','cybersecurity']},
+  {id:'swe',        kw:['software','engineer','fullstack','api','rest','node','react','c++','algorithm','data structure']},
+  {id:'ecommerce',  kw:['ecommerce','e-commerce','olist','rfm','cohort','churn','customer','clv','lifetime','retention']},
+  {id:'financial',  kw:['financial','market','sector','etf','spy','vix','fred','macro','regime','drawdown']},
+  {id:'contact',    kw:['contact','email','hire','reach','connect','linkedin','github','available','open to','looking for']},
+  {id:'education',  kw:['education','degree','university','study','graduate','course','certification','learning']},
+  {id:'best',       kw:['best','top','favourite','favorite','impressive','proud','recommend','highlight','showcase','coolest']},
+  {id:'live',       kw:['live','dashboard','tableau','deployed','demo','running','production']},
+  {id:'help',       kw:['help','what can','guide','show','explain','navigate','menu','option','tell me more']},
+];
+
+/* ── Response Builders ───────────────────────────────────── */
+function plink(p){
+  if(!p.link||p.link==='#') return `<span class="ai-plink">${p.name}</span>`;
+  return `<a class="ai-plink" href="${p.link}" target="_blank" rel="noopener">${p.name} ↗</a>`;
+}
+function allProjects(){return Object.values(K.projects).flat();}
+
+const RESPONSES={
+  greeting(){
+    return `Hey there! 👋 I'm <strong>Aria</strong>, Emmanuel's AI portfolio guide.<br><br>I know every project, skill, and experience in detail. Whether you're a recruiter, fellow developer, or just curious — I'm here to help you explore. What would you like to know?`;
+  },
+  about(){
+    const o=K.owner;
+    return `<strong>${o.name}</strong> is an ${o.title} based in ${o.location}.<br><br>${o.about}<br><br>He has ${allProjects().length}+ public projects spanning machine learning, quantitative finance, computer vision, and cryptographic systems.`;
+  },
+  skills(){
+    return `Emmanuel's core stack:<br><br><strong>Languages:</strong> Python · C++ · SQL (PostgreSQL) · R · MQL5<br><strong>ML/AI:</strong> scikit-learn · TensorFlow · XGBoost · OpenCV<br><strong>Data:</strong> pandas · NumPy · SciPy · Tableau<br><strong>Finance:</strong> MT5 · yfinance · FRED API · Options models<br><strong>Engineering:</strong> Node.js · React · REST APIs · Git`;
+  },
+  ml(){
+    const ps=K.projects.ml;
+    return `<strong>${ps.length} Machine Learning projects:</strong><br><br>`+ps.map(p=>`• ${plink(p)} — ${p.desc.split('.')[0]}.`).join('<br><br>');
+  },
+  quant(){
+    const ps=K.projects.quant;
+    return `<strong>${ps.length} Quantitative Finance projects:</strong><br><br>`+ps.map(p=>`• ${plink(p)} — ${p.desc.split('.')[0]}.`).join('<br><br>');
+  },
+  cv(){
+    const ps=K.projects.cv;
+    return `<strong>${ps.length} Computer Vision projects:</strong><br><br>`+ps.map(p=>`• ${plink(p)} — ${p.desc.split('.')[0]}.`).join('<br><br>');
+  },
+  security(){
+    return `Emmanuel built two live cryptographic demos on this very page:<br><br>• <strong>AES-256 State Matrix</strong> — real-time animation of each round: SubBytes (S-box), ShiftRows, MixColumns (GF(2⁸)), AddRoundKey.<br><br>• <strong>RSA-2048 Terminal</strong> — simulated key generation with Miller-Rabin primality testing, extended Euclidean d, and encryption/decryption.<br><br>• <strong>SHA-256 Blockchain</strong> — real hash chains computed in-browser via Web Crypto API, each block verifiably linked.<br><br>Scroll to the <em>Cryptographic Systems</em> section to see them live.`;
+  },
+  swe(){
+    const ps=K.projects.swe;
+    return `<strong>Software Engineering projects:</strong><br><br>`+ps.map(p=>`• ${plink(p)} — ${p.desc.split('.')[0]}.`).join('<br><br>');
+  },
+  ecommerce(){
+    const p=K.projects.ml.find(x=>x.id==='ecommerce');
+    return `${plink(p)} is a full analytics pipeline on 100,000+ orders from the Brazilian Olist dataset:<br><br>• <strong>RFM Segmentation</strong> — Champions segment = 8% of customers, 34% of GMV<br>• <strong>Cohort Retention</strong> — avg 4.2% retention after month 1 (reflects platform's transactional nature)<br>• <strong>Churn Model</strong> — Logistic Regression, ROC-AUC = 0.84, purchase frequency as top predictor<br>• <strong>K-Means Clustering</strong> (k=5) with log-normalised RFM features<br>• Live Tableau dashboard with all findings visualised.`;
+  },
+  financial(){
+    const p=K.projects.quant.find(x=>x.id==='financial-risk');
+    return `${plink(p)} is a quantitative risk system covering S&P 500 sector ETFs:<br><br>• <strong>VaR</strong> at 95% &amp; 99% — historical simulation + Cornish-Fisher parametric<br>• <strong>Monte Carlo</strong> — 10,000 GBM paths, P(loss &gt; 10% in 30 days) ≈ 12%<br>• <strong>Regime analysis</strong> — yield curve inversion → XLF/XLRE drawdown 6–9 months later<br>• <strong>XLK</strong> highest Sharpe (1.42) overall; worst Sortino in rate-rising regimes<br>• Live Tableau dashboard with interactive charts.`;
+  },
+  contact(){
+    const o=K.owner;
+    return `Emmanuel is open to roles in ML engineering, quant analytics, and data science.<br><br>📧 <a class="ai-plink" href="mailto:${o.email}">${o.email}</a><br>💻 <a class="ai-plink" href="https://${o.github}" target="_blank" rel="noopener">${o.github} ↗</a><br><br>Feel free to reach out — he responds quickly!`;
+  },
+  education(){
+    return `Emmanuel holds a <strong>BSc in Computer Science</strong> and is continuously advancing in ML and quantitative finance through self-directed projects and courses.<br><br>His work demonstrates applied knowledge across statistics, linear algebra, numerical methods, financial modelling, and systems programming.`;
+  },
+  best(){
+    return `My top picks from Emmanuel's portfolio:<br><br>🏆 ${plink(K.projects.quant[0])} — most technically deep; real risk models used by professionals<br>🔬 ${plink(K.projects.ml[3])} — demonstrates full data-to-insights pipeline with live dashboard<br>⚡ ${plink(K.projects.cv[0])} — rare skill: neural network from scratch in C++, no libraries<br>🔐 <strong>Cryptographic Systems</strong> — unique interactive AES/RSA/blockchain demos, live on this page`;
+  },
+  live(){
+    const ps=allProjects().filter(p=>p.live);
+    return `Emmanuel has <strong>${ps.length} live dashboards</strong> deployed on GitHub Pages:<br><br>`+ps.map(p=>`• ${plink(p)}`).join('<br>') + `<br><br>Click the links above to explore the interactive Tableau dashboards.`;
+  },
+  help(){
+    return `Here's what I can tell you about:<br><br>🧠 <strong>ML projects</strong> — classification, regression, NLP<br>📈 <strong>Quant finance</strong> — VaR, Monte Carlo, options, algo trading<br>👁️ <strong>Computer vision</strong> — detection, segmentation, real-time CV<br>🔐 <strong>Cryptography</strong> — AES-256, RSA, blockchain<br>💻 <strong>Skills & stack</strong> — languages, tools, frameworks<br>🎓 <strong>Background</strong> — education, experience<br>📬 <strong>Contact</strong> — how to reach Emmanuel<br><br>Just ask in plain English!`;
+  },
+  fallback(q){
+    const similar=allProjects().filter(p=>{
+      const t=(p.name+' '+p.tags+' '+p.desc).toLowerCase();
+      return q.toLowerCase().split(' ').some(w=>w.length>3&&t.includes(w));
+    }).slice(0,3);
+    if(similar.length){
+      return `I'm not sure I fully understood that, but here are some projects that might be relevant:<br><br>`+similar.map(p=>`• ${plink(p)} — ${p.desc.split('.')[0]}.`).join('<br><br>')+`<br><br>Type <em>help</em> to see everything I can tell you!`;
+    }
+    return `Hmm, I didn't quite catch that! Try asking about:<br><br>• A specific project or technology<br>• Emmanuel's background or skills<br>• Live dashboards or demos<br>• How to contact him<br><br>Type <em>help</em> for the full guide.`;
+  }
+};
+
+/* ── Chips per intent ───────────────────────────────────── */
+const FOLLOW_CHIPS={
+  greeting:  ['Tell me about Emmanuel','View ML projects','Quant finance work','How to contact'],
+  about:     ['See all skills','ML projects','Quant projects','Contact'],
+  skills:    ['ML projects','Quant finance','Computer vision','C++ projects'],
+  ml:        ['E-Commerce analytics','California Housing','Soccer prediction','Quant finance'],
+  quant:     ['Financial Risk details','Black-Scholes model','Algo trading system','ML projects'],
+  cv:        ['Face recognition','Sign language AI','Medical imaging','ML projects'],
+  security:  ['See cryptographic demos','ML projects','Contact Emmanuel'],
+  swe:       ['ML projects','Quant finance','Skills overview'],
+  ecommerce: ['Financial risk project','ML projects','Contact Emmanuel','Live dashboards'],
+  financial: ['Black-Scholes model','Monte Carlo details','ML projects','Contact Emmanuel'],
+  contact:   ['See best projects','Skills overview','Live dashboards'],
+  education: ['See all projects','Skills','Contact'],
+  best:      ['E-Commerce analytics','Financial risk','Computer vision','Contact Emmanuel'],
+  live:      ['E-Commerce dashboard','Financial risk dashboard','Contact Emmanuel'],
+  help:      ['ML projects','Quant finance','Computer vision','Best projects'],
+};
+const INIT_CHIPS=['🧠 ML projects','📈 Quant finance','👁️ Computer vision','🔐 Cryptography','🌟 Best work','📬 Contact'];
+
+/* ── DOM refs ──────────────────────────────────────────── */
+const btn   =document.getElementById('aiBtn');
+const panel =document.getElementById('aiPanel');
+const close =document.getElementById('aiClose');
+const msgs  =document.getElementById('aiMsgs');
+const chips =document.getElementById('aiChips');
+const inp   =document.getElementById('aiInput');
+const send  =document.getElementById('aiSendBtn');
+const badge =document.getElementById('aiBadge');
+if(!btn||!panel)return;
+
+/* ── State ─────────────────────────────────────────────── */
+let open=false;let welcomed=false;
+
+/* ── Helpers ──────────────────────────────────────────── */
+function togglePanel(forceOpen){
+  open= forceOpen!==undefined ? forceOpen : !open;
+  panel.classList.toggle('open',open);
+  if(open){badge.style.display='none';if(!welcomed){welcome();welcomed=true;} setTimeout(()=>inp.focus(),350);}
+}
+btn.addEventListener('click',()=>togglePanel());
+close.addEventListener('click',()=>togglePanel(false));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&open)togglePanel(false);});
+
+function addMsg(html,role='aria'){
+  const wrap=document.createElement('div');
+  wrap.className='ai-msg '+(role==='user'?'user':'bot');
+  const bubble=document.createElement('div');
+  bubble.className='ai-bubble';
+  if(role==='aria')bubble.innerHTML=html; else bubble.textContent=html;
+  wrap.appendChild(bubble);
+  msgs.appendChild(wrap);
+  msgs.scrollTop=msgs.scrollHeight;
+  return bubble;
+}
+
+function typingBubble(){
+  const wrap=document.createElement('div');
+  wrap.className='ai-msg bot';
+  wrap.innerHTML='<div class="ai-bubble ai-typing"><span></span><span></span><span></span></div>';
+  msgs.appendChild(wrap);
+  msgs.scrollTop=msgs.scrollHeight;
+  return wrap;
+}
+
+function setChips(arr){
+  chips.innerHTML=arr.map(c=>`<button class="ai-chip">${c}</button>`).join('');
+  chips.querySelectorAll('.ai-chip').forEach(b=>{
+    b.addEventListener('click',()=>processInput(b.textContent.replace(/^[^\w]+/,'').trim()));
+  });
+}
+
+/* ── Intent detection ─────────────────────────────────── */
+function detect(q){
+  const lq=q.toLowerCase();
+  for(const intent of INTENTS){
+    if(intent.kw.some(k=>lq.includes(k))) return intent.id;
+  }
+  return null;
+}
+
+function respond(intentId,q){
+  const fn=RESPONSES[intentId];
+  if(fn) return {html:fn(q), chips:FOLLOW_CHIPS[intentId]||INIT_CHIPS};
+  return {html:RESPONSES.fallback(q), chips:INIT_CHIPS};
+}
+
+/* ── Process input ─────────────────────────────────────── */
+function processInput(q){
+  q=q.trim();
+  if(!q)return;
+  addMsg(q,'user');
+  inp.value='';
+  chips.innerHTML='';
+  const typing=typingBubble();
+  const intentId=detect(q)||'fallback';
+  const {html,chips:nextChips}=respond(intentId,q);
+  setTimeout(()=>{
+    msgs.removeChild(typing);
+    addMsg(html,'aria');
+    setChips(nextChips);
+  }, 700+Math.random()*400);
+}
+
+send.addEventListener('click',()=>processInput(inp.value));
+inp.addEventListener('keydown',e=>{if(e.key==='Enter')processInput(inp.value);});
+
+/* ── Welcome sequence ─────────────────────────────────── */
+function welcome(){
+  addMsg(`Hey there! 👋 I'm <strong>Aria</strong>, Emmanuel's AI portfolio guide.<br><br>I know every project, skill, and achievement in detail. Ask me anything — or pick a topic below to get started!`,'aria');
+  setChips(INIT_CHIPS);
+}
+
+/* ── Auto-open with badge notification ───────────────────── */
+setTimeout(()=>{
+  if(!open){
+    badge.style.display='flex';
+    badge.textContent='1';
+  }
+},2500);
+
+setTimeout(()=>{
+  if(!open&&!welcomed){
+    togglePanel(true);
+  }
+},4500);
+
+})();
 </script>
+<!-- ═══════════════ ARIA AI ASSISTANT ═══════════════ -->
+<button id="aiBtn" aria-label="Open Aria AI Assistant">
+  <i class="fas fa-robot"></i>
+  <div class="aiBadge" id="aiBadge"></div>
+</button>
+
+<div id="aiPanel" role="dialog" aria-label="Aria Portfolio Assistant">
+  <div class="ai-hdr">
+    <div class="ai-av">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <circle cx="14" cy="14" r="13" stroke="rgba(0,212,255,.6)" stroke-width="1.5"/>
+        <circle cx="14" cy="10" r="4" fill="rgba(0,212,255,.9)"/>
+        <path d="M6 22c0-4.418 3.582-8 8-8s8 3.582 8 8" stroke="rgba(0,212,255,.9)" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="ai-hdr-info">
+      <div class="ai-hdr-name">Aria &nbsp;<span style="font-weight:400;opacity:.7;font-size:.78rem">· Portfolio Assistant</span></div>
+      <div class="ai-hdr-status"><span class="ai-dot"></span>Online · Knows all 23+ projects</div>
+    </div>
+    <button class="ai-close" id="aiClose" aria-label="Close">✕</button>
+  </div>
+  <div class="ai-msgs" id="aiMsgs"></div>
+  <div class="ai-chips" id="aiChips"></div>
+  <div class="ai-footer">
+    <input class="ai-inp" id="aiInput" placeholder="Ask me about Emmanuel's work…" autocomplete="off" maxlength="200"/>
+    <button class="ai-send" id="aiSendBtn" aria-label="Send"><i class="fas fa-paper-plane"></i></button>
+  </div>
+</div>
 </body>
 </html>
