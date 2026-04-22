@@ -974,6 +974,35 @@ footer p{font-family:var(--mono);font-size:.68rem;color:var(--text3)}
 </div>
 </footer>
 
+<!-- ═══════════════ ARIA AI ASSISTANT ═══════════════ -->
+<button id="aiBtn" aria-label="Open Aria AI Assistant">
+  <i class="fas fa-robot"></i>
+  <div class="aiBadge" id="aiBadge"></div>
+</button>
+
+<div id="aiPanel" role="dialog" aria-label="Aria Portfolio Assistant">
+  <div class="ai-hdr">
+    <div class="ai-av">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <circle cx="14" cy="14" r="13" stroke="rgba(0,212,255,.6)" stroke-width="1.5"/>
+        <circle cx="14" cy="10" r="4" fill="rgba(0,212,255,.9)"/>
+        <path d="M6 22c0-4.418 3.582-8 8-8s8 3.582 8 8" stroke="rgba(0,212,255,.9)" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="ai-hdr-info">
+      <div class="ai-hdr-name">Aria &nbsp;<span style="font-weight:400;opacity:.7;font-size:.78rem">· Portfolio Assistant</span></div>
+      <div class="ai-hdr-status"><span class="ai-dot"></span>Online · Knows all 23+ projects</div>
+    </div>
+    <button class="ai-close" id="aiClose" aria-label="Close">✕</button>
+  </div>
+  <div class="ai-msgs" id="aiMsgs"></div>
+  <div class="ai-chips" id="aiChips"></div>
+  <div class="ai-footer">
+    <input class="ai-inp" id="aiInput" placeholder="Ask me about Emmanuel's work…" autocomplete="off" maxlength="200"/>
+    <button class="ai-send" id="aiSendBtn" aria-label="Send"><i class="fas fa-paper-plane"></i></button>
+  </div>
+</div>
+
 <script>
 /* ============================================================
    CURSOR
@@ -1635,12 +1664,6 @@ initCipherRain('cipherRainBg',{fs:14,bg:'rgba(0,0,8,.18)',a:.68});
 ============================================================ */
 (function(){
 'use strict';
-/* Elements are rendered after </script>, so defer until DOM is ready */
-if(document.readyState==='loading'){
-  document.addEventListener('DOMContentLoaded',init);
-}else{
-  init();
-}
 function init(){
 
 /* ── Knowledge Base ─────────────────────────────────────── */
@@ -1907,35 +1930,8 @@ setTimeout(()=>{
 },4500);
 
 } /* end init */
+init();
 })();
 </script>
-<!-- ═══════════════ ARIA AI ASSISTANT ═══════════════ -->
-<button id="aiBtn" aria-label="Open Aria AI Assistant">
-  <i class="fas fa-robot"></i>
-  <div class="aiBadge" id="aiBadge"></div>
-</button>
-
-<div id="aiPanel" role="dialog" aria-label="Aria Portfolio Assistant">
-  <div class="ai-hdr">
-    <div class="ai-av">
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <circle cx="14" cy="14" r="13" stroke="rgba(0,212,255,.6)" stroke-width="1.5"/>
-        <circle cx="14" cy="10" r="4" fill="rgba(0,212,255,.9)"/>
-        <path d="M6 22c0-4.418 3.582-8 8-8s8 3.582 8 8" stroke="rgba(0,212,255,.9)" stroke-width="1.5" stroke-linecap="round"/>
-      </svg>
-    </div>
-    <div class="ai-hdr-info">
-      <div class="ai-hdr-name">Aria &nbsp;<span style="font-weight:400;opacity:.7;font-size:.78rem">· Portfolio Assistant</span></div>
-      <div class="ai-hdr-status"><span class="ai-dot"></span>Online · Knows all 23+ projects</div>
-    </div>
-    <button class="ai-close" id="aiClose" aria-label="Close">✕</button>
-  </div>
-  <div class="ai-msgs" id="aiMsgs"></div>
-  <div class="ai-chips" id="aiChips"></div>
-  <div class="ai-footer">
-    <input class="ai-inp" id="aiInput" placeholder="Ask me about Emmanuel's work…" autocomplete="off" maxlength="200"/>
-    <button class="ai-send" id="aiSendBtn" aria-label="Send"><i class="fas fa-paper-plane"></i></button>
-  </div>
-</div>
 </body>
 </html>
