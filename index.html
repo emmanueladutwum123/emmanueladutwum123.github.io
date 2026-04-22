@@ -1711,6 +1711,7 @@ const K={
 
 /* ── Intents ─────────────────────────────────────────────── */
 const INTENTS=[
+  {id:'thanks',     kw:['thank','thanks','thank you','appreciate','cheers','wonderful']},
   {id:'greeting',   kw:['hi','hello','hey','good','morning','afternoon','evening','sup','howdy','yo']},
   {id:'about',      kw:['who','about','yourself','background','emmanuel','introduce','tell me']},
   {id:'skills',     kw:['skill','tech','stack','language','tool','use','know','proficient','expert','good at']},
@@ -1726,7 +1727,6 @@ const INTENTS=[
   {id:'best',       kw:['best','top','favourite','favorite','impressive','proud','recommend','highlight','showcase','coolest']},
   {id:'live',       kw:['live','dashboard','tableau','deployed','demo','running','production']},
   {id:'help',       kw:['help','what can','guide','show','explain','navigate','menu','option','tell me more']},
-  {id:'thanks',     kw:['thank','thanks','thank you','appreciate','cheers','awesome','great','perfect','helpful','wonderful']},
 ];
 
 /* ── Response Builders ───────────────────────────────────── */
@@ -1882,8 +1882,12 @@ function setChips(arr){
 /* ── Intent detection ─────────────────────────────────── */
 function detect(q){
   const lq=q.toLowerCase();
+  const words=lq.split(/\W+/);
   for(const intent of INTENTS){
-    if(intent.kw.some(k=>lq.includes(k))) return intent.id;
+    if(intent.kw.some(k=>{
+      if(k.includes(' ')) return lq.includes(k); // phrase match
+      return words.includes(k);                   // whole-word match
+    })) return intent.id;
   }
   return null;
 }
