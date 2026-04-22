@@ -1671,7 +1671,7 @@ const K={
   owner:{
     name:'Emmanuel Adutwum',
     title:'ML Engineer · Software Engineer · Quant Developer & Researcher · Algo Trader',
-    email:'emmanuelsoneuclid10@gmail.com',
+    email:'emmanueladutwum900@yahoo.com',
     github:'github.com/emmanueladutwum123',
     location:'USA',
     tagline:'Bridges quantitative finance, machine learning, and systems engineering.',
@@ -1726,6 +1726,7 @@ const INTENTS=[
   {id:'best',       kw:['best','top','favourite','favorite','impressive','proud','recommend','highlight','showcase','coolest']},
   {id:'live',       kw:['live','dashboard','tableau','deployed','demo','running','production']},
   {id:'help',       kw:['help','what can','guide','show','explain','navigate','menu','option','tell me more']},
+  {id:'thanks',     kw:['thank','thanks','thank you','appreciate','cheers','awesome','great','perfect','helpful','wonderful']},
 ];
 
 /* ── Response Builders ───────────────────────────────────── */
@@ -1787,6 +1788,9 @@ const RESPONSES={
     const ps=allProjects().filter(p=>p.live);
     return `Emmanuel has <strong>${ps.length} live dashboards</strong> deployed on GitHub Pages:<br><br>`+ps.map(p=>`• ${plink(p)}`).join('<br>') + `<br><br>Click the links above to explore the interactive Tableau dashboards.`;
   },
+  thanks(){
+    return `You're welcome! 😊 Happy to help. Is there anything else you'd like to know about Emmanuel's work or projects?`;
+  },
   help(){
     return `Here's what I can tell you about:<br><br>🧠 <strong>ML projects</strong> — classification, regression, NLP<br>📈 <strong>Quant finance</strong> — VaR, Monte Carlo, options, algo trading<br>👁️ <strong>Computer vision</strong> — detection, segmentation, real-time CV<br>🔐 <strong>Cryptography</strong> — AES-256, RSA, blockchain<br>💻 <strong>Skills & stack</strong> — languages, tools, frameworks<br>🎓 <strong>Background</strong> — education, experience<br>📬 <strong>Contact</strong> — how to reach Emmanuel<br><br>Just ask in plain English!`;
   },
@@ -1819,6 +1823,7 @@ const FOLLOW_CHIPS={
   best:      ['E-Commerce analytics','Financial risk','Computer vision','Contact Emmanuel'],
   live:      ['E-Commerce dashboard','Financial risk dashboard','Contact Emmanuel'],
   help:      ['ML projects','Quant finance','Computer vision','Best projects'],
+  thanks:    ['🌟 Best work','📈 Quant finance','🧠 ML projects','📬 Contact'],
 };
 const INIT_CHIPS=['🧠 ML projects','📈 Quant finance','👁️ Computer vision','🔐 Cryptography','🌟 Best work','📬 Contact'];
 
