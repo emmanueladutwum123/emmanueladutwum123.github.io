@@ -441,7 +441,7 @@ footer p{font-family:var(--mono);font-size:.68rem;color:var(--text3)}
     <a href="#contact" class="btn-g">Get In Touch</a>
   </div>
   <div class="hero-stats">
-    <div><div class="stat-n">23+</div><div class="stat-l">Projects Built</div></div>
+    <div><div class="stat-n">25+</div><div class="stat-l">Projects Built</div></div>
     <div><div class="stat-n">3</div><div class="stat-l">Internships</div></div>
     <div><div class="stat-n">910</div><div class="stat-l">GRE Math /990</div></div>
     <div><div class="stat-n">3.95</div><div class="stat-l">Concentration GPA</div></div>
@@ -867,6 +867,38 @@ footer p{font-family:var(--mono);font-size:.68rem;color:var(--text3)}
       <p class="cd">Complete options pricing and delta-hedging engine — Black-Scholes analytical solution, full Greeks (Delta, Gamma, Theta, Vega, Rho), implied volatility surface construction via Newton-Raphson IV solver, daily P&amp;L attribution, and replication portfolio tracking.</p>
       <div class="ctags"><span class="ctag">Python</span><span class="ctag">Black-Scholes</span><span class="ctag">NumPy</span><span class="ctag">SciPy</span><span class="ctag">Greeks</span></div>
       <div class="cl"><a href="https://github.com/emmanueladutwum123/black-scholes-delta-hedging" target="_blank"><i class="fab fa-github"></i></a></div>
+    </div>
+  </div>
+
+  <div class="pc" data-f="quant">
+    <div class="ct" style="background:linear-gradient(135deg,#060f0a,#071409)">
+      <div class="ctg" style="background:radial-gradient(circle at 50% 120%,rgba(0,255,136,.13),transparent 60%)"></div>
+      <i class="fas fa-exchange-alt ico" style="color:#00ff88"></i>
+      <span class="nb">NEW</span>
+      <span class="cat bg">OCAML / SYSTEMS</span>
+    </div>
+    <div class="cc">
+      <h3>OCaml Limit Order Book</h3>
+      <div class="cms"><span class="cm">Price-Time Priority</span><span class="cm">Matching Engine</span><span class="cm">10 Tests Passing</span></div>
+      <p class="cd">Functional limit order book engine in pure OCaml — price-time priority matching with BidMap/AskMap balanced BSTs using custom comparators (highest bid first, lowest ask first). Supports limit orders, market orders, partial fills, multi-level sweeps, and cancellations. Interactive REPL with live depth display.</p>
+      <div class="ctags"><span class="ctag">OCaml</span><span class="ctag">Dune</span><span class="ctag">Alcotest</span><span class="ctag">Functional</span><span class="ctag">Map.Make</span></div>
+      <div class="cl"><a href="https://github.com/emmanueladutwum123/ocaml-order-book" target="_blank"><i class="fab fa-github"></i></a></div>
+    </div>
+  </div>
+
+  <div class="pc" data-f="quant">
+    <div class="ct" style="background:linear-gradient(135deg,#090610,#0d0818)">
+      <div class="ctg" style="background:radial-gradient(circle at 50% 120%,rgba(123,47,255,.15),transparent 60%)"></div>
+      <i class="fas fa-dice ico" style="color:#b07cff"></i>
+      <span class="nb">NEW</span>
+      <span class="cat bp">OCAML / QUANT</span>
+    </div>
+    <div class="cc">
+      <h3>OCaml Probability &amp; Options Pricing</h3>
+      <div class="cms"><span class="cm p">Monte Carlo</span><span class="cm p">Black-Scholes</span><span class="cm p">12 Tests Passing</span></div>
+      <p class="cd">OCaml library of probability puzzles and quantitative finance models — every puzzle returns (analytical, MC) pairs that converge to &lt;0.5%. Prices options via Black-Scholes, CRR binomial trees (500 steps), and Monte Carlo (100k paths). Full Greeks via finite differences, implied vol via Newton-Raphson, and Avellaneda-Stoikov optimal market-making vs naive fixed-spread.</p>
+      <div class="ctags"><span class="ctag">OCaml</span><span class="ctag">Black-Scholes</span><span class="ctag">Monte Carlo</span><span class="ctag">Greeks</span><span class="ctag">Avellaneda-Stoikov</span></div>
+      <div class="cl"><a href="https://github.com/emmanueladutwum123/ocaml-probability-trading" target="_blank"><i class="fab fa-github"></i></a></div>
     </div>
   </div>
 
@@ -1691,6 +1723,8 @@ const K={
       {id:'black-scholes',name:'Black-Scholes Delta Hedging',desc:'Options pricing engine implementing Black-Scholes formula, real-time delta hedging simulation, P&L attribution, and Greeks (delta, gamma, theta, vega) — all computed in Python.',tags:'Python, NumPy, SciPy, options',link:'https://github.com/emmanueladutwum123/black-scholes-delta-hedging'},
       {id:'m3alpha',name:'M3 Ultra Alpha Trading System',desc:'Live algorithmic trading system on MT5 (demo). Multi-timeframe confluence entry logic, 1.5% dynamic stop-loss, adaptive ATR trailing stop, Ichimoku + RSI + EMA signals, equity curve monitoring.',tags:'MQL5, MT5, algo trading',link:'#'},
       {id:'montecarlo',name:'Monte Carlo Portfolio Simulator',desc:'Simulates 10,000 GBM paths for a multi-asset portfolio. Outputs terminal value distribution, probability of loss, VaR at 95%/99%, and stress scenarios.',tags:'Python, NumPy, SciPy',link:'#'},
+      {id:'ocaml-order-book',name:'OCaml Limit Order Book',desc:'Functional limit order book engine in pure OCaml. Price-time priority matching with custom BST comparators, supports limit/market orders, partial fills, multi-level sweeps, cancellations, and an interactive REPL. 10 Alcotest tests passing on CI.',tags:'OCaml, Dune, Alcotest, functional programming',link:'https://github.com/emmanueladutwum123/ocaml-order-book'},
+      {id:'ocaml-probability',name:'OCaml Probability & Options Pricing',desc:'OCaml library of probability puzzles and quant finance models. Every puzzle returns (analytical, MC) pairs converging to <0.5%. Black-Scholes, CRR binomial trees, Monte Carlo (100k paths), full Greeks, Newton-Raphson implied vol, and Avellaneda-Stoikov market-making. 12 tests passing.',tags:'OCaml, Black-Scholes, Monte Carlo, Greeks, Dune',link:'https://github.com/emmanueladutwum123/ocaml-probability-trading'},
     ],
     cv:[
       {id:'face-recog',name:'Face Recognition System',desc:'Real-time face recognition using deep learning feature embeddings. Live webcam pipeline, identity matching, and detection overlay — built with OpenCV and a custom CNN.',tags:'Python, OpenCV, deep learning, CNN',link:'https://github.com/emmanueladutwum123/face-recognition-system'},
@@ -1716,7 +1750,7 @@ const INTENTS=[
   {id:'about',      kw:['who','about','yourself','background','emmanuel','introduce','tell me']},
   {id:'skills',     kw:['skill','tech','stack','language','tool','use','know','proficient','expert','good at']},
   {id:'ml',         kw:['machine learning','ml','deep learning','neural','regression','classification','model','predict','sklearn','tensorflow','xgboost','random forest']},
-  {id:'quant',      kw:['quant','finance','risk','var','monte carlo','black scholes','option','trading','algo','mql5','mt5','sharpe','portfolio','hedge','volatility']},
+  {id:'quant',      kw:['quant','finance','risk','var','monte carlo','black scholes','option','trading','algo','mql5','mt5','sharpe','portfolio','hedge','volatility','ocaml','order book','probability','matching engine','greeks','avellaneda']},
   {id:'cv',         kw:['computer vision','cv','image','face','sign language','lane','medical','detection','segmentation','cnn','opencv','unet']},
   {id:'security',   kw:['crypto','security','aes','sha','blockchain','encrypt','cipher','hash','rsa','cybersecurity']},
   {id:'swe',        kw:['software','engineer','fullstack','api','rest','node','react','c++','algorithm','data structure']},
@@ -1745,7 +1779,7 @@ const RESPONSES={
     return `<strong>${o.name}</strong> is an ${o.title} based in ${o.location}.<br><br>${o.about}<br><br>He has ${allProjects().length}+ public projects spanning machine learning, quantitative finance, computer vision, and cryptographic systems.`;
   },
   skills(){
-    return `Emmanuel's core stack:<br><br><strong>Languages:</strong> Python · C++ · SQL (PostgreSQL) · R · MQL5<br><strong>ML/AI:</strong> scikit-learn · TensorFlow · XGBoost · OpenCV<br><strong>Data:</strong> pandas · NumPy · SciPy · Tableau<br><strong>Finance:</strong> MT5 · yfinance · FRED API · Options models<br><strong>Engineering:</strong> Node.js · React · REST APIs · Git`;
+    return `Emmanuel's core stack:<br><br><strong>Languages:</strong> Python · C++ · OCaml · SQL (PostgreSQL) · R · MQL5<br><strong>ML/AI:</strong> scikit-learn · TensorFlow · XGBoost · OpenCV<br><strong>Data:</strong> pandas · NumPy · SciPy · Tableau<br><strong>Finance:</strong> MT5 · yfinance · FRED API · Options models · Black-Scholes · Avellaneda-Stoikov<br><strong>Engineering:</strong> Node.js · React · REST APIs · Git · Dune · Alcotest`;
   },
   ml(){
     const ps=K.projects.ml;
