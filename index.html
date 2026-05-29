@@ -703,11 +703,11 @@ footer p{font-family:var(--mono);font-size:.68rem;color:var(--text3)}
       <span class="cat bc">ML / REGRESSION</span>
     </div>
     <div class="cc">
-      <h3>California Housing Price Prediction</h3>
-      <div class="cms"><span class="cm b">R² 0.788 SVR</span><span class="cm b">Bayesian Opt.</span><span class="cm b">6 Models</span></div>
-      <p class="cd">SVR with advanced feature engineering and Bayesian hyperparameter optimisation achieving R² 0.788, outperforming Linear Regression (0.61), Decision Tree (0.68), and Random Forest (0.74). Pipeline includes log-transform, interaction terms, and geographic clustering.</p>
-      <div class="ctags"><span class="ctag">Python</span><span class="ctag">Scikit-learn</span><span class="ctag">SVR</span><span class="ctag">XGBoost</span><span class="ctag">Bayesian Opt.</span></div>
-      <div class="cl"><a href="https://github.com/emmanueladutwum123/california-housing-price-prediction" target="_blank"><i class="fab fa-github"></i></a></div>
+      <h3>Optimised SVR for California Housing Price Prediction</h3>
+      <div class="cms"><span class="cm b">R² 0.723 SVR</span><span class="cm b">RandomizedSearchCV</span><span class="cm b">10 Models</span></div>
+      <p class="cd">Optimised SVR-RBF achieving R² 0.723 on California Housing — a +0.123 absolute gain over the previously reported SVR baseline (Preethi et al., 2025). 4-stage ablation study shows scaling alone contributes +0.744 in R². Leakage-safe scikit-learn Pipeline with 10 domain-engineered features and ensemble feature selection. Submitted to Springer Nature.</p>
+      <div class="ctags"><span class="ctag">Python</span><span class="ctag">Scikit-learn</span><span class="ctag">SVR</span><span class="ctag">Ablation Study</span><span class="ctag">Feature Engineering</span></div>
+      <div class="cl"><a href="https://github.com/emmanueladutwum123/svr-california-housing" target="_blank"><i class="fab fa-github"></i></a></div>
     </div>
   </div>
 
@@ -966,7 +966,7 @@ footer p{font-family:var(--mono);font-size:.68rem;color:var(--text3)}
 <div class="container">
 <div class="sh rv"><div class="lbl">04. Publications</div><h2>Research<span class="dot">.</span></h2><div class="sh-line"></div></div>
 <div class="pl">
-  <div class="pi rv"><h3>SVR with Optimized Feature Engineering for Housing Price Prediction</h3><div class="pv">Research in Progress · Targeting SN Computer Science / IEEE · 2025–2026</div><p>SVR with feature engineering and Bayesian optimization achieving R² 0.788, outperforming LR (0.61), DT (0.68), RF (0.74).</p></div>
+  <div class="pi rv"><h3>Optimised Support Vector Regression for California Housing Price Prediction: The Critical Role of Feature Engineering and Hyperparameter Tuning</h3><div class="pv">Submitted · Springer Nature SN Computer Science · 2026</div><p>Demonstrates that SVR's previously reported R² = 0.60 (Preethi et al., 2025) reflects missing preprocessing, not algorithmic limits. Proper scaling, 10 domain-engineered features, and RandomizedSearchCV raise SVR to R² = 0.723 — a 20% relative gain. 4-stage ablation study; 10-fold CV mean R² = 0.703 (95% CI [0.630, 0.775]).</p><a href="https://github.com/emmanueladutwum123/svr-california-housing" target="_blank" class="plink"><i class="fab fa-github"></i> View Repository →</a></div>
   <div class="pi rv"><h3>Equilateral Triangle Geometry Problem (PME #1131)</h3><div class="pv">Pi Mu Epsilon Journal · 2025</div><p>Proved AC² = AD² + AB² in convex quadrilateral. Officially recognized and published.</p><a href="https://pme-math.org/wp-content/uploads/2025/10/PME2025_Fall_NewProbSolns.pdf" target="_blank" class="plink"><i class="fas fa-file-pdf"></i> View Publication →</a></div>
   <div class="pi rv"><h3>Continued Fractions, a-Fibonacci Numbers, and the Middle b-Noise (PME #1385)</h3><div class="pv">Pi Mu Epsilon Journal · 2022</div><p>Convergence properties of generalized Fibonacci sequences. Novel proof via contraction mapping.</p><a href="https://pme-math.org/wp-content/uploads/2023/08/PME2022_Fall_NewProbSolns.pdf" target="_blank" class="plink"><i class="fas fa-file-pdf"></i> View Publication →</a></div>
 </div>
