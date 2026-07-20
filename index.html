@@ -441,7 +441,7 @@ footer p{font-family:var(--mono);font-size:.68rem;color:var(--text3)}
     <a href="#contact" class="btn-g">Get In Touch</a>
   </div>
   <div class="hero-stats">
-    <div><div class="stat-n">23+</div><div class="stat-l">Projects Built</div></div>
+    <div><div class="stat-n">24+</div><div class="stat-l">Projects Built</div></div>
     <div><div class="stat-n">3</div><div class="stat-l">Internships</div></div>
     <div><div class="stat-n">910</div><div class="stat-l">GRE Math /990</div></div>
     <div><div class="stat-n">3.95</div><div class="stat-l">Concentration GPA</div></div>
@@ -460,7 +460,7 @@ footer p{font-family:var(--mono);font-size:.68rem;color:var(--text3)}
     <div class="photo-frame"></div>
   </div>
   <div class="rv rv-d2">
-    <p>I'm a junior at <span class="hl">Soka University of America</span> studying Computer Science, Economics, and Mathematics, concurrently completing an <span class="hl">MIT MicroMasters</span> in Statistics &amp; Data Science.</p>
+    <p>I'm a senior at <span class="hl">Soka University of America</span> studying Computer Science, Economics, and Mathematics, concurrently completing an <span class="hl">MIT MicroMasters</span> in Statistics &amp; Data Science.</p>
     <p>I build ML systems from the ground up — custom C++ neural network engines, transformers from scratch, computer vision pipelines with C++ inference, and NLP systems. My live trading bot runs across 22 instruments on AWS. My derivatives platform serves 250+ Ghanaian farmers. I was awarded a <span class="hl">$25,000 research grant</span> for a cybersecurity cluster at Bletchley Park, Royal Holloway, Bloomberg, and the Bank of England.</p>
     <p>My current focus: <span class="hl-c">deep learning research engineering</span> — understanding every layer of the stack from CUDA kernels to production APIs. Open to high-impact research and engineering roles where rigorous systems meet real-world scale.</p>
     <div class="term">
@@ -498,7 +498,7 @@ footer p{font-family:var(--mono);font-size:.68rem;color:var(--text3)}
   <div class="exp-i rv">
     <div class="exp-date">Jan 2025 — Present</div>
     <div class="exp-title">Quantitative Developer &amp; Algorithmic Trader</div>
-    <div class="exp-co">Live Trading System · Multi-Asset, Multi-Broker</div>
+    <div class="exp-co">Independent / Self-Directed · Multi-Asset, Multi-Broker</div>
     <ul class="exp-ul">
       <li>Production trading bot across 22 instruments (forex, crypto, commodities, indices) via OANDA &amp; Binance APIs on AWS EC2</li>
       <li>HMM-based regime detection (4-state), 29-feature ML signal engine, fractional Kelly sizing with Shannon entropy scaling</li>
@@ -513,16 +513,6 @@ footer p{font-family:var(--mono);font-size:.68rem;color:var(--text3)}
       <li>Automated ingestion of 10,000+ monthly transactions with 99.9% integrity using Python Flask microservices</li>
       <li>Anomaly detection models cutting false positives from 40% to 12% while maintaining 95% detection rate</li>
       <li>ETL pipelines and Tableau dashboards reducing time-to-insight by 60%</li>
-    </ul>
-  </div>
-  <div class="exp-i rv">
-    <div class="exp-date">Sep 2024 — Present</div>
-    <div class="exp-title">Quantitative Developer &amp; ML Engineer</div>
-    <div class="exp-co">Ghana Cocoa Derivatives Research Lab · <a href="https://emmanueladutwum123.github.io/ghana-cocoa-hedging/" style="color:var(--c)">Live App ↗</a></div>
-    <ul class="exp-ul">
-      <li>Extended Black-Scholes with weather-adjusted stochastic volatility for commodity derivatives pricing</li>
-      <li>Ensemble ML models (XGBoost, RF, SVR); weather explains 38% of price variance</li>
-      <li>Monte Carlo engine (10K+ paths, &lt;2s) with NLP assistant; 250+ active users</li>
     </ul>
   </div>
   <div class="exp-i rv">
@@ -607,15 +597,34 @@ footer p{font-family:var(--mono);font-size:.68rem;color:var(--text3)}
 <div class="container">
 <div class="sh rv"><div class="lbl">03. Projects</div><h2>What I've Built<span class="dot">.</span></h2><div class="sh-line"></div></div>
 <div class="pf">
-  <button class="fb act" data-f="all">All</button>
+  <button class="fb act" data-f="all">All 24+</button>
   <button class="fb" data-f="ml">ML / Deep Learning</button>
   <button class="fb" data-f="cv">Computer Vision</button>
   <button class="fb" data-f="nlp">NLP</button>
   <button class="fb" data-f="infosec">InfoSec / SWE</button>
   <button class="fb" data-f="quant">Quant Finance</button>
   <button class="fb" data-f="data">Data Analytics</button>
+  <button class="fb" data-f="flagship">★ Flagship</button>
 </div>
+<p style="font-family:var(--mono);font-size:.78rem;color:var(--text2);margin:-2.5rem 0 3rem;max-width:640px">Click <strong style="color:var(--text)">★ Flagship</strong> for the 4 I'd point you to first — each with a public repo, a real test suite, and honest documentation of what's actually verified vs. simplified.</p>
 <div class="pg" id="pg">
+
+  <!-- ── FLAGSHIP: TAPEBENCH ── -->
+  <div class="pc" data-f="quant infosec flagship">
+    <div class="ct" style="background:linear-gradient(135deg,#050a12,#081018)">
+      <div class="ctg" style="background:radial-gradient(circle at 50% 120%,rgba(0,212,255,.14),transparent 60%)"></div>
+      <i class="fas fa-server ico" style="color:#00d4ff"></i>
+      <span class="nb">★ FLAGSHIP</span>
+      <span class="cat bc">C++20 / SYSTEMS</span>
+    </div>
+    <div class="cc">
+      <h3>tapebench — C++20 Backtesting Engine</h3>
+      <div class="cms"><span class="cm b">3.1x Faster Dispatch</span><span class="cm b">3.8x Parallel Speedup</span><span class="cm b">TSan-Clean</span></div>
+      <p class="cd">Event-driven backtesting engine with a structurally-enforced no-look-ahead execution model — a strategy's signal from bar N's close can only fill at bar N+1's open, by construction, not convention. Zero-overhead strategy dispatch via CRTP (measured ~3.1x faster than virtual dispatch, isolated so the comparison is fair), a zero-copy memory-mapped tick pipeline (verified 0 heap allocations, not assumed), average-cost position accounting handling the tricky reversal-fill case, and a hand-built thread pool for parallel parameter-grid backtesting (~3.8x wall-clock speedup, proven byte-identical to sequential — not just usually correct). 74 tests, sanitizer-clean CI across gcc/clang plus a dedicated ThreadSanitizer job, real captured benchmark numbers, and a DESIGN.md documenting every real bug the process caught.</p>
+      <div class="ctags"><span class="ctag">C++20</span><span class="ctag">CMake</span><span class="ctag">GoogleTest</span><span class="ctag">Google Benchmark</span><span class="ctag">GitHub Actions</span></div>
+      <div class="cl"><a href="https://github.com/emmanueladutwum123/tapebench" target="_blank"><i class="fab fa-github"></i></a></div>
+    </div>
+  </div>
 
   <!-- ── ML / DEEP LEARNING ── -->
   <div class="pc" data-f="ml">
@@ -847,16 +856,17 @@ footer p{font-family:var(--mono);font-size:.68rem;color:var(--text3)}
     </div>
   </div>
 
-  <div class="pc" data-f="quant">
+  <div class="pc" data-f="quant flagship">
     <div class="ct" style="background:linear-gradient(135deg,#080f08,#0a1810)">
       <div class="ctg" style="background:radial-gradient(circle at 50% 120%,rgba(0,255,136,.08),transparent 60%)"></div>
       <i class="fas fa-seedling ico" style="color:#00ff88"></i>
+      <span class="nb">★ FLAGSHIP</span>
       <span class="cat bg">QUANT / FULLSTACK</span>
     </div>
     <div class="cc">
       <h3>Ghana Cocoa Derivatives Platform</h3>
-      <div class="cms"><span class="cm">250+ Users</span><span class="cm">10K MC Paths</span><span class="cm">70% Faster</span></div>
-      <p class="cd">Full-stack derivatives pricing platform — Black-Scholes with weather-adjusted stochastic vol, Monte Carlo (&lt;2s), ensemble ML (XGBoost, RF, SVR), NLP assistant for Ghanaian cocoa cooperatives.</p>
+      <div class="cms"><span class="cm">250+ Active Users</span><span class="cm">10K MC Paths, &lt;2s</span><span class="cm">Self-Directed</span></div>
+      <p class="cd">Self-directed, full-stack derivatives pricing platform, live in production for Ghanaian cocoa cooperatives since Sep 2024 — not a classroom project. Extends Black-Scholes with weather-adjusted stochastic volatility (weather explains 38% of price variance in the fitted ensemble), a Monte Carlo engine (10K+ paths in under 2s), an ensemble ML layer (XGBoost, Random Forest, SVR), and an NLP assistant for non-technical users. Grew to 250+ active users organically.</p>
       <div class="ctags"><span class="ctag">Black-Scholes</span><span class="ctag">Monte Carlo</span><span class="ctag">XGBoost</span><span class="ctag">Flask</span></div>
       <div class="cl">
         <a href="https://emmanueladutwum123.github.io/ghana-cocoa-hedging/" target="_blank"><i class="fas fa-external-link-alt"></i></a>
@@ -865,17 +875,17 @@ footer p{font-family:var(--mono);font-size:.68rem;color:var(--text3)}
     </div>
   </div>
 
-  <div class="pc" data-f="quant">
+  <div class="pc" data-f="quant flagship">
     <div class="ct" style="background:linear-gradient(135deg,#080c0f,#0a1318)">
       <div class="ctg" style="background:radial-gradient(circle at 50% 120%,rgba(255,183,0,.08),transparent 60%)"></div>
       <i class="fas fa-bolt ico" style="color:#ffb700"></i>
-      <span class="nb">NEW</span>
+      <span class="nb">★ FLAGSHIP</span>
       <span class="cat by">QUANT / HFT</span>
     </div>
     <div class="cc">
       <h3>HFT Market Making Simulator</h3>
-      <div class="cms"><span class="cm y">Sharpe 94.8 vs. 4.3</span><span class="cm y">6x Higher P&amp;L</span><span class="cm y">31 pytest Tests</span></div>
-      <p class="cd">Price-time-priority limit order book with heap-based matching (O(log n), lazy-deletion cancellation) and a synthetic market combining Brownian-motion price dynamics with Poisson order-arrival flow. Avellaneda-Stoikov optimal quoting — closed-form reservation price, online volatility estimation, inventory-based skewing — benchmarked against a naive fixed-spread baseline across 20,000-tick backtests on 5 seeds: 6x higher P&amp;L, 70% lower inventory risk.</p>
+      <div class="cms"><span class="cm y">6x Higher P&amp;L</span><span class="cm y">70% Lower Inventory Risk</span><span class="cm y">31 pytest Tests</span></div>
+      <p class="cd">Price-time-priority limit order book with heap-based matching (O(log n), lazy-deletion cancellation) and a synthetic market combining Brownian-motion price dynamics with Poisson order-arrival flow. Avellaneda-Stoikov optimal quoting — closed-form reservation price, online volatility estimation, inventory-based skewing — benchmarked against a naive fixed-spread baseline across 20,000-tick backtests, 5 seeds: 6x higher P&amp;L, 70% lower inventory risk, consistent in direction on every seed. (Sharpe came out at 94.8 vs. 4.3 in this backtest — that's a short-horizon annualization artifact, explained honestly in the README, not a claim about live performance; the 6x P&amp;L / lower-inventory-risk numbers are the ones that generalize.)</p>
       <div class="ctags"><span class="ctag">Python</span><span class="ctag">NumPy</span><span class="ctag">Pandas</span><span class="ctag">Matplotlib</span><span class="ctag">pytest</span><span class="ctag">Avellaneda-Stoikov</span></div>
       <div class="cl">
         <a href="https://github.com/emmanueladutwum123/High-Frequency-Market-Making-Simulation/blob/main/results/simulation_demo.mp4" target="_blank"><i class="fas fa-external-link-alt"></i></a>
@@ -951,11 +961,11 @@ footer p{font-family:var(--mono);font-size:.68rem;color:var(--text3)}
   </div>
 
   <!-- ── DATA ANALYTICS ── -->
-  <div class="pc" data-f="quant data">
+  <div class="pc" data-f="quant data flagship">
     <div class="ct" style="background:linear-gradient(135deg,#060810,#080e1e)">
       <div class="ctg" style="background:radial-gradient(circle at 50% 120%,rgba(0,212,255,.14),transparent 60%)"></div>
       <i class="fas fa-chart-area ico" style="color:#00d4ff"></i>
-      <span class="nb">NEW</span>
+      <span class="nb">★ FLAGSHIP</span>
       <span class="cat bc">SQL · PYTHON · PLOTLY</span>
     </div>
     <div class="cc">
@@ -1071,7 +1081,7 @@ footer p{font-family:var(--mono);font-size:.68rem;color:var(--text3)}
     </div>
     <div class="ai-hdr-info">
       <div class="ai-hdr-name">Aria &nbsp;<span style="font-weight:400;opacity:.7;font-size:.78rem">· Portfolio Assistant</span></div>
-      <div class="ai-hdr-status"><span class="ai-dot"></span>Online · Knows all 23+ projects</div>
+      <div class="ai-hdr-status"><span class="ai-dot"></span>Online · Knows all 24+ projects</div>
     </div>
     <button class="ai-close" id="aiClose" aria-label="Close">✕</button>
   </div>
@@ -1398,20 +1408,25 @@ nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{hbg.classLi
 /* ============================================================
    PROJECT FILTERS
 ============================================================ */
+function applyProjectFilter(f){
+  document.querySelectorAll('.pc').forEach(card=>{
+    const cf=card.dataset.f||'';
+    const show=f==='all'||cf.split(' ').includes(f);
+    card.style.display=show?'':'none';
+    if(show){
+      card.style.opacity='0';card.style.transform='translateY(20px)';
+      requestAnimationFrame(()=>{card.style.transition='opacity .35s,transform .35s';card.style.opacity='1';card.style.transform='translateY(0)'});
+    }
+  });
+}
+// Default view on page load: all projects, matching the .fb.act button set in the HTML.
+applyProjectFilter('all');
+
 document.querySelectorAll('.fb').forEach(btn=>{
   btn.addEventListener('click',function(){
     document.querySelectorAll('.fb').forEach(b=>b.classList.remove('act'));
     this.classList.add('act');
-    const f=this.dataset.f;
-    document.querySelectorAll('.pc').forEach(card=>{
-      const cf=card.dataset.f||'';
-      const show=f==='all'||cf.split(' ').includes(f);
-      card.style.display=show?'':'none';
-      if(show){
-        card.style.opacity='0';card.style.transform='translateY(20px)';
-        requestAnimationFrame(()=>{card.style.transition='opacity .35s,transform .35s';card.style.opacity='1';card.style.transform='translateY(0)'});
-      }
-    });
+    applyProjectFilter(this.dataset.f);
   });
 });
 
@@ -1775,7 +1790,7 @@ const K={
       {id:'ocaml-order-book',name:'OCaml Limit Order Book',desc:'Functional limit order book engine in pure OCaml. Price-time priority matching with custom BST comparators, supports limit/market orders, partial fills, multi-level sweeps, cancellations, and an interactive REPL. 10 Alcotest tests passing on CI.',tags:'OCaml, Dune, Alcotest, functional programming',link:'https://github.com/emmanueladutwum123/ocaml-order-book'},
       {id:'ocaml-probability',name:'OCaml Probability & Options Pricing',desc:'OCaml library of probability puzzles and quant finance models. Every puzzle returns (analytical, MC) pairs converging to <0.5%. Black-Scholes, CRR binomial trees, Monte Carlo (100k paths), full Greeks, Newton-Raphson implied vol, and Avellaneda-Stoikov market-making. 12 tests passing.',tags:'OCaml, Black-Scholes, Monte Carlo, Greeks, Dune',link:'https://github.com/emmanueladutwum123/ocaml-probability-trading'},
       {id:'quantlab-pro',name:'QuantLab Pro',desc:'Cross-platform quant finance app (Android/iOS/Web) shipped to the Google Play Store as sole developer — React Native + TypeScript, fully client-side compute engine, 24-tester beta before release. Six financial models from scratch, zero external math libraries: Black-Scholes + full Greeks, Newton-Raphson implied vol, Avellaneda-Stoikov market-making with Monte Carlo P&L, GARCH(1,1), Hurst exponent, Ornstein-Uhlenbeck. CI/CD via EAS Build + GitHub Actions.',tags:'React Native, TypeScript, Expo, Black-Scholes, Avellaneda-Stoikov',link:'https://github.com/emmanueladutwum123/quantlab-pro',live:true},
-      {id:'hft-sim',name:'HFT Market Making Simulator',desc:'Price-time-priority limit order book with heap-based matching (O(log n), lazy-deletion cancellation) and a synthetic market combining Brownian-motion price dynamics with Poisson order-arrival flow. Avellaneda-Stoikov optimal quoting benchmarked against a naive fixed-spread baseline across 20,000-tick backtests on 5 seeds: Sharpe 94.8 vs. 4.3, 6x higher P&L, 70% lower inventory risk. 31 pytest tests validating order crossing, partial fills, price-time priority, microprice, and P&L via trade-log replay.',tags:'Python, NumPy, Pandas, Avellaneda-Stoikov, limit order book',link:'https://github.com/emmanueladutwum123/High-Frequency-Market-Making-Simulation',live:true},
+      {id:'hft-sim',name:'HFT Market Making Simulator',desc:'Price-time-priority limit order book with heap-based matching (O(log n), lazy-deletion cancellation) and a synthetic market combining Brownian-motion price dynamics with Poisson order-arrival flow. Avellaneda-Stoikov optimal quoting benchmarked against a naive fixed-spread baseline across 20,000-tick backtests on 5 seeds: 6x higher P&L, 70% lower inventory risk, consistent in direction on every seed (Sharpe came out 94.8 vs. 4.3 in this short-horizon synthetic backtest -- an annualization artifact explained in the README, not a live-performance claim). 31 pytest tests validating order crossing, partial fills, price-time priority, microprice, and P&L via trade-log replay.',tags:'Python, NumPy, Pandas, Avellaneda-Stoikov, limit order book',link:'https://github.com/emmanueladutwum123/High-Frequency-Market-Making-Simulation',live:true},
       {id:'dist-bench',name:'Distributed Trading Engine Benchmarking Platform',desc:'Distributed platform (4 microservices over gRPC + Redpanda) stress-testing trading engines with 1,000+ concurrent bots across 5 archetypes, streaming live scores to a real-time leaderboard — sub-20ms p99, 62 commits, 18+ PRs. Kernel-level eBPF TC hook prober (Cilium) capturing nanosecond RTTs; full IaC (Terraform + Helm on AWS EKS) with one-command deploy; chaos injection via tc netem + cgroup v2; GitHub Actions CI/CD with cosign-signed images.',tags:'Go, Kubernetes, Redpanda, eBPF, gRPC, TimescaleDB, Terraform',link:'https://github.com/Quant-Titans/distributed-bench-platform',live:true},
     ],
     cv:[
