@@ -7,7 +7,7 @@
 <title>Emmanuel Adutwum · Systems Engineer</title>
 <meta name="description" content="Emmanuel Adutwum is a software engineer who builds systems from scratch: Raft consensus, a C++20 market-data ticker plant, a columnar query engine, an MLIR compiler, and multiplayer sync. Every number on this page is measured.">
 <link rel="canonical" href="https://emmanueladutwum123.github.io/">
-<meta name="theme-color" content="#0b0d10">
+<meta name="theme-color" content="#080a1c">
 <meta property="og:title" content="Emmanuel Adutwum · Systems Engineer">
 <meta property="og:description" content="Consensus, market data, query engines, compilers. Built from scratch, benchmarked, and honest about what broke.">
 <meta property="og:type" content="website">
@@ -37,36 +37,35 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#f7f7f5; --bg-2:#ffffff; --bg-3:#efefec;
-  --ink:#15171a; --ink-2:#4a4f57; --ink-3:#7a808a;
-  --line:#e2e2de; --line-2:#d2d2cc;
-  --accent:#0f766e; --accent-soft:rgba(15,118,110,.09); --accent-ink:#0b5e58;
-  --warn:#b45309; --warn-soft:rgba(180,83,9,.08);
-  --bar:#0f766e; --bar-dim:#9fcfc9;
-  --shadow:0 1px 2px rgba(20,20,20,.04),0 8px 24px rgba(20,20,20,.05);
+  /* default: midnight indigo */
+  --bg:#080a1c; --bg-2:#0f1230; --bg-3:#171a3d;
+  --ink:#eef0ff; --ink-2:#a9aed6; --ink-3:#7076a6;
+  --line:#1e2250; --line-2:#2b3068;
+  --accent:#5eead4; --accent-soft:rgba(94,234,212,.10); --accent-ink:#5eead4;
+  --violet:#a78bfa; --pink:#f472b6;
+  --grad:linear-gradient(120deg,#5eead4 0%,#a78bfa 55%,#f472b6 100%);
+  --warn:#fbbf24; --warn-soft:rgba(251,191,36,.10);
+  --bar:#2dd4bf; --bar-dim:#1d5e57;
+  --glow-a:rgba(124,58,237,.30); --glow-b:rgba(20,184,166,.20); --glow-c:rgba(236,72,153,.14);
+  --card:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.01));
+  --shadow:0 1px 2px rgba(0,0,0,.35),0 12px 32px rgba(3,4,20,.45);
   --sans:'Inter',system-ui,-apple-system,Segoe UI,sans-serif;
   --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
-  --r:12px; --max:1120px;
+  --r:14px; --max:1120px;
 }
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --bg:#0b0d10; --bg-2:#111418; --bg-3:#171b21;
-    --ink:#e8eaed; --ink-2:#a3a9b3; --ink-3:#6c7380;
-    --line:#1f242b; --line-2:#2a3039;
-    --accent:#5eead4; --accent-soft:rgba(94,234,212,.08); --accent-ink:#5eead4;
-    --warn:#fbbf24; --warn-soft:rgba(251,191,36,.08);
-    --bar:#2dd4bf; --bar-dim:#1d5e57;
-    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);
-  }
-}
-:root[data-theme="dark"]{
-  --bg:#0b0d10; --bg-2:#111418; --bg-3:#171b21;
-  --ink:#e8eaed; --ink-2:#a3a9b3; --ink-3:#6c7380;
-  --line:#1f242b; --line-2:#2a3039;
-  --accent:#5eead4; --accent-soft:rgba(94,234,212,.08); --accent-ink:#5eead4;
-  --warn:#fbbf24; --warn-soft:rgba(251,191,36,.08);
-  --bar:#2dd4bf; --bar-dim:#1d5e57;
-  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);
+:root[data-theme="light"]{
+  /* light: lavender mist, not plain white */
+  --bg:#f3f1fc; --bg-2:#fbfaff; --bg-3:#e9e5fa;
+  --ink:#171433; --ink-2:#4b4770; --ink-3:#7a7699;
+  --line:#e0dbf5; --line-2:#cdc6ec;
+  --accent:#0d9488; --accent-soft:rgba(13,148,136,.10); --accent-ink:#0f766e;
+  --violet:#7c3aed; --pink:#db2777;
+  --grad:linear-gradient(120deg,#0d9488 0%,#7c3aed 55%,#db2777 100%);
+  --warn:#b45309; --warn-soft:rgba(180,83,9,.09);
+  --bar:#0d9488; --bar-dim:#99d5cf;
+  --glow-a:rgba(124,58,237,.16); --glow-b:rgba(13,148,136,.13); --glow-c:rgba(219,39,119,.09);
+  --card:linear-gradient(180deg,rgba(255,255,255,.9),rgba(255,255,255,.7));
+  --shadow:0 1px 2px rgba(40,20,90,.05),0 12px 32px rgba(60,30,140,.08);
 }
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
@@ -281,6 +280,36 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .cmdk li[aria-selected="true"]{background:var(--bg-3)}
 .cmdk-foot{border-top:1px solid var(--line);padding:8px 14px;font-size:12px;color:var(--ink-3);display:flex;gap:14px}
 
+/* ---------- color & atmosphere ---------- */
+body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(900px 600px at 8% -5%,var(--glow-a),transparent 60%),
+    radial-gradient(800px 560px at 100% 8%,var(--glow-b),transparent 60%),
+    radial-gradient(900px 700px at 50% 115%,var(--glow-c),transparent 60%)}
+body::after{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.5;
+  background-image:radial-gradient(color-mix(in srgb,var(--ink-3) 35%,transparent) 1px,transparent 1px);background-size:28px 28px;
+  -webkit-mask-image:linear-gradient(180deg,#000,transparent 70%);mask-image:linear-gradient(180deg,#000,transparent 70%)}
+h1 .soft{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.brand-mark{background:var(--grad);color:#0b0c1f}
+.btn.primary{background:var(--grad);color:#0b0c1f;border-color:transparent;box-shadow:0 8px 28px -8px var(--glow-a)}
+.btn.primary:hover{box-shadow:0 12px 34px -8px var(--violet)}
+.chip[aria-pressed="true"]{background:var(--grad);color:#0b0c1f;border-color:transparent}
+.sh-num{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;width:fit-content}
+.proof,.sys,.bug,.card,.pub,.feed,.ladder{background:var(--card),var(--bg-2)}
+.proof b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;width:fit-content}
+.sys,.card,.bug,.pub{position:relative}
+.sys::after,.card::after,.bug::after,.pub::after{content:'';position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:var(--grad);opacity:0;transition:opacity .25s;pointer-events:none;
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.sys:hover::after,.card:hover::after,.bug:hover::after,.pub:hover::after{opacity:1}
+.sys li::before{background:var(--grad)}
+.lbar{background:linear-gradient(90deg,var(--accent),var(--violet))}
+.lrow:hover .lbar{background:linear-gradient(90deg,var(--violet),var(--pink))}
+.job::before{border-color:var(--violet)}
+.term{box-shadow:0 30px 80px -30px var(--glow-a),var(--shadow)}
+header{background:color-mix(in srgb,var(--bg) 70%,transparent)}
+.contact h2{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.photo{box-shadow:0 20px 60px -20px var(--glow-a)}
+:root[data-theme="light"] .btn.primary,:root[data-theme="light"] .chip[aria-pressed="true"],:root[data-theme="light"] .brand-mark{color:#fff}
 .rv{opacity:0;transform:translateY(12px);transition:opacity .6s ease,transform .6s ease}
 .rv.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}html{scroll-behavior:auto}}
@@ -827,7 +856,7 @@ document.querySelectorAll('.chip').forEach(chip => chip.addEventListener('click'
 /* theme toggle */
 document.getElementById('themeBtn').addEventListener('click', () => {
   const root = document.documentElement;
-  const cur = root.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  const cur = root.getAttribute('data-theme') || 'dark';
   const next = cur === 'dark' ? 'light' : 'dark';
   root.setAttribute('data-theme', next);
   try { localStorage.setItem('theme', next); } catch (e) {}
