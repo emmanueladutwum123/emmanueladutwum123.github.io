@@ -630,6 +630,19 @@ const SYSTEMS = [
     links: [['Repository','mlir-tensor-opt'], ['Results','mlir-tensor-opt/blob/main/bench/RESULTS.md']]
   },
   {
+    name: 'trtbench', lang: 'C++17 · CUDA', area: 'GPU inference',
+    what: 'A GPU inference benchmarking harness for TensorRT, PyTorch and ONNX Runtime that audits its own measurements and refuses the ones it cannot defend.',
+    metrics: [['12/12','wrong-benchmark traps caught on a Tesla T4'],['31 of 54','own timings rejected in the first T4 run'],['0.67 → 0.996','BERT INT8 cosine vs FP32 (CPU diagnosis)']],
+    points: [
+      '<b>An auditor, not a stopwatch.</b> CUDA-event timing with warmup, steady state and NVML clock sampling; results that imply impossible throughput, ran on a drifting or throttled clock, or fail their output check are rejected, not printed; launch-bound ones are flagged.',
+      '<b>A trap suite that must fail CI</b>: a dead-code-eliminated kernel, a timer with no sync, no warmup, a clock drop, an FP16 speedup without its accuracy delta. CI checks the SASS to prove the dead kernel really has no FFMA.',
+      '<b>Per-layer attribution</b> with IProfiler and the engine inspector: which ONNX nodes TensorRT fused, and a roofline call per layer on whether a faster kernel could help at all.'
+    ],
+    notes: 'The transformer INT8 failure was in the quantized graph, not in TensorRT: the same graph scored the same in ONNX Runtime on CPU. Quantizing one layer type at a time pointed at LayerNorm-fed linears; SmoothQuant plus partial INT8 took GPT-2 perplexity from <b>4,000 to 56.1</b> (FP32 55.1) in that diagnosis. A fused residual-add + LayerNorm CUDA kernel (naive, block, warp-per-row with 16-byte loads) is checked against a CPU reference with a derived tolerance.',
+    honest: 'In progress: the TensorRT comparison rerun, the per-layer attribution and the fused kernel are built and pass CI, but have not yet run on a GPU, so no speedups are quoted. The INT8 figures above are from ONNX Runtime on CPU.',
+    links: [['Repository','trtbench'], ['First T4 run (rejected)','trtbench#first-t4-run-rejected']]
+  },
+  {
     name: 'skewdesk', lang: 'C++20', area: 'Options market making',
     what: 'An equity-index options market-making engine. It fits an arbitrage-free vol surface, risks a book against it, and skews quotes away from carried risk.',
     metrics: [['98.8 → 63.4%','edge retained as toxic flow rises'],['1.3e-3','vol error recovering skew'],['2.3–2.5%','unexplained P&L residual']],
@@ -685,6 +698,9 @@ const LAT = [
 
 /* ---------------- engineering log ---------------- */
 const BUGS = [
+  ['trtbench', 'My own harness rejected 31 of its 54 timings',
+   'Locked at 1005 MHz, the T4\'s 70 W power cap still pulled heavy FP32 workloads down to 570–765 MHz, and the drift audit refused 23 timings. The other rejections were INT8 engines that broke BERT (cosine 0.66 vs FP32) and GPT-2. I published the run as a null result instead of rerunning until it looked good.',
+   'lock at 495 MHz; SmoothQuant + partial INT8'],
   ['cascade', 'One lost datagram became 20,000 lost messages',
    'The reorder window was sized for network reordering (64 packets), not for recovery latency. It overflowed 6 ms into a gap, and every dropped packet opened a new hole. Unit tests passed. A live run with packet loss showed it.',
    'lost messages: 39,904 → 0'],
